@@ -1,0 +1,693 @@
+fileFormatVersion: 2
+guid: b3a742f513f116946994c94f14788b7d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4123975459540778271
+    second: UI_Character_Shadow_006_0
+  - first:
+      213: -5167580405297168697
+    second: UI_Character_Shadow_006_1
+  - first:
+      213: -1098396118956947361
+    second: UI_Character_Shadow_006_2
+  - first:
+      213: 215155245236615598
+    second: UI_Character_Shadow_006_3
+  - first:
+      213: -1729093091935499401
+    second: UI_Character_Shadow_006_4
+  - first:
+      213: 4201855449110903820
+    second: UI_Character_Shadow_006_5
+  - first:
+      213: 1641576220716545481
+    second: UI_Character_Shadow_006_6
+  - first:
+      213: -724847895492462903
+    second: UI_Character_Shadow_006_7
+  - first:
+      213: 8641019286639941269
+    second: UI_Character_Shadow_006_8
+  - first:
+      213: -2212796191536694124
+    second: UI_Character_Shadow_006_9
+  - first:
+      213: -3351003974215367361
+    second: UI_Character_Shadow_006_10
+  - first:
+      213: 3462779648212887902
+    second: UI_Character_Shadow_006_11
+  - first:
+      213: 1777271410524714633
+    second: UI_Character_Shadow_006_12
+  - first:
+      213: 1900962468249535003
+    second: UI_Character_Shadow_006_13
+  - first:
+      213: 1752966812852776274
+    second: UI_Character_Shadow_006_14
+  - first:
+      213: -8156172551358262926
+    second: UI_Character_Shadow_006_15
+  - first:
+      213: 6091804824181795634
+    second: UI_Character_Shadow_006_16
+  - first:
+      213: 808319902452384848
+    second: UI_Character_Shadow_006_17
+  - first:
+      213: 3564210781953483061
+    second: UI_Character_Shadow_006_18
+  - first:
+      213: -3738223642069329096
+    second: UI_Character_Shadow_006_19
+  - first:
+      213: 7216426495241609072
+    second: UI_Character_Shadow_006_20
+  - first:
+      213: 7239539175747273643
+    second: UI_Character_Shadow_006_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_0
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 419
+        width: 118
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1d3b58a4dd4b3930800000000000000
+      internalID: 4123975459540778271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 307
+        width: 203
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ce3ef910011948b0800000000000000
+      internalID: -5167580405297168697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_2
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 295
+        width: 231
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5847e2ac86b1c0f0800000000000000
+      internalID: -1098396118956947361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_3
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 281
+        width: 249
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea9f3eb3e826cf200800000000000000
+      internalID: 215155245236615598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_4
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 270
+        width: 254
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77b4a977ef60108e0800000000000000
+      internalID: -1729093091935499401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 255
+        width: 223
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0c7bc1c44dff4a30800000000000000
+      internalID: 4201855449110903820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_6
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 241
+        width: 171
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c5b98310ec08c610800000000000000
+      internalID: 1641576220716545481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_7
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 219
+        width: 201
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c67bf0fda2d0f5f0800000000000000
+      internalID: -724847895492462903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_8
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 205
+        width: 213
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 596197552411be770800000000000000
+      internalID: 8641019286639941269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_9
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 193
+        width: 223
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49c3e1376919a41e0800000000000000
+      internalID: -2212796191536694124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_10
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 178
+        width: 201
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3588fbc3a7de71d0800000000000000
+      internalID: -3351003974215367361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_11
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 167
+        width: 196
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e596e235eb34e0030800000000000000
+      internalID: 3462779648212887902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_12
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 155
+        width: 194
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98678c57ee22aa810800000000000000
+      internalID: 1777271410524714633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_13
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 142
+        width: 215
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b120d5b0b43916a10800000000000000
+      internalID: 1900962468249535003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_14
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 128
+        width: 229
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25d6327570ac35810800000000000000
+      internalID: 1752966812852776274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_15
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 101
+        width: 239
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 271df7d17447fce80800000000000000
+      internalID: -8156172551358262926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_16
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 115
+        width: 234
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23bed5a36307a8450800000000000000
+      internalID: 6091804824181795634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_17
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 87
+        width: 249
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0548d8a2baab73b00800000000000000
+      internalID: 808319902452384848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_18
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 74
+        width: 259
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53164fa72de967130800000000000000
+      internalID: 3564210781953483061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_19
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 57
+        width: 229
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83b9d7b47692f1cc0800000000000000
+      internalID: -3738223642069329096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_20
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 47
+        width: 222
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07fd794c9a5e52460800000000000000
+      internalID: 7216426495241609072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Character_Shadow_006_21
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 35
+        width: 201
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba3c0fb0682087460800000000000000
+      internalID: 7239539175747273643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

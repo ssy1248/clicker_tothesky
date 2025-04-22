@@ -6,6 +6,8 @@ public class GlobalManager : SingletonBehaviour<GlobalManager>
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 public BigDouble kiwiAmount;
+public int speedGain=0;
+public float decreaseFactor=1f;
 
 public int clickLevel = 1;
 public int inGameCountTime = 150;

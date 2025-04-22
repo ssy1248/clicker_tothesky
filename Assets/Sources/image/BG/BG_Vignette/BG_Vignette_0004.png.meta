@@ -1,0 +1,1643 @@
+fileFormatVersion: 2
+guid: 9de1b575c22cfb24385c39019a06118c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3692900759241195766
+    second: BG_Vignette_0004_0
+  - first:
+      213: -3944198210759635289
+    second: BG_Vignette_0004_1
+  - first:
+      213: -1118690994880257294
+    second: BG_Vignette_0004_2
+  - first:
+      213: 8064496088984508159
+    second: BG_Vignette_0004_3
+  - first:
+      213: -4214903421178924518
+    second: BG_Vignette_0004_4
+  - first:
+      213: -4267127787708732407
+    second: BG_Vignette_0004_5
+  - first:
+      213: 5147536755088188271
+    second: BG_Vignette_0004_6
+  - first:
+      213: -2858739052759822658
+    second: BG_Vignette_0004_7
+  - first:
+      213: 1019612407078075196
+    second: BG_Vignette_0004_8
+  - first:
+      213: 1965339265867702749
+    second: BG_Vignette_0004_9
+  - first:
+      213: 8443773547295466281
+    second: BG_Vignette_0004_10
+  - first:
+      213: 8125413815361908583
+    second: BG_Vignette_0004_11
+  - first:
+      213: -7037465433258707943
+    second: BG_Vignette_0004_12
+  - first:
+      213: -8679980189961053210
+    second: BG_Vignette_0004_13
+  - first:
+      213: -7039818895026895172
+    second: BG_Vignette_0004_14
+  - first:
+      213: 7623006033087238242
+    second: BG_Vignette_0004_15
+  - first:
+      213: 5059791687797762038
+    second: BG_Vignette_0004_16
+  - first:
+      213: -4445118546382817968
+    second: BG_Vignette_0004_17
+  - first:
+      213: 488169288852350720
+    second: BG_Vignette_0004_18
+  - first:
+      213: 4792743937805422935
+    second: BG_Vignette_0004_19
+  - first:
+      213: 1890489112568755969
+    second: BG_Vignette_0004_20
+  - first:
+      213: 4575659931448697027
+    second: BG_Vignette_0004_21
+  - first:
+      213: -1155489792597274676
+    second: BG_Vignette_0004_22
+  - first:
+      213: 7480668826117949057
+    second: BG_Vignette_0004_23
+  - first:
+      213: 5929287287822647763
+    second: BG_Vignette_0004_24
+  - first:
+      213: 5916149123480874687
+    second: BG_Vignette_0004_25
+  - first:
+      213: 2237819506074228923
+    second: BG_Vignette_0004_26
+  - first:
+      213: -3534398009193135223
+    second: BG_Vignette_0004_27
+  - first:
+      213: 4109852993685759211
+    second: BG_Vignette_0004_28
+  - first:
+      213: -4813325234322239017
+    second: BG_Vignette_0004_29
+  - first:
+      213: -6943730300929487884
+    second: BG_Vignette_0004_30
+  - first:
+      213: 7270683010339204441
+    second: BG_Vignette_0004_31
+  - first:
+      213: -8990166107137207465
+    second: BG_Vignette_0004_32
+  - first:
+      213: -8718581708866738923
+    second: BG_Vignette_0004_33
+  - first:
+      213: -1306786320057995128
+    second: BG_Vignette_0004_34
+  - first:
+      213: -2110590976994070982
+    second: BG_Vignette_0004_35
+  - first:
+      213: -2058100436667903407
+    second: BG_Vignette_0004_36
+  - first:
+      213: 3086161827979484146
+    second: BG_Vignette_0004_37
+  - first:
+      213: -9026834653438352504
+    second: BG_Vignette_0004_38
+  - first:
+      213: 5564496498897545520
+    second: BG_Vignette_0004_39
+  - first:
+      213: 1723943228859257355
+    second: BG_Vignette_0004_40
+  - first:
+      213: 7595003597084145568
+    second: BG_Vignette_0004_41
+  - first:
+      213: 8763950802252304364
+    second: BG_Vignette_0004_42
+  - first:
+      213: -5938802099746240092
+    second: BG_Vignette_0004_43
+  - first:
+      213: 8278515525588536610
+    second: BG_Vignette_0004_44
+  - first:
+      213: 1085031475009891129
+    second: BG_Vignette_0004_45
+  - first:
+      213: -1813313534279177322
+    second: BG_Vignette_0004_46
+  - first:
+      213: -4587572390395558666
+    second: BG_Vignette_0004_47
+  - first:
+      213: -2523308637231967066
+    second: BG_Vignette_0004_48
+  - first:
+      213: -5530322951839917594
+    second: BG_Vignette_0004_49
+  - first:
+      213: -4523642944579786650
+    second: BG_Vignette_0004_50
+  - first:
+      213: 2830609335090597306
+    second: BG_Vignette_0004_51
+  - first:
+      213: 4562655102304795867
+    second: BG_Vignette_0004_52
+  - first:
+      213: 3510143593414733107
+    second: BG_Vignette_0004_53
+  - first:
+      213: 7754214421808635803
+    second: BG_Vignette_0004_54
+  - first:
+      213: -1895017557570531417
+    second: BG_Vignette_0004_55
+  - first:
+      213: -7514255841720830754
+    second: BG_Vignette_0004_56
+  - first:
+      213: 416710312373428673
+    second: BG_Vignette_0004_57
+  - first:
+      213: 443174903599098093
+    second: BG_Vignette_0004_58
+  - first:
+      213: 8294688882827933105
+    second: BG_Vignette_0004_59
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BG_Vignette_0004_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1377
+        width: 117
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f08759bca1df3330800000000000000
+      internalID: 3692900759241195766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1316
+        width: 131
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aec0f3ef946349c0800000000000000
+      internalID: -3944198210759635289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1290
+        width: 128
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f2ebbc977c9970f0800000000000000
+      internalID: -1118690994880257294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1384
+        width: 117
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff6d2742778daef60800000000000000
+      internalID: 8064496088984508159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_4
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1315
+        width: 135
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a123d028ba7a185c0800000000000000
+      internalID: -4214903421178924518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_5
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1305
+        width: 116
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90c2c62a2ed18c4c0800000000000000
+      internalID: -4267127787708732407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_6
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 1239
+        width: 135
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f636c4be769bf6740800000000000000
+      internalID: 5147536755088188271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_7
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 1304
+        width: 89
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebec6be4af7b358d0800000000000000
+      internalID: -2858739052759822658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_8
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 1260
+        width: 227
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3b38740514662e00800000000000000
+      internalID: 1019612407078075196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_9
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 1225
+        width: 74
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd1eb2546a9464b10800000000000000
+      internalID: 1965339265867702749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_10
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1197
+        width: 96
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 923e262ed4f4e2570800000000000000
+      internalID: 8443773547295466281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_11
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 1254
+        width: 13
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76fa2b590d443c070800000000000000
+      internalID: 8125413815361908583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_12
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 1237
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 914368b7976e55e90800000000000000
+      internalID: -7037465433258707943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_13
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 1255
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6eb91f771048a8780800000000000000
+      internalID: -8679980189961053210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_14
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 1086
+        width: 37
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb6c6d6730a8d4e90800000000000000
+      internalID: -7039818895026895172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_15
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1019
+        width: 55
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26013d2499b5ac960800000000000000
+      internalID: 7623006033087238242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_16
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 1235
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f7e8ac6bbdf73640800000000000000
+      internalID: 5059791687797762038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_17
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 1220
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 055f95abb34cf42c0800000000000000
+      internalID: -4445118546382817968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_18
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 1199
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 007ac4cb16356c600800000000000000
+      internalID: 488169288852350720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_19
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 1000
+        width: 17
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7519c48e73f338240800000000000000
+      internalID: 4792743937805422935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_20
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 884
+        width: 23
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1077766e4dd5c3a10800000000000000
+      internalID: 1890489112568755969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_21
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 1061
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c0ecfaf672008f30800000000000000
+      internalID: 4575659931448697027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_22
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 912
+        width: 14
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccf46aad720e6ffe0800000000000000
+      internalID: -1155489792597274676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_23
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 739
+        width: 35
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 186491fb9aca0d760800000000000000
+      internalID: 7480668826117949057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_24
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 885
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d188e1af5f094250800000000000000
+      internalID: 5929287287822647763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_25
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 838
+        width: 21
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbee05f58426a1250800000000000000
+      internalID: 5916149123480874687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_26
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 712
+        width: 63
+        height: 312
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb89efafbf45e0f10800000000000000
+      internalID: 2237819506074228923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_27
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 895
+        width: 17
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98302379cbb43fec0800000000000000
+      internalID: -3534398009193135223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_28
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 861
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be427b7d581290930800000000000000
+      internalID: 4109852993685759211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_29
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 700
+        width: 62
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d19cc39332a33db0800000000000000
+      internalID: -4813325234322239017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_30
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 731
+        width: 72
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fb4bfca41ae2af90800000000000000
+      internalID: -6943730300929487884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_31
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 732
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95d6cb91da7a6e460800000000000000
+      internalID: 7270683010339204441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_32
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 689
+        width: 66
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7539458be838c3380800000000000000
+      internalID: -8990166107137207465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_33
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 663
+        width: 64
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 515a7c9f020610780800000000000000
+      internalID: -8718581708866738923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 410
+        width: 172
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8807a9bf3cc5ddde0800000000000000
+      internalID: -1306786320057995128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_35
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 521
+        width: 81
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3eaf1650bca5b2e0800000000000000
+      internalID: -2110590976994070982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_36
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 498
+        width: 117
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1525550ae882073e0800000000000000
+      internalID: -2058100436667903407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_37
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 538
+        width: 121
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb5614d4df34da20800000000000000
+      internalID: 3086161827979484146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_38
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 520
+        width: 103
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 883ee9b75bd3ab280800000000000000
+      internalID: -9026834653438352504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 378
+        width: 121
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03961b27510193d40800000000000000
+      internalID: 5564496498897545520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 316
+        width: 139
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0298199b3dace710800000000000000
+      internalID: 1723943228859257355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_41
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 350
+        width: 170
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a7b300188fd66960800000000000000
+      internalID: 7595003597084145568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_42
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 408
+        width: 92
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cef8f3d32decf9970800000000000000
+      internalID: 8763950802252304364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_43
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 331
+        width: 258
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a9084594f2259da0800000000000000
+      internalID: -5938802099746240092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_44
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 378
+        width: 172
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22dc242520233e270800000000000000
+      internalID: 8278515525588536610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 241
+        width: 172
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93b2516b06ece0f00800000000000000
+      internalID: 1085031475009891129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_46
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 202
+        width: 121
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69ba1eaa2f0d5d6e0800000000000000
+      internalID: -1813313534279177322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_47
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 226
+        width: 196
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f44519873ba550c0800000000000000
+      internalID: -4587572390395558666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_48
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 276
+        width: 192
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a41d1bd9286bfcd0800000000000000
+      internalID: -2523308637231967066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 211
+        width: 72
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e9546283985043b0800000000000000
+      internalID: -5530322951839917594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 87
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 668ae9d85bac831c0800000000000000
+      internalID: -4523642944579786650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_51
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 153
+        width: 77
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abdcafb6138584720800000000000000
+      internalID: 2830609335090597306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_52
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 211
+        width: 150
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdc308d34aec15f30800000000000000
+      internalID: 4562655102304795867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_53
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 189
+        width: 165
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33d291c200986b030800000000000000
+      internalID: 3510143593414733107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_54
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 188
+        width: 119
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9f5d1cdee08c9b60800000000000000
+      internalID: 7754214421808635803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_55
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 124
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7af41e5529b83b5e0800000000000000
+      internalID: -1895017557570531417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_56
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 150
+        width: 108
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed473dacf1008b790800000000000000
+      internalID: -7514255841720830754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_57
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 91
+        width: 111
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c1a24f32d378c500800000000000000
+      internalID: 416710312373428673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_58
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 140
+        width: 106
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de8646e0a39762600800000000000000
+      internalID: 443174903599098093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BG_Vignette_0004_59
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 125
+        width: 106
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b5375f7797ac1370800000000000000
+      internalID: 8294688882827933105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

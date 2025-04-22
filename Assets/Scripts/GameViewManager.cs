@@ -8,27 +8,17 @@ using UnityEngine.UI;
 public class GameViewManager : MonoBehaviour
 {
     public Animator kiwiAnim;
-    private float lastclickupdate = 0f;
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI gameTimeText;
     private float totalTime;
+    private int totalDistance = 500;
+    private int currentDistance =0;
     
     private void Addkiwi(BigDouble amt)
     {
         GlobalManager.Instance.kiwiAmount += amt;
     }
-
-
-    public void TimeKiwi()
-    {
-        lastclickupdate += Time.deltaTime;
-        if (lastclickupdate <= 1f)
-            return;
-        if (lastclickupdate > 1f)
-        {
-            GlobalManager.Instance.kiwiAmount -= 1;
-        }
-    }
+    
 
     private void Awake()
     {
@@ -69,11 +59,30 @@ public class GameViewManager : MonoBehaviour
             // 게임 종료 처리
             Debug.Log("Time's up! 게임끝 게임엔드");
         }
+
+        if (totalDistance == currentDistance)
+        {
+            //상점 패널로 점프
+            //UIManager.Instance.PushPanel(UIPanelType.ITEM_PANEL);
+        }
         
         totalTime -= Time.deltaTime;
         if (slider.value > 0)
         {
-            slider.value -= Time.deltaTime * 3f;    
+            slider.value -= Time.deltaTime * 3f;
+            if (slider.value <= 50)
+            {
+                GlobalManager.Instance.speedGain = 1;
+            }
+
+            if (slider.value <= 70&&slider.value>50)
+            {
+                GlobalManager.Instance.speedGain = 2;
+            }
+            if (slider.value <= 100&&slider.value>70)
+            {
+                GlobalManager.Instance.speedGain = 3;
+            }
         }
         GameTimeCaculater(Mathf.FloorToInt(totalTime));
         
@@ -90,19 +99,8 @@ public class GameViewManager : MonoBehaviour
             Debug.Log(message: "ClickDown");
             Addkiwi(amt:GlobalManager.Instance.GetTouchAmount());
             slider.value += 1f;
-            lastclickupdate = 0f;
+            currentDistance += GlobalManager.Instance.speedGain;
             kiwiAnim.Play(stateName:"touch", layer: 0, normalizedTime:0);
-        }
-
-        if (GlobalManager.Instance.kiwiAmount > 0)
-        {
-            TimeKiwi();
-            
-        }
-
-        if (GlobalManager.Instance.kiwiAmount == 0)
-        {
-            return;
         }
        
 
