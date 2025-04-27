@@ -6,6 +6,7 @@ public enum UIPanelType
     LOGO_PANEL,
     CREDIT_PANEL,
     POPUP_PANEL,
+    STORE_PANEL,
 }
 
 public enum UIPanelStyleType

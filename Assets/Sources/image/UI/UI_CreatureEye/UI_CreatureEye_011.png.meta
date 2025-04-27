@@ -88,7 +88,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -501,7 +501,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -510,7 +510,22 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_CreatureEye_011_0: 490059321345510654
+      UI_CreatureEye_011_1: -2858470391817519180
+      UI_CreatureEye_011_10: 5665167550097483636
+      UI_CreatureEye_011_11: -6400732074088537031
+      UI_CreatureEye_011_12: 5900834427209986971
+      UI_CreatureEye_011_13: 8719798139046677719
+      UI_CreatureEye_011_14: -445652806995602397
+      UI_CreatureEye_011_2: 749706582206823878
+      UI_CreatureEye_011_3: 7071428629058905149
+      UI_CreatureEye_011_4: 472764178897010042
+      UI_CreatureEye_011_5: 3591764683795074609
+      UI_CreatureEye_011_6: -7969777595138266951
+      UI_CreatureEye_011_7: 778168385277179152
+      UI_CreatureEye_011_8: -1040346739257961014
+      UI_CreatureEye_011_9: 7456839798125524287
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

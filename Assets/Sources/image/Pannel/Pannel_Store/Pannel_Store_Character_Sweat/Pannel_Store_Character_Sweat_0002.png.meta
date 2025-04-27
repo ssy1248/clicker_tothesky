@@ -70,7 +70,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -351,7 +351,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -360,7 +360,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pannel_Store_Character_Sweat_0002_0: -2592219856139120193
+      Pannel_Store_Character_Sweat_0002_1: 9040477768129192357
+      Pannel_Store_Character_Sweat_0002_2: -5800047772555270615
+      Pannel_Store_Character_Sweat_0002_3: -9058018056490482755
+      Pannel_Store_Character_Sweat_0002_4: -8719719654969208358
+      Pannel_Store_Character_Sweat_0002_5: 9045527296961404615
+      Pannel_Store_Character_Sweat_0002_6: 9222121219700499581
+      Pannel_Store_Character_Sweat_0002_7: -3037783598203958555
+      Pannel_Store_Character_Sweat_0002_8: -7839971496437884814
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

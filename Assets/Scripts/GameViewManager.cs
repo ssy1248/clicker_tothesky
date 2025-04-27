@@ -62,8 +62,7 @@ public class GameViewManager : MonoBehaviour
 
         if (totalDistance == currentDistance)
         {
-            //상점 패널로 점프
-            //UIManager.Instance.PushPanel(UIPanelType.ITEM_PANEL);
+            UIManager.Instance.PushPanel(UIPanelType.STORE_PANEL);
         }
         
         totalTime -= Time.deltaTime;
