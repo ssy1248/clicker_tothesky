@@ -34,17 +34,16 @@ public class GameModeManager : MonoBehaviour
 
     // 애니메이션용 설정
     [Header("애니메이션 설정")]
-    // 스케일 애니메이션 시간
-    [SerializeField] 
-    private float openDuration = 1f;
-    // 하강 애니메이션 시간
-    [SerializeField] 
-    private float closeDuration = 1f;  
+    [SerializeField, Range(0f, 1f)]
+    private float doorOpenThreshold = 0.8f;  // 체크포인트 거리의 몇 퍼센트에서 문 열기 시작
+    private bool hasDoorOpenStarted = false;
 
     // 원래 값 보관용
     private Vector3 doorOriginalScale;
     private Vector3 doorOriginalPosition;
     private Vector3 doorStartScale;
+    [SerializeField] 
+    private Vector3 doorTargetScale = new Vector3(2f, 2f, 1f);
 
     private void Awake()
     {
@@ -59,7 +58,7 @@ public class GameModeManager : MonoBehaviour
         }
 
         // 초기 트랜스폼 값 저장
-        doorOriginalScale = DoorObject.transform.localScale;
+        doorOriginalScale = doorTargetScale;
         doorOriginalPosition = DoorObject.transform.localPosition;
         // 초기 스케일
         doorStartScale = new Vector3(0.1f, 0.1f, doorOriginalScale.z);
@@ -76,8 +75,12 @@ public class GameModeManager : MonoBehaviour
     void Update()
     {
         if (!isAtCheckpoint)
+        {
             // 거리 증가 로직
-            IncreaseDistanceOverTime();   
+            IncreaseDistanceOverTime();
+            // 거리 기반 스케일 업데이트
+            AnimateDoorScale();  
+        }
         else
             // 체크포인트 터치 대기
             HandleCheckpointTouch();     
@@ -86,15 +89,23 @@ public class GameModeManager : MonoBehaviour
     private void IncreaseDistanceOverTime()
     {
         distanceTimer += Time.deltaTime;
-
         if (distanceTimer >= 1f)
         {
-            Distance += 1;
+            Distance++;
             distanceTimer -= 1f;
-
             UpdateDistanceText();
 
-            // 체크포인트 도달 체크
+            // 80% 지점에서 문 열기 시작
+            float thresholdDistance = CheckPointDistance * doorOpenThreshold;
+            if (!hasDoorOpenStarted && Distance >= thresholdDistance)
+            {
+                hasDoorOpenStarted = true;
+                DoorObject.SetActive(true);
+                DoorObject.transform.localScale = doorStartScale;
+                DoorObject.transform.localPosition = doorOriginalPosition;
+            }
+
+            // 체크포인트 도달 시 동작
             if (Distance >= CheckPointDistance)
                 EnterCheckpoint();
         }
@@ -104,29 +115,21 @@ public class GameModeManager : MonoBehaviour
     private void EnterCheckpoint()
     {
         isAtCheckpoint = true;
-        DoorObject.SetActive(true);
-
-        // 문을 작게 세팅 후 열기 애니메이션
-        DoorObject.transform.localScale = doorStartScale;
-        DoorObject.transform.localPosition = doorOriginalPosition;
-
-        // 지금은 거리가 도달하면 보이는데 
-        // 이건 정해줘야 할듯? -> 체크포인트의 거리의 80퍼센트도착하면 그때부터 시작?
-        StartCoroutine(OpenDoorRoutine());
+        // 문 스케일을 정확히 목표 스케일로 설정
+        DoorObject.transform.localScale = doorOriginalScale;
     }
 
-    private IEnumerator OpenDoorRoutine()
+    // 거리에 따라 문 스케일 보간
+    private void AnimateDoorScale()
     {
-        float elapsed = 0f;
-        while (elapsed < openDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / openDuration);
-            DoorObject.transform.localScale = Vector3.Lerp(
-                doorStartScale, doorOriginalScale, t);
-            yield return null;
-        }
-        DoorObject.transform.localScale = doorOriginalScale;
+        if (!hasDoorOpenStarted)
+            return;
+
+        float thresholdDist = CheckPointDistance * doorOpenThreshold;
+        float progress = Mathf.Clamp01((Distance - thresholdDist) / (CheckPointDistance - thresholdDist));
+
+        // doorTargetScale 사용
+        DoorObject.transform.localScale = Vector3.Lerp(doorStartScale, doorOriginalScale, progress);
     }
 
     private void UpdateDistanceText()
@@ -167,36 +170,36 @@ public class GameModeManager : MonoBehaviour
         currentTouchCount = 0;
         isAtCheckpoint = false;
         distanceTimer = 0f;
+        hasDoorOpenStarted = false;
 
         // 타이머 리셋
         gameViewManager.ResetTimer(120);
 
-        // 닫기 애니메이션 시작
-        StartCoroutine(CloseDoorRoutine());
 
         Debug.Log($"Next CheckPoint: Distance at {CheckPointDistance}, TouchCount {CheckPointTouch}");
     }
 
-    private IEnumerator CloseDoorRoutine()
-    {
-        float elapsed = 0f;
-        Vector3 startPos = doorOriginalPosition;
-        Vector3 endPos = new Vector3(
-            startPos.x, -5f, startPos.z);
+    // 문커지는것을 확인했고 이제 체크포인트를 통과를 하면 아래로 문이 내려가는 애니메이션과 다시 원래의 값으로 돌려놓고 비활성화 시키기
 
-        while (elapsed < closeDuration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / closeDuration);
-            DoorObject.transform.localPosition =
-                Vector3.Lerp(startPos, endPos, t);
-            yield return null;
-        }
+    //private IEnumerator CloseDoorRoutine()
+    //{
+    //    float elapsed = 0f;
+    //    Vector3 startPos = doorOriginalPosition;
+    //    Vector3 endPos = new Vector3(
+    //        startPos.x, -5f, startPos.z);
 
-        // 완전히 내린 뒤 비활성화 및 원복
-        DoorObject.transform.localPosition = endPos;
-        DoorObject.SetActive(false);
-        DoorObject.transform.localPosition = doorOriginalPosition;
-        DoorObject.transform.localScale = doorOriginalScale;
-    }
+    //    while (elapsed < closeDuration)
+    //    {
+    //        elapsed += Time.deltaTime;
+    //        float t = Mathf.Clamp01(elapsed / closeDuration);
+    //        DoorObject.transform.localPosition = Vector3.Lerp(startPos, endPos, t);
+    //        yield return null;
+    //    }
+
+    //    // 완전히 내린 뒤 비활성화 및 원복
+    //    DoorObject.transform.localPosition = endPos;
+    //    DoorObject.SetActive(false);
+    //    DoorObject.transform.localPosition = doorOriginalPosition;
+    //    DoorObject.transform.localScale = doorOriginalScale;
+    //}
 }
