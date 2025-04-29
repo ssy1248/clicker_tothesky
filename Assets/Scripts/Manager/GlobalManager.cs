@@ -8,7 +8,7 @@ public class GlobalManager : SingletonBehaviour<GlobalManager>
 public BigDouble kiwiAmount;
 
 public int clickLevel = 1;
-public int inGameCountTime = 150;
+public int inGameCountTime = 120;
 
 public BigDouble GetTouchAmount()
 {

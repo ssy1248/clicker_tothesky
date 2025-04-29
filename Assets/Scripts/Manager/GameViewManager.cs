@@ -35,22 +35,22 @@ public class GameViewManager : MonoBehaviour
         totalTime = GlobalManager.Instance.inGameCountTime;
         slider = GameObject.Find("Slider").GetComponent<Slider>();
         gameTimeText = GameObject.Find("GameTimeText").GetComponent<TextMeshProUGUI>();
-        GameTimeCaculater(Mathf.FloorToInt(totalTime));
+        UpdateTimerUI();
     }
 
-    private void GameTimeCaculater(int time)
+    public void ResetTimer(int seconds)
     {
-        int minutes = (time / 60);
-        int seconds = 0;
-        if ((time % 60) > 0)
-        {
-            seconds = (time % 60);
-        }
-        else
-        {
-            seconds = 0;
-        }
-        gameTimeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        totalTime = seconds;   // ← 여기에 120을 넣으면 120초로 세팅
+        slider.value = 0f;     // 필요시 슬라이더도 초기화
+        UpdateTimerUI();
+    }
+
+    private void UpdateTimerUI()
+    {
+        int t = Mathf.FloorToInt(totalTime);
+        int minutes = t / 60;
+        int secs = t % 60;
+        gameTimeText.text = $"{minutes:00}:{secs:00}";
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -63,20 +63,23 @@ public class GameViewManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (totalTime <= 0f)
+        if (totalTime > 0f)
         {
-            totalTime = 0f;
-            // 게임 종료 처리
-            Debug.Log("Time's up! 게임끝 게임엔드");
+            totalTime -= Time.deltaTime;
+            if (totalTime < 0f)
+                totalTime = 0f;
+
+            UpdateTimerUI();
+
+            if (totalTime == 0f)
+                Debug.Log("Time's up! 게임 끝");
         }
-        
-        totalTime -= Time.deltaTime;
+
         if (slider.value > 0)
         {
             slider.value -= Time.deltaTime * 3f;    
         }
-        GameTimeCaculater(Mathf.FloorToInt(totalTime));
-        
+
         if (EventSystem.current.IsPointerOverGameObject())
             return;
         //터치 시작.
