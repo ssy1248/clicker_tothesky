@@ -7,9 +7,12 @@ public class GameModeManager : MonoBehaviour
     // 게임 거리 / 무한모드 나중에 생성될 스토리 모드의 분기를 나눌 스크립트로 사용할 예정
     
     [Header("UI 모음")]
-    // 거리를 나타낼 텍스트 변수
+    // 거리를 나타낼 텍스트
     [SerializeField]
     private TextMeshProUGUI GameDistanceText;
+    // 체크포인트 거리를 보여줄 텍스트
+    [SerializeField]
+    private TextMeshProUGUI CheckPointDistanceText;
     private GameViewManager gameViewManager;
 
     [Header("변수 모음")]
@@ -178,28 +181,4 @@ public class GameModeManager : MonoBehaviour
 
         Debug.Log($"Next CheckPoint: Distance at {CheckPointDistance}, TouchCount {CheckPointTouch}");
     }
-
-    // 문커지는것을 확인했고 이제 체크포인트를 통과를 하면 아래로 문이 내려가는 애니메이션과 다시 원래의 값으로 돌려놓고 비활성화 시키기
-
-    //private IEnumerator CloseDoorRoutine()
-    //{
-    //    float elapsed = 0f;
-    //    Vector3 startPos = doorOriginalPosition;
-    //    Vector3 endPos = new Vector3(
-    //        startPos.x, -5f, startPos.z);
-
-    //    while (elapsed < closeDuration)
-    //    {
-    //        elapsed += Time.deltaTime;
-    //        float t = Mathf.Clamp01(elapsed / closeDuration);
-    //        DoorObject.transform.localPosition = Vector3.Lerp(startPos, endPos, t);
-    //        yield return null;
-    //    }
-
-    //    // 완전히 내린 뒤 비활성화 및 원복
-    //    DoorObject.transform.localPosition = endPos;
-    //    DoorObject.SetActive(false);
-    //    DoorObject.transform.localPosition = doorOriginalPosition;
-    //    DoorObject.transform.localScale = doorOriginalScale;
-    //}
 }
