@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameModeManager : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class GameModeManager : MonoBehaviour
     // 체크포인트 거리를 보여줄 텍스트
     [SerializeField]
     private TextMeshProUGUI CheckPointDistanceText;
+    [SerializeField]
+    private Image FilledImage;
+    [SerializeField]
+    private Image CharacterImage;
     private GameViewManager gameViewManager;
 
     [Header("변수 모음")]
@@ -54,7 +59,11 @@ public class GameModeManager : MonoBehaviour
         {
             GameDistanceText = GameObject.Find("GameDistanceText").GetComponent<TextMeshProUGUI>();
         }
-        if(DoorObject == null)
+        if (CheckPointDistanceText == null)
+        {
+            CheckPointDistanceText = GameObject.Find("CheckPointDistanceText").GetComponent<TextMeshProUGUI>();
+        }
+        if (DoorObject == null)
         {
             DoorObject = GameObject.Find("CheckPoint");
             DoorObject.SetActive(false);
@@ -65,6 +74,9 @@ public class GameModeManager : MonoBehaviour
         doorOriginalPosition = DoorObject.transform.localPosition;
         // 초기 스케일
         doorStartScale = new Vector3(0.1f, 0.1f, doorOriginalScale.z);
+
+        // 체크포인트 거리 텍스트 설정
+        CheckPointDistanceText.text = CheckPointDistance.ToString() + " M";
 
         // 문 숨김
         DoorObject.SetActive(false);

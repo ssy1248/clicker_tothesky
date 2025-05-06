@@ -4,12 +4,21 @@ using UnityEngine.UI;
 
 public class GlobalManager : SingletonBehaviour<GlobalManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public BigDouble kiwiAmount;
 
     public int clickLevel = 1;
     public int inGameCountTime = 120;
-    
+
+    public GameObject[] UIObjects;
+
+    private void Start()
+    {
+        for(int i = 0; i < UIObjects.Length; i++)
+        {
+            UIObjects[i].SetActive(false);
+        }   
+    }
+
     public BigDouble GetTouchAmount()
     {
         return clickLevel ;
