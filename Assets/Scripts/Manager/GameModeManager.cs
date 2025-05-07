@@ -52,6 +52,8 @@ public class GameModeManager : MonoBehaviour
     private Vector3 doorStartScale;
     [SerializeField] 
     private Vector3 doorTargetScale = new Vector3(2f, 2f, 1f);
+    // 캐릭터 최초 X 좌표 저장용
+    private float charStartX;
 
     private void Awake()
     {
@@ -84,6 +86,9 @@ public class GameModeManager : MonoBehaviour
         // GameViewManager
         gameViewManager = GameObject.Find("Manager").GetComponent<GameViewManager>();
 
+        // 캐릭터의 시작 AnchoredPosition.x를 한 번 저장
+        charStartX = CharacterImage.rectTransform.anchoredPosition.x;
+
         UpdateDistanceText();
     }
 
@@ -94,7 +99,9 @@ public class GameModeManager : MonoBehaviour
             // 거리 증가 로직
             IncreaseDistanceOverTime();
             // 거리 기반 스케일 업데이트
-            AnimateDoorScale();  
+            AnimateDoorScale();
+            // 이동 게이지 조절 함수
+            AnimateProgressFill();
         }
         else
             // 체크포인트 터치 대기
@@ -172,6 +179,25 @@ public class GameModeManager : MonoBehaviour
         // 터치 횟수 만족 시 다음 체크포인트 준비
         if (currentTouchCount >= CheckPointTouch)
             ExitCheckpoint();
+    }
+
+    private void AnimateProgressFill()
+    {
+        // 1) 진행도 계산
+        float progress = Mathf.Clamp01(Distance / (float)CheckPointDistance);
+
+        // 2) 게이지 채우기
+        FilledImage.fillAmount = progress;
+
+        // 3) 캐릭터 이동: 원래 위치(charStartX) + 진행도*게이지폭
+        RectTransform gaugeRT = FilledImage.rectTransform;
+        float gaugeWidth = gaugeRT.rect.width;
+
+        RectTransform charRT = CharacterImage.rectTransform;
+        Vector2 anchored = charRT.anchoredPosition;
+
+        anchored.x = charStartX + gaugeWidth * progress;
+        charRT.anchoredPosition = anchored;
     }
 
     // 체크포인트 해제 & 다음 단계 설정
