@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameModeManager : MonoBehaviour
 {
@@ -178,7 +179,10 @@ public class GameModeManager : MonoBehaviour
 
         // 터치 횟수 만족 시 다음 체크포인트 준비
         if (currentTouchCount >= CheckPointTouch)
+        {
             ExitCheckpoint();
+            SceneManager.LoadScene("StoreScene");
+        }
     }
 
     private void AnimateProgressFill()

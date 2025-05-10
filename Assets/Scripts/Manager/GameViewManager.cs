@@ -23,6 +23,10 @@ public class GameViewManager : MonoBehaviour
     // 최대 fillAmount
     const float MAX_FILL = 0.927f;
 
+    [Header("타임 패널")]
+    [SerializeField] private TimePanel timePanel;      // TimePanel 스크립트 연결
+    private bool blinkStarted = false;                 // 한 번만 실행 플래그
+
     private float totalTime;
 
     // 내부 게이지 값 (0~∞) → 0~1 로 클램프
@@ -68,6 +72,10 @@ public class GameViewManager : MonoBehaviour
     {
         totalTime = seconds;   // ← 여기에 120을 넣으면 120초로 세팅
         UpdateTimerUI();
+
+        // 타이머가 리셋됐으니 깜박임 중지
+        timePanel.StopBlinking();
+        blinkStarted = false;
     }
 
     private void UpdateTimerUI()
@@ -95,6 +103,13 @@ public class GameViewManager : MonoBehaviour
                 totalTime = 0f;
             UpdateTimerUI();
 
+            // 남은 시간이 30초 이하가 되고, 아직 깜박임을 시작하지 않았다면
+            if (totalTime <= 30f && !blinkStarted)
+            {
+                timePanel.StartBlinking();
+                blinkStarted = true;
+            }
+
             if (totalTime == 0f)
                 Debug.Log("Time's up! 게임 끝");
         }
@@ -105,7 +120,7 @@ public class GameViewManager : MonoBehaviour
             gaugeValue -= decayRate * Time.deltaTime;
             if (gaugeValue < 0f) 
                 gaugeValue = 0f;
-            UpdateGauge();  // fillAmount 갱신
+            UpdateGauge();  
         }
 
         // UI 위 터치는 무시
