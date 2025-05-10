@@ -26,7 +26,7 @@ public class GameViewManager : MonoBehaviour
     private float totalTime;
 
     // 내부 게이지 값 (0~∞) → 0~1 로 클램프
-    private float gaugeValue = 0f;  
+    public float gaugeValue = 0f;  // -> 0.7 이상이 되면 GameModeManager에 가져와서 거리 이속 저하
 
     private void Addkiwi(BigDouble amt)
     {
@@ -114,14 +114,15 @@ public class GameViewManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(message: "ClickDown");
-            Addkiwi(amt:GlobalManager.Instance.GetTouchAmount());
-            // 터치할 때마다 게이지에 1씩 추가
-            gaugeValue += 0.05f;
-            // 즉시 fillAmount 갱신
-            UpdateGauge();       
+            Debug.Log("ClickDown");
+            Addkiwi(GlobalManager.Instance.GetTouchAmount());
+
+            // ★ 클릭할 때마다 0.05 더하되 0~1 사이로 클램프
+            gaugeValue = Mathf.Clamp01(gaugeValue + 0.05f);
+            UpdateGauge();
+
             lastclickupdate = 0f;
-            kiwiAnim.Play(stateName:"touch", layer: 0, normalizedTime:0);
+            kiwiAnim.Play("touch", 0, 0);
         }
 
         if (GlobalManager.Instance.kiwiAmount > 0)
