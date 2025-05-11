@@ -28,9 +28,9 @@ public class GameModeManager : MonoBehaviour
     // 1초를 누적할 타이머 변수
     private float distanceTimer = 0f;
     // 체크포인트 거리
-    public int CheckPointDistance = 50;
+    public int CheckPointDistance;
     // 체크포인트를 넘어가기 위한 터치 횟수
-    public int CheckPointTouch = 10;
+    public int CheckPointTouch;
     // 체크포인트 상태 플래그
     private bool isAtCheckpoint = false;
     // 현재 터치 카운트
@@ -77,6 +77,10 @@ public class GameModeManager : MonoBehaviour
         doorOriginalPosition = DoorObject.transform.localPosition;
         // 초기 스케일
         doorStartScale = new Vector3(0.1f, 0.1f, doorOriginalScale.z);
+
+        // 글로벌 변수에서 값을 가져오기
+        CheckPointDistance = GlobalVariable.Instance.CheckPointDistance;
+        CheckPointTouch = GlobalVariable.Instance.CheckPointTouchCount;
 
         // 체크포인트 거리 텍스트 설정
         CheckPointDistanceText.text = CheckPointDistance.ToString() + " M";
@@ -210,6 +214,10 @@ public class GameModeManager : MonoBehaviour
         // 거리와 터치 요구량 2배로 증가
         CheckPointDistance *= 2;
         CheckPointTouch *= 2;
+
+        // 수정된 값을 글로벌에 저장
+        GlobalVariable.Instance.CheckPointDistance = CheckPointDistance;
+        GlobalVariable.Instance.CheckPointTouchCount = CheckPointTouch;
 
         // 상태 초기화
         currentTouchCount = 0;

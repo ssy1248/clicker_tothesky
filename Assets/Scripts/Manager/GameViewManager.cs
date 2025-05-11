@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class GameViewManager : MonoBehaviour
 {
+    // 한번만 실행될 수 있도록
+    private bool gameOver = false;
+
     public Animator kiwiAnim;
     private float lastclickupdate = 0f;
 
@@ -86,6 +89,22 @@ public class GameViewManager : MonoBehaviour
         gameTimeText.text = $"{minutes:00}:{secs:00}";
     }
 
+    private void OnGameOver()
+    {
+        gameOver = true;
+        Debug.Log("Time's up! 게임 끝");
+
+        // 1) 전역 변수 초기화
+        GlobalVariable.Instance.CheckPointDistance = 50;
+        GlobalVariable.Instance.CheckPointTouchCount = 10;
+
+        // 2) 필요하다면 타이머나 UI도 초기화
+        // ResetTimer(120);
+
+        // 3) 씬 전환 혹은 리플레이 로직 호출
+        // SceneManager.LoadScene("TitleScene");
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -111,7 +130,7 @@ public class GameViewManager : MonoBehaviour
             }
 
             if (totalTime == 0f)
-                Debug.Log("Time's up! 게임 끝");
+                OnGameOver();
         }
 
         // 2) 게이지 자동 감소
