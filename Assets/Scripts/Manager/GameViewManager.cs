@@ -33,7 +33,7 @@ public class GameViewManager : MonoBehaviour
     private float totalTime;
 
     // 내부 게이지 값 (0~∞) → 0~1 로 클램프
-    public float gaugeValue = 0f;  // -> 0.7 이상이 되면 GameModeManager에 가져와서 거리 이속 저하
+    public float gaugeValue = 0f;  
 
     private void Addkiwi(BigDouble amt)
     {
@@ -58,6 +58,18 @@ public class GameViewManager : MonoBehaviour
         float normalized = Mathf.Clamp01(gaugeValue);
         // 0~1 사이를 MIN_FILL~MAX_FILL 사이로 보간
         touchGaugeImage.fillAmount = Mathf.Lerp(MIN_FILL, MAX_FILL, normalized);
+
+        // 구간별 색상 결정
+        Color c;
+        if (normalized < 0.5f)
+            c = Color.green;      // 초록: 0.00 ~ 0.5
+        else if (normalized < 0.8f)
+            c = Color.yellow;     // 노랑: 0.5 ~ 0.8
+        else
+            c = Color.red;        // 빨강: 0.8 ~ 1.00
+
+        // GuageColorController를 통해 실제 UI 색 변경
+        GuageColorController.Instance.SetGaugeColor(c);
     }
 
     private void Awake()
@@ -97,6 +109,7 @@ public class GameViewManager : MonoBehaviour
         // 1) 전역 변수 초기화
         GlobalVariable.Instance.CheckPointDistance = 50;
         GlobalVariable.Instance.CheckPointTouchCount = 10;
+        GlobalVariable.Instance.PlayerCurrentDistance = 0;
 
         // 2) 필요하다면 타이머나 UI도 초기화
         // ResetTimer(120);
@@ -151,7 +164,7 @@ public class GameViewManager : MonoBehaviour
             Debug.Log("ClickDown");
             Addkiwi(GlobalManager.Instance.GetTouchAmount());
 
-            // ★ 클릭할 때마다 0.05 더하되 0~1 사이로 클램프
+            // 클릭할 때마다 0.05 더하되 0~1 사이로 클램프
             gaugeValue = Mathf.Clamp01(gaugeValue + 0.05f);
             UpdateGauge();
 

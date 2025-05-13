@@ -13,6 +13,9 @@ public class GlobalVariable : MonoBehaviour
     // 체크포인트 통과하기 위한 터치 횟수
     public int CheckPointTouchCount = 10;
 
+    [Header("플레이어 관련 변수")]
+    public int PlayerCurrentDistance = 0;
+
     void Awake()
     {
         // 같은 오브젝트가 존재한다면 파괴

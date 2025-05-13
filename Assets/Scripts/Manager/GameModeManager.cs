@@ -24,7 +24,7 @@ public class GameModeManager : MonoBehaviour
     [Header("변수 모음")]
     // 거리를 초기화할 초기 변수
     [SerializeField]
-    int Distance = 0;
+    int Distance;
     // 1초를 누적할 타이머 변수
     private float distanceTimer = 0f;
     // 체크포인트 거리
@@ -78,21 +78,25 @@ public class GameModeManager : MonoBehaviour
         // 초기 스케일
         doorStartScale = new Vector3(0.1f, 0.1f, doorOriginalScale.z);
 
+        // 문 숨김
+        DoorObject.SetActive(false);
+
+        // GameViewManager
+        gameViewManager = GameObject.Find("GameViewManager").GetComponent<GameViewManager>();
+
+        // 캐릭터의 시작 AnchoredPosition.x를 한 번 저장
+        charStartX = CharacterImage.rectTransform.anchoredPosition.x;
+    }
+
+    private void Start()
+    {
         // 글로벌 변수에서 값을 가져오기
+        Distance = GlobalVariable.Instance.PlayerCurrentDistance;
         CheckPointDistance = GlobalVariable.Instance.CheckPointDistance;
         CheckPointTouch = GlobalVariable.Instance.CheckPointTouchCount;
 
         // 체크포인트 거리 텍스트 설정
         CheckPointDistanceText.text = CheckPointDistance.ToString() + " M";
-
-        // 문 숨김
-        DoorObject.SetActive(false);
-
-        // GameViewManager
-        gameViewManager = GameObject.Find("Manager").GetComponent<GameViewManager>();
-
-        // 캐릭터의 시작 AnchoredPosition.x를 한 번 저장
-        charStartX = CharacterImage.rectTransform.anchoredPosition.x;
 
         UpdateDistanceText();
     }
@@ -218,6 +222,7 @@ public class GameModeManager : MonoBehaviour
         // 수정된 값을 글로벌에 저장
         GlobalVariable.Instance.CheckPointDistance = CheckPointDistance;
         GlobalVariable.Instance.CheckPointTouchCount = CheckPointTouch;
+        GlobalVariable.Instance.PlayerCurrentDistance = Distance;
 
         // 상태 초기화
         currentTouchCount = 0;
