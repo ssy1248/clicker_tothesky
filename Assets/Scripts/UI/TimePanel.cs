@@ -5,13 +5,16 @@ using UnityEngine.UI;
 public class TimePanel : MonoBehaviour
 {
     [Header("깜박일 Panel의 Image")]
-    [SerializeField] private Image flashPanel;
+    [SerializeField] 
+    private Image flashPanel;
 
     [Header("깜박임 간격(seconds)")]
-    [SerializeField] private float blinkInterval = 0.5f;
+    [SerializeField]
+    private float blinkInterval = 0.5f;
 
     [Header("최대 알파(0~255)")]
-    [SerializeField, Range(0, 255)] private byte maxAlphaByte = 100;
+    [SerializeField, Range(0, 255)] 
+    private byte maxAlphaByte = 100;
 
     private float maxAlphaNormalized;
     private Coroutine blinkCoroutine;

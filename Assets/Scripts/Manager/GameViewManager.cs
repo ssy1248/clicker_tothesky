@@ -7,11 +7,16 @@ using UnityEngine.UI;
 
 public class GameViewManager : MonoBehaviour
 {
-    // 한번만 실행될 수 있도록
-    private bool gameOver = false;
-
     public Animator kiwiAnim;
     private float lastclickupdate = 0f;
+
+    [Header("트리거 모음")]
+    // 한번만 실행될 수 있도록
+    private bool gameOver = false;
+    // 기준선을 넘겼는지 나타내는 플래그
+    private bool isAboveThreshold = false;
+    private bool isStaminaEmpty = false;
+    private bool inputEnabled = true;
 
     [Header("UI")]
     // Radial 360 세팅된 Image
@@ -52,8 +57,45 @@ public class GameViewManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        GuageImageAlpha.OnStaminaEmpty += HandleStaminaEmpty;
+        GuageImageAlpha.OnStaminaRecovered += HandleStaminaRecovered;
+    }
+
+    private void OnDisable()
+    {
+        GuageImageAlpha.OnStaminaEmpty -= HandleStaminaEmpty;
+        GuageImageAlpha.OnStaminaRecovered -= HandleStaminaRecovered;
+    }
+
+    private void HandleStaminaEmpty()
+    {
+        isStaminaEmpty = true;
+        inputEnabled = false;
+        // 완전 투명 고정
+        touchGaugeImage.color = new Color(touchGaugeImage.color.r,
+                                         touchGaugeImage.color.g,
+                                         touchGaugeImage.color.b,
+                                         0f);
+
+        // ② 입력 차단 등 추가 처리 
+    }
+
+    private void HandleStaminaRecovered()
+    {
+        isStaminaEmpty = false;
+        inputEnabled = true;
+        isAboveThreshold = false;   // threshold 체크 재개
+        // (필요하면 gaugeValue = 0; 등 초기화)
+    }
+
     private void UpdateGauge()
     {
+        // 스태미너 고갈 후에는 더 이상 게이지 업데이트 금지
+        if (isStaminaEmpty)
+            return;
+
         // 내부 값(gaugeValue)을 0~1로 정규화
         float normalized = Mathf.Clamp01(gaugeValue);
         // 0~1 사이를 MIN_FILL~MAX_FILL 사이로 보간
@@ -67,6 +109,26 @@ public class GameViewManager : MonoBehaviour
             c = Color.yellow;     // 노랑: 0.5 ~ 0.8
         else
             c = Color.red;        // 빨강: 0.8 ~ 1.00
+
+        // 임시로 빨간색일땐 10초로 두고 깜빡거리는 애니메이션 제작
+        // 코루틴?을 이용해야 할까? 아님 빨간색이 되면 트리거를 줘서 그때부터 타이머를 걸어서 체크를 해야할까?
+        // 0.8 이상/미만에 따라 스태미나 라이프 시작/취소
+        if (normalized >= 0.8f)
+        {
+            if (!isAboveThreshold)
+            {
+                isAboveThreshold = true;
+                GuageImageAlpha.Instance.StartLifeRoutine();
+            }
+        }
+        else
+        {
+            if (isAboveThreshold)
+            {
+                isAboveThreshold = false;
+                GuageImageAlpha.Instance.CancelLifeRoutine();
+            }
+        }
 
         // GuageColorController를 통해 실제 UI 색 변경
         GuageColorController.Instance.SetGaugeColor(c);
@@ -161,6 +223,10 @@ public class GameViewManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            // 입력 무시
+            if (!inputEnabled)
+                return;
+
             Debug.Log("ClickDown");
             Addkiwi(GlobalManager.Instance.GetTouchAmount());
 

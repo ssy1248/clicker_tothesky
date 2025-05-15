@@ -144,7 +144,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1894334}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1283,6 +1283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 708763650}
+  - component: {fileID: 708763651}
   m_Layer: 5
   m_Name: GuageImage
   m_TagString: Untagged
@@ -1311,6 +1312,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 111}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &708763651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708763649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316126d8987051b42baca4e03d97cfd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FilledGuageImage: {fileID: 814215338}
+  BackgroundGuageImage: {fileID: 1894336}
+  lifeTime: 5
+  resetDelay: 3
+  baseSpeed: 1
+  acceleration: 1
 --- !u!1 &814215336
 GameObject:
   m_ObjectHideFlags: 0
