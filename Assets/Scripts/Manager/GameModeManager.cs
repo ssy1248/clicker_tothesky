@@ -103,6 +103,7 @@ public class GameModeManager : MonoBehaviour
 
     void Update()
     {
+        // GameViewManager에서 HandleStaminaZero 함수가 실행이 되면 트리거를 보내서 거리 증가 로직을 막는다
         if (!isAtCheckpoint)
         {
             // 거리 증가 로직

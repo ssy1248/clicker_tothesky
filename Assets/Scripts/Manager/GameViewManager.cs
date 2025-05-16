@@ -73,21 +73,24 @@ public class GameViewManager : MonoBehaviour
     {
         isStaminaEmpty = true;
         inputEnabled = false;
-        // 완전 투명 고정
-        touchGaugeImage.color = new Color(touchGaugeImage.color.r,
-                                         touchGaugeImage.color.g,
-                                         touchGaugeImage.color.b,
-                                         0f);
 
-        // ② 입력 차단 등 추가 처리 
+        // 게이지 투명 고정
+        var col = touchGaugeImage.color;
+        col.a = 0f;
+        touchGaugeImage.color = col;
+
+        // 애니메이션 정지
+        AnimationManager.Instance.AnimationAllStop();
     }
 
     private void HandleStaminaRecovered()
     {
         isStaminaEmpty = false;
         inputEnabled = true;
-        isAboveThreshold = false;   // threshold 체크 재개
-        // (필요하면 gaugeValue = 0; 등 초기화)
+        isAboveThreshold = false;
+
+        // 애니메이션 재생
+        AnimationManager.Instance.AnimationAllPlay();
     }
 
     private void UpdateGauge()
