@@ -1,6 +1,8 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameModeManager : MonoBehaviour
 {
@@ -13,18 +15,22 @@ public class GameModeManager : MonoBehaviour
     // 체크포인트 거리를 보여줄 텍스트
     [SerializeField]
     private TextMeshProUGUI CheckPointDistanceText;
+    [SerializeField]
+    private Image FilledImage;
+    [SerializeField]
+    private Image CharacterImage;
     private GameViewManager gameViewManager;
 
     [Header("변수 모음")]
     // 거리를 초기화할 초기 변수
     [SerializeField]
-    int Distance = 0;
+    int Distance;
     // 1초를 누적할 타이머 변수
     private float distanceTimer = 0f;
     // 체크포인트 거리
-    public int CheckPointDistance = 50;
+    public int CheckPointDistance;
     // 체크포인트를 넘어가기 위한 터치 횟수
-    public int CheckPointTouch = 10;
+    public int CheckPointTouch;
     // 체크포인트 상태 플래그
     private bool isAtCheckpoint = false;
     // 현재 터치 카운트
@@ -47,6 +53,8 @@ public class GameModeManager : MonoBehaviour
     private Vector3 doorStartScale;
     [SerializeField] 
     private Vector3 doorTargetScale = new Vector3(2f, 2f, 1f);
+    // 캐릭터 최초 X 좌표 저장용
+    private float charStartX;
 
     private void Awake()
     {
@@ -54,7 +62,11 @@ public class GameModeManager : MonoBehaviour
         {
             GameDistanceText = GameObject.Find("GameDistanceText").GetComponent<TextMeshProUGUI>();
         }
-        if(DoorObject == null)
+        if (CheckPointDistanceText == null)
+        {
+            CheckPointDistanceText = GameObject.Find("CheckPointDistanceText").GetComponent<TextMeshProUGUI>();
+        }
+        if (DoorObject == null)
         {
             DoorObject = GameObject.Find("CheckPoint");
             DoorObject.SetActive(false);
@@ -70,19 +82,36 @@ public class GameModeManager : MonoBehaviour
         DoorObject.SetActive(false);
 
         // GameViewManager
-        gameViewManager = GameObject.Find("Manager").GetComponent<GameViewManager>();
+        gameViewManager = GameObject.Find("GameViewManager").GetComponent<GameViewManager>();
+
+        // 캐릭터의 시작 AnchoredPosition.x를 한 번 저장
+        charStartX = CharacterImage.rectTransform.anchoredPosition.x;
+    }
+
+    private void Start()
+    {
+        // 글로벌 변수에서 값을 가져오기
+        Distance = GlobalVariable.Instance.PlayerCurrentDistance;
+        CheckPointDistance = GlobalVariable.Instance.CheckPointDistance;
+        CheckPointTouch = GlobalVariable.Instance.CheckPointTouchCount;
+
+        // 체크포인트 거리 텍스트 설정
+        CheckPointDistanceText.text = CheckPointDistance.ToString() + " M";
 
         UpdateDistanceText();
     }
 
     void Update()
     {
+        // GameViewManager에서 HandleStaminaZero 함수가 실행이 되면 트리거를 보내서 거리 증가 로직을 막는다
         if (!isAtCheckpoint)
         {
             // 거리 증가 로직
             IncreaseDistanceOverTime();
             // 거리 기반 스케일 업데이트
-            AnimateDoorScale();  
+            AnimateDoorScale();
+            // 이동 게이지 조절 함수
+            AnimateProgressFill();
         }
         else
             // 체크포인트 터치 대기
@@ -159,7 +188,29 @@ public class GameModeManager : MonoBehaviour
 
         // 터치 횟수 만족 시 다음 체크포인트 준비
         if (currentTouchCount >= CheckPointTouch)
+        {
             ExitCheckpoint();
+            SceneManager.LoadScene("StoreScene");
+        }
+    }
+
+    private void AnimateProgressFill()
+    {
+        // 1) 진행도 계산
+        float progress = Mathf.Clamp01(Distance / (float)CheckPointDistance);
+
+        // 2) 게이지 채우기
+        FilledImage.fillAmount = progress;
+
+        // 3) 캐릭터 이동: 원래 위치(charStartX) + 진행도*게이지폭
+        RectTransform gaugeRT = FilledImage.rectTransform;
+        float gaugeWidth = gaugeRT.rect.width;
+
+        RectTransform charRT = CharacterImage.rectTransform;
+        Vector2 anchored = charRT.anchoredPosition;
+
+        anchored.x = charStartX + gaugeWidth * progress;
+        charRT.anchoredPosition = anchored;
     }
 
     // 체크포인트 해제 & 다음 단계 설정
@@ -168,6 +219,11 @@ public class GameModeManager : MonoBehaviour
         // 거리와 터치 요구량 2배로 증가
         CheckPointDistance *= 2;
         CheckPointTouch *= 2;
+
+        // 수정된 값을 글로벌에 저장
+        GlobalVariable.Instance.CheckPointDistance = CheckPointDistance;
+        GlobalVariable.Instance.CheckPointTouchCount = CheckPointTouch;
+        GlobalVariable.Instance.PlayerCurrentDistance = Distance;
 
         // 상태 초기화
         currentTouchCount = 0;

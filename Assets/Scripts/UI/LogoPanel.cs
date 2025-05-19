@@ -34,6 +34,10 @@ public class LogoPanel : BasePanel
     {
         OnClose();
         UIManager.Instance.PushPanel(UIPanelType.MAIN_PANEL);
+        for (int i = 0; i < GlobalManager.Instance.UIObjects.Length; i++)
+        {
+            GlobalManager.Instance.UIObjects[i].SetActive(true);
+        }
     }
     
     public void OnClickCredit()
