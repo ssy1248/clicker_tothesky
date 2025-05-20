@@ -230,6 +230,8 @@ public class GameViewManager : MonoBehaviour
             if (!inputEnabled)
                 return;
 
+            SEManager.instance.PlaySE("click");
+
             Debug.Log("ClickDown");
             Addkiwi(GlobalManager.Instance.GetTouchAmount());
 
