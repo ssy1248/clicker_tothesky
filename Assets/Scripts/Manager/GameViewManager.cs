@@ -20,19 +20,23 @@ public class GameViewManager : MonoBehaviour
 
     [Header("UI")]
     // Radial 360 세팅된 Image
-    [SerializeField] private Image touchGaugeImage;     
-    [SerializeField] private TextMeshProUGUI gameTimeText;
+    [SerializeField] 
+    private Image touchGaugeImage;     
+    [SerializeField]
+    private TextMeshProUGUI gameTimeText;
 
     [Header("게이지 세팅")]
     // 게이지가 초당 이만큼 줄어듦
-    [SerializeField] private float decayRate = 0.1f;
+    [SerializeField] 
+    private float decayRate = 0.1f;
     // 최소 fillAmount
     const float MIN_FILL = 0.22f;
     // 최대 fillAmount
     const float MAX_FILL = 0.927f;
 
     [Header("타임 패널")]
-    [SerializeField] private TimePanel timePanel;      // TimePanel 스크립트 연결
+    [SerializeField] 
+    private TimePanel timePanel;      // TimePanel 스크립트 연결
     private bool blinkStarted = false;                 // 한 번만 실행 플래그
 
     private float totalTime;
@@ -113,8 +117,7 @@ public class GameViewManager : MonoBehaviour
         else
             c = Color.red;        // 빨강: 0.8 ~ 1.00
 
-        // 임시로 빨간색일땐 10초로 두고 깜빡거리는 애니메이션 제작
-        // 코루틴?을 이용해야 할까? 아님 빨간색이 되면 트리거를 줘서 그때부터 타이머를 걸어서 체크를 해야할까?
+        // 임시로 빨간색일땐 5초로 두고 깜빡거리는 애니메이션 제작
         // 0.8 이상/미만에 따라 스태미나 라이프 시작/취소
         if (normalized >= 0.8f)
         {

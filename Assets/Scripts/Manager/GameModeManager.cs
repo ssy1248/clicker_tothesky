@@ -56,6 +56,30 @@ public class GameModeManager : MonoBehaviour
     // 캐릭터 최초 X 좌표 저장용
     private float charStartX;
 
+    private bool isStaminaEmpty = false;
+
+    private void OnEnable()
+    {
+        GuageImageAlpha.OnStaminaEmpty += HandleStaminaEmpty;
+        GuageImageAlpha.OnStaminaRecovered += HandleStaminaRecovered;
+    }
+
+    private void OnDisable()
+    {
+        GuageImageAlpha.OnStaminaEmpty -= HandleStaminaEmpty;
+        GuageImageAlpha.OnStaminaRecovered -= HandleStaminaRecovered;
+    }
+
+    private void HandleStaminaEmpty()
+    {
+        isStaminaEmpty = true;
+    }
+
+    private void HandleStaminaRecovered()
+    {
+        isStaminaEmpty = false;
+    }
+
     private void Awake()
     {
         if(GameDistanceText == null)
@@ -103,6 +127,10 @@ public class GameModeManager : MonoBehaviour
 
     void Update()
     {
+        // ① 스태미나 비어있으면 거리 로직 통째로 스킵
+        if (isStaminaEmpty) 
+            return;
+
         // GameViewManager에서 HandleStaminaZero 함수가 실행이 되면 트리거를 보내서 거리 증가 로직을 막는다
         if (!isAtCheckpoint)
         {
@@ -120,14 +148,29 @@ public class GameModeManager : MonoBehaviour
 
     private void IncreaseDistanceOverTime()
     {
-        distanceTimer += Time.deltaTime;
-        if (distanceTimer >= 1f)
+        // 1) 게이지 자체를 0~1로 정규화
+        float normalizedGauge = Mathf.Clamp01(gameViewManager.gaugeValue);
+
+        // 2) 정규화된 게이지값 구간별 배율 결정
+        float speedMultiplier;
+        if (normalizedGauge < 0.5f)
+            speedMultiplier = 1f;    // 초록 구간
+        else if (normalizedGauge < 0.8f)
+            speedMultiplier = 1.5f;  // 노랑 구간
+        else
+            speedMultiplier = 2f;    // 빨강 구간
+
+        // 3) 시간 누적에 배율 곱하기
+        distanceTimer += Time.deltaTime * speedMultiplier;
+
+        // 4) 1초마다 거리 1 증가
+        while (distanceTimer >= 1f)
         {
             Distance++;
             distanceTimer -= 1f;
             UpdateDistanceText();
 
-            // 80% 지점에서 문 열기 시작
+            // 기존 체크포인트 문 열기/진입 로직
             float thresholdDistance = CheckPointDistance * doorOpenThreshold;
             if (!hasDoorOpenStarted && Distance >= thresholdDistance)
             {
@@ -136,10 +179,11 @@ public class GameModeManager : MonoBehaviour
                 DoorObject.transform.localScale = doorStartScale;
                 DoorObject.transform.localPosition = doorOriginalPosition;
             }
-
-            // 체크포인트 도달 시 동작
             if (Distance >= CheckPointDistance)
+            {
                 EnterCheckpoint();
+                break;
+            }
         }
     }
 
