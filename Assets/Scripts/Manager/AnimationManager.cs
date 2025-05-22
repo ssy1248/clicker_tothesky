@@ -8,6 +8,7 @@ public class AnimationManager : MonoBehaviour
     public Animator PlayerAnimator;
     public Animator StairAnimator;
     public Animator BackgroundAnimator;
+    public Animator PlayerShadowAnimator;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class AnimationManager : MonoBehaviour
     {
         PlayerAnimator.speed = 0f;
         StairAnimator.speed = 0f;
+        PlayerShadowAnimator.speed = 0f;
         if (BackgroundAnimator != null)
             BackgroundAnimator.speed = 0f;
     }
@@ -26,6 +28,7 @@ public class AnimationManager : MonoBehaviour
     {
         PlayerAnimator.speed = 1f;
         StairAnimator.speed = 1f;
+        PlayerShadowAnimator.speed = 1f;
         if (BackgroundAnimator != null)
             BackgroundAnimator.speed = 1f;
     }
