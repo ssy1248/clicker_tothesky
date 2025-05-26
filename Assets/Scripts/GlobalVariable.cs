@@ -16,6 +16,10 @@ public class GlobalVariable : MonoBehaviour
     [Header("플레이어 관련 변수")]
     public int PlayerCurrentDistance = 0;
 
+    [Header("UI 관련")]
+    public GameObject MainPanel;
+    public int ShopCount = 0;
+
     void Awake()
     {
         // 같은 오브젝트가 존재한다면 파괴

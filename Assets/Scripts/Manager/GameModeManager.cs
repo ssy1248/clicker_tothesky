@@ -234,7 +234,7 @@ public class GameModeManager : MonoBehaviour
         if (currentTouchCount >= CheckPointTouch)
         {
             ExitCheckpoint();
-            SceneManager.LoadScene("StoreScene");
+            SceneManager.LoadScene("ShopScene");
         }
     }
 
