@@ -2582,6 +2582,8 @@ MonoBehaviour:
   CheckPointDistance: 50
   CheckPointTouchCount: 10
   PlayerCurrentDistance: 0
+  MainPanel: {fileID: 1297359829}
+  ShopCount: 0
 --- !u!1 &1976822331
 GameObject:
   m_ObjectHideFlags: 0
