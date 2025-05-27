@@ -93,15 +93,11 @@ public class GuageImageAlpha : MonoBehaviour
     {
         // FilledGuageImage, BackgroundGuageImage 의 alpha 값 -> 0으로 변경
         SetAlpha(0f);
-        // 계단과 플레이어 애니메이션 정지
-        // 플레이어 거리 증가와 게이지바 오르는 코드 정지
     }
 
     public void PlayerStaminaReset()
     {
         // FilledGuageImage, BackgroundGuageImage 의 alpha 값 -> 255으로 변경
         SetAlpha(1f);
-        // 계단과 플레이어 애니메이션 실행
-        // 플레이어 거리 증가와 게이지바 오르는 코드 실행
     }
 }
