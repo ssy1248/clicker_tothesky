@@ -17,8 +17,7 @@ public class GlobalVariable : MonoBehaviour
     [Header("플레이어 관련 변수")]
     public int PlayerCurrentDistance = 0;
 
-    [Header("UI 관련")]
-    public GameObject MainPanel;
+    [Header("샵 이동 플래그")]
     public int ShopCount = 0;
 
     void Awake()
@@ -35,35 +34,9 @@ public class GlobalVariable : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // SafeArea 오브젝트를 새로 찾아서 설정
-        MainPanel = GameObject.Find("SafeArea");
-        if (MainPanel != null)
-            MainPanel.SetActive(ShopCount == 0);
-    }
-
     // 상점에서 돌아올 때 호출
     public void EnteredFromShop()
     {
         ShopCount++;
-    }
-
-    private void Start()
-    {
-        if (ShopCount > 0)
-        {
-            MainPanel.SetActive(false);
-        }
     }
 }
