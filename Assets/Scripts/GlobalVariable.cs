@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GlobalVariable : MonoBehaviour
 {
@@ -16,8 +17,7 @@ public class GlobalVariable : MonoBehaviour
     [Header("플레이어 관련 변수")]
     public int PlayerCurrentDistance = 0;
 
-    [Header("UI 관련")]
-    public GameObject MainPanel;
+    [Header("샵 이동 플래그")]
     public int ShopCount = 0;
 
     void Awake()
@@ -32,5 +32,11 @@ public class GlobalVariable : MonoBehaviour
         // 처음 생성된 인스턴스라면 등록하고 씬 전환 시 파괴되지 않도록 설정
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    // 상점에서 돌아올 때 호출
+    public void EnteredFromShop()
+    {
+        ShopCount++;
     }
 }

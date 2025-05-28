@@ -16,7 +16,7 @@ public class GlobalManager : SingletonBehaviour<GlobalManager>
         for(int i = 0; i < UIObjects.Length; i++)
         {
             UIObjects[i].SetActive(false);
-        }   
+        }
     }
 
     public BigDouble GetTouchAmount()
