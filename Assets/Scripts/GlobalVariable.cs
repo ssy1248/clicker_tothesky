@@ -17,7 +17,8 @@ public class GlobalVariable : MonoBehaviour
     [Header("플레이어 관련 변수")]
     public int PlayerCurrentDistance = 0;
 
-    [Header("샵 이동 플래그")]
+    [Header("게임 흐름 플래그")]
+    public bool GameStarted = false; 
     public int ShopCount = 0;
 
     void Awake()
@@ -35,8 +36,7 @@ public class GlobalVariable : MonoBehaviour
     }
 
     // 상점에서 돌아올 때 호출
-    public void EnteredFromShop()
-    {
-        ShopCount++;
-    }
+    public void EnteredFromShop() => ShopCount++;
+
+    public void StartedGame() => GameStarted = true;
 }
