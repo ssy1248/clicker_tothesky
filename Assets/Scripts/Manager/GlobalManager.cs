@@ -31,22 +31,15 @@ public class GlobalManager : SingletonBehaviour<GlobalManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        bool fromShop = GlobalVariable.Instance.ShopCount > 0;
-
-        // 타이틀(TitleScene) 진입 시 → UIObjects 모두 비활성화
-        if (scene.name == "TitleScene")
-        {
-            foreach (var go in UIObjects)
-                go.SetActive(false);
+        if (scene.name != "MainScene")
             return;
-        }
 
-        // 메인 게임 씬(MainScene) 진입 시 → ShopCount 여부에 따라 토글
-        if (scene.name == "MainScene")
-        {
-            foreach (var go in UIObjects)
-                go.SetActive(!fromShop);
-        }
+        // 게임 시작 플래그 or 상점 복귀 플래그
+        bool showUI = GlobalVariable.Instance.GameStarted
+                   || GlobalVariable.Instance.ShopCount > 0;
+
+        foreach (var go in UIObjects)
+            go.SetActive(showUI);
     }
 
     public BigDouble GetTouchAmount()
