@@ -148,20 +148,20 @@ public class GameModeManager : MonoBehaviour
 
     private void IncreaseDistanceOverTime()
     {
-        // 1) 게이지 자체를 0~1로 정규화
-        float normalizedGauge = Mathf.Clamp01(gameViewManager.gaugeValue);
+        //// 1) 게이지 자체를 0~1로 정규화
+        //float normalizedGauge = Mathf.Clamp01(gameViewManager.gaugeValue);
 
-        // 2) 정규화된 게이지값 구간별 배율 결정
-        float speedMultiplier;
-        if (normalizedGauge < 0.5f)
-            speedMultiplier = 1f;    // 초록 구간
-        else if (normalizedGauge < 0.8f)
-            speedMultiplier = 1.5f;  // 노랑 구간
-        else
-            speedMultiplier = 2f;    // 빨강 구간
+        //// 2) 정규화된 게이지값 구간별 배율 결정
+        //float speedMultiplier;
+        //if (normalizedGauge < 0.5f)
+        //    speedMultiplier = 1f;    // 초록 구간
+        //else if (normalizedGauge < 0.8f)
+        //    speedMultiplier = 1.5f;  // 노랑 구간
+        //else
+        //    speedMultiplier = 2f;    // 빨강 구간
 
         // 3) 시간 누적에 배율 곱하기
-        distanceTimer += Time.deltaTime * speedMultiplier;
+        distanceTimer += Time.deltaTime; //* speedMultiplier;
 
         // 4) 1초마다 거리 1 증가
         while (distanceTimer >= 1f)
