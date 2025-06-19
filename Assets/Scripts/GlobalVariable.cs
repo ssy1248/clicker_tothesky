@@ -21,6 +21,9 @@ public class GlobalVariable : MonoBehaviour
     public bool GameStarted = false; 
     public int ShopCount = 0;
 
+    [Header("클리어 챕터 관련 변수")]
+    public int PlayerClearRound = 0;
+
     void Awake()
     {
         // 같은 오브젝트가 존재한다면 파괴

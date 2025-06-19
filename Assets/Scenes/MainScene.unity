@@ -394,6 +394,7 @@ Transform:
   - {fileID: 263637037}
   - {fileID: 1605980099}
   - {fileID: 722770712}
+  - {fileID: 299463039}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &263637036
@@ -489,6 +490,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameOverUIObject: {fileID: 1136016330}
+--- !u!1 &299463038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 299463039}
+  - component: {fileID: 299463040}
+  m_Layer: 0
+  m_Name: GuageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &299463039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299463038}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 239814479}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &299463040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299463038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137b739e994c9c541b1977c5c2124cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchGaugeImage: {fileID: 814215338}
+  increaseRate: 0.1
+  touchDecrease: 0.05
 --- !u!1 &378316437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,8 +1409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75a2be54b88f604983415f77fff036e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameDistanceText: {fileID: 0}
-  CheckPointDistanceText: {fileID: 0}
+  GameDistanceText: {fileID: 557674305}
+  CheckPointDistanceText: {fileID: 378316439}
   FilledImage: {fileID: 1345663515}
   CharacterImage: {fileID: 595994723}
   Distance: 0
@@ -2772,7 +2820,7 @@ Transform:
   m_GameObject: {fileID: 1924143113}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 209.43211, y: 1635.815, z: -0.516701}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2795,6 +2843,7 @@ MonoBehaviour:
   PlayerCurrentDistance: 0
   GameStarted: 0
   ShopCount: 0
+  PlayerClearRound: 0
 --- !u!1 &1976822331
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,11 +3035,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kiwiAnim: {fileID: 454211245}
-  touchGaugeImage: {fileID: 814215338}
-  gameTimeText: {fileID: 0}
-  decayRate: 0.1
+  gameTimeText: {fileID: 1012807246}
   timePanel: {fileID: 543616037}
-  gaugeValue: 0
+  gaugeManager: {fileID: 299463040}
 --- !u!4 &2074677051
 Transform:
   m_ObjectHideFlags: 0
@@ -3323,6 +3370,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1729163280}
+  - {fileID: 1924143114}
   - {fileID: 239814479}
   - {fileID: 454211244}
   - {fileID: 1832536779}
@@ -3330,4 +3378,3 @@ SceneRoots:
   - {fileID: 1193618987}
   - {fileID: 1571128193}
   - {fileID: 885520502}
-  - {fileID: 1924143114}

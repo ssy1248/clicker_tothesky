@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GaugeManager : MonoBehaviour
+public class GuageManager : MonoBehaviour
 {
     [Header("게이지 UI")]
-    [SerializeField] 
+    [SerializeField]
     private Image touchGaugeImage;
 
     [Header("게이지 설정")]
-    [SerializeField] 
+    [SerializeField]
     private float increaseRate = 0.1f;   // 초당 자동 증가
-    [SerializeField] 
+    [SerializeField]
     private float touchDecrease = 0.05f; // 터치 시 감소량
     private float gaugeValue = 0f;
 
