@@ -28,7 +28,7 @@ public class GameViewManager : MonoBehaviour
 
     [Header("게이지 매니저")]
     [SerializeField]
-    private GaugeManager gaugeManager;
+    private GuageManager gaugeManager;
 
     private void Addkiwi(BigDouble amt)
     {
