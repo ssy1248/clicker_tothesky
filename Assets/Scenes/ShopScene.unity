@@ -2667,11 +2667,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kiwiAnim: {fileID: 454211245}
-  touchGaugeImage: {fileID: 0}
   gameTimeText: {fileID: 0}
-  decayRate: 0.1
   timePanel: {fileID: 0}
-  gaugeValue: 0
+  gaugeManager: {fileID: 0}
 --- !u!4 &2074677051
 Transform:
   m_ObjectHideFlags: 0
