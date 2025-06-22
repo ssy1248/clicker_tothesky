@@ -2,25 +2,7 @@ using UnityEngine;
 using TMPro;
 public class MainPanel : BasePanel
 {
-    //public TMP_Text labelKiwi;
-
-    //public GameObject mainPref;
-
-    //public GameObject assistPref;
-
     public RectTransform containerRoot;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //labelKiwi.text=$"Kiwi: {GlobalManager.Instance.kiwiAmount.ToCustomString()}";
-    }
 
     public override UIPanelType TypeOfPanel => UIPanelType.MAIN_PANEL;
 

@@ -29,12 +29,8 @@ public class GameModeManager : MonoBehaviour
     private float distanceTimer = 0f;
     // 체크포인트 거리
     public int CheckPointDistance;
-    // 체크포인트를 넘어가기 위한 터치 횟수
-    public int CheckPointTouch;
     // 체크포인트 상태 플래그
-    private bool isAtCheckpoint = false;
-    // 현재 터치 카운트
-    private int currentTouchCount = 0;      
+    private bool isAtCheckpoint = false;  
 
     [Header("스프라이트 모음 & 오브젝트 모음")]
     // 체크포인트 문 오브젝트 -> 문의 최종 크기는 x 2 y 2(스케일)
@@ -117,7 +113,6 @@ public class GameModeManager : MonoBehaviour
         // 글로벌 변수에서 값을 가져오기
         Distance = GlobalVariable.Instance.PlayerCurrentDistance;
         CheckPointDistance = GlobalVariable.Instance.CheckPointDistance;
-        CheckPointTouch = GlobalVariable.Instance.CheckPointTouchCount;
 
         // 체크포인트 거리 텍스트 설정
         CheckPointDistanceText.text = CheckPointDistance.ToString() + " M";
@@ -142,28 +137,17 @@ public class GameModeManager : MonoBehaviour
             AnimateProgressFill();
         }
         else
-            // 체크포인트 터치 대기
-            HandleCheckpointTouch();     
+        {
+            // 클리어 패널
+        } 
     }
 
     private void IncreaseDistanceOverTime()
     {
-        //// 1) 게이지 자체를 0~1로 정규화
-        //float normalizedGauge = Mathf.Clamp01(gameViewManager.gaugeValue);
-
-        //// 2) 정규화된 게이지값 구간별 배율 결정
-        //float speedMultiplier;
-        //if (normalizedGauge < 0.5f)
-        //    speedMultiplier = 1f;    // 초록 구간
-        //else if (normalizedGauge < 0.8f)
-        //    speedMultiplier = 1.5f;  // 노랑 구간
-        //else
-        //    speedMultiplier = 2f;    // 빨강 구간
-
-        // 3) 시간 누적에 배율 곱하기
+        // 1) 시간 흐름에 따라 거리 증가
         distanceTimer += Time.deltaTime; //* speedMultiplier;
 
-        // 4) 1초마다 거리 1 증가
+        // 2) 1초마다 거리 1 증가
         while (distanceTimer >= 1f)
         {
             Distance++;
@@ -213,31 +197,6 @@ public class GameModeManager : MonoBehaviour
         GameDistanceText.text = Distance.ToString() + " M";
     }
 
-    // 체크포인트 해제를 위한 터치 입력 대기
-    private void HandleCheckpointTouch()
-    {
-        #if UNITY_EDITOR || UNITY_STANDALONE
-        if (Input.GetMouseButtonDown(0))
-        {
-            currentTouchCount++;
-            Debug.Log($"Checkpoint Touch: {currentTouchCount}/{CheckPointTouch}");
-        }
-        #else
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            currentTouchCount++;
-            Debug.Log($"Checkpoint Touch: {currentTouchCount}/{CheckPointTouch}");
-        }
-        #endif
-
-        // 터치 횟수 만족 시 다음 체크포인트 준비
-        if (currentTouchCount >= CheckPointTouch)
-        {
-            ExitCheckpoint();
-            SceneManager.LoadScene("ShopScene");
-        }
-    }
-
     private void AnimateProgressFill()
     {
         // 1) 진행도 계산
@@ -255,30 +214,5 @@ public class GameModeManager : MonoBehaviour
 
         anchored.x = charStartX + gaugeWidth * progress;
         charRT.anchoredPosition = anchored;
-    }
-
-    // 체크포인트 해제 & 다음 단계 설정
-    private void ExitCheckpoint()
-    {
-        // 거리와 터치 요구량 2배로 증가
-        CheckPointDistance *= 2;
-        CheckPointTouch *= 2;
-
-        // 수정된 값을 글로벌에 저장
-        GlobalVariable.Instance.CheckPointDistance = CheckPointDistance;
-        GlobalVariable.Instance.CheckPointTouchCount = CheckPointTouch;
-        GlobalVariable.Instance.PlayerCurrentDistance = Distance;
-
-        // 상태 초기화
-        currentTouchCount = 0;
-        isAtCheckpoint = false;
-        distanceTimer = 0f;
-        hasDoorOpenStarted = false;
-
-        // 타이머 리셋
-        gameViewManager.ResetTimer(120);
-
-
-        Debug.Log($"Next CheckPoint: Distance at {CheckPointDistance}, TouchCount {CheckPointTouch}");
     }
 }
