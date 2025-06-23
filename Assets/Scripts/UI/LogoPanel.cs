@@ -31,17 +31,10 @@ public class LogoPanel : BasePanel
     }
 
     public void OnClickStart()
-    {
-        // 1) 게임 시작 플래그 설정
-        GlobalVariable.Instance.StartedGame();
-
+    { 
         // 2) 기존 로직—로고 패널 닫고, 메인 패널 띄우고
         OnClose();
-        UIManager.Instance.PushPanel(UIPanelType.MAIN_PANEL);
-
-        // 3) In-Game UI 오브젝트 활성화
-        for (int i = 0; i < GlobalManager.Instance.UIObjects.Length; i++)
-            GlobalManager.Instance.UIObjects[i].SetActive(true);
+        UIManager.Instance.PushPanel(UIPanelType.STAGE_SELECT_PANEL);
     }
     
     public void OnClickCredit()

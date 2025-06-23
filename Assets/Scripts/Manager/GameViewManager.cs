@@ -108,7 +108,6 @@ public class GameViewManager : MonoBehaviour
         Debug.Log("Time's up! 게임 끝");
 
         GlobalVariable.Instance.CheckPointDistance = 50;
-        GlobalVariable.Instance.CheckPointTouchCount = 10;
         GlobalVariable.Instance.PlayerCurrentDistance = 0;
     }
 

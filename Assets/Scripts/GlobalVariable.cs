@@ -11,8 +11,6 @@ public class GlobalVariable : MonoBehaviour
     [Header("체크포인트 관련 변수")]
     // 체크포인트 거리
     public int CheckPointDistance = 50;
-    // 체크포인트 통과하기 위한 터치 횟수
-    public int CheckPointTouchCount = 10;
 
     [Header("플레이어 관련 변수")]
     public int PlayerCurrentDistance = 0;
@@ -43,3 +41,14 @@ public class GlobalVariable : MonoBehaviour
 
     public void StartedGame() => GameStarted = true;
 }
+
+
+/*
+스테이지   클리어 거리
+1   110
+2   162
+3   214
+4   266
+5   318
+6   370
+ */
