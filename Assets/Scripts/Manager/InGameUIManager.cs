@@ -38,7 +38,7 @@ public class InGameUIManager : MonoBehaviour
 
         bool fromShop = GlobalVariable.Instance.ShopCount > 0;
 
-        titlePanel.SetActive(!fromShop);
+        //titlePanel.SetActive(!fromShop);
         UIPercent.SetActive(true);
         inGameUI.SetActive(true);
     }
