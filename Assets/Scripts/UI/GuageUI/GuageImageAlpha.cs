@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,15 +9,15 @@ public class GuageImageAlpha : MonoBehaviour
     public static event System.Action OnStaminaEmpty;
     public static event System.Action OnStaminaRecovered;
 
-    [Header("ÀÌ¹ÌÁö ÂüÁ¶")]
+    [Header("ì´ë¯¸ì§€ ì°¸ì¡°")]
     public Image FilledGuageImage;
     public Image BackgroundGuageImage;
 
-    [Header("¶óÀÌÇÁÅ¸ÀÓ ¼¼ÆÃ")]
-    public float lifeTime = 5f;  // ¿Õº¹ Áö¼Ó ½Ã°£
-    public float resetDelay = 3f;  // ½ºÅ×¹Ì³ª Á¦·Î ÈÄ ¸®¼Â±îÁö µô·¹ÀÌ
-    public float baseSpeed = 1f;  // ÃÊ±â ¿Õº¹ ½ºÇÇµå
-    public float acceleration = 1f;  // ÃÊ´ç ½ºÇÇµå Áõ°¡·®
+    [Header("ë¼ì´í”„íƒ€ì„ ì„¸íŒ…")]
+    public float lifeTime = 5f;  // ì™•ë³µ ì§€ì† ì‹œê°„
+    public float resetDelay = 3f;  // ìŠ¤í…Œë¯¸ë‚˜ ì œë¡œ í›„ ë¦¬ì…‹ê¹Œì§€ ë”œë ˆì´
+    public float baseSpeed = 1f;  // ì´ˆê¸° ì™•ë³µ ìŠ¤í”¼ë“œ
+    public float acceleration = 1f;  // ì´ˆë‹¹ ìŠ¤í”¼ë“œ ì¦ê°€ëŸ‰
 
     private Coroutine lifeRoutine;
 
@@ -26,9 +26,9 @@ public class GuageImageAlpha : MonoBehaviour
         Instance = this;
     }
 
-    // ÀÓ½Ã ¶óÀÌÇÁ Å¸ÀÓ 5ÃÊ / °ÔÀÌÁö ¹ë·ù°¡ 0.8ÀÌ µÇ´Â ¼ø°£ ½ÃÀÛ 255~0 À» ¿Õº¹ ½Ã°£ÀÌ Áö³¯¼ö·Ï ´õ ºü¸£°Ô
-    // ½Ã°£ÀÌ ´ÙµÇ¸é PlayerStaminaZero ÇÔ¼ö È£Ãâ
-    // ÀÏÁ¤ ½Ã°£(ÀÓ½Ã 3ÃÊ) ÈÄ PlayerStaminaReset ÇÔ¼ö È£Ãâ
+    // ì„ì‹œ ë¼ì´í”„ íƒ€ì„ 5ì´ˆ / ê²Œì´ì§€ ë°¸ë¥˜ê°€ 0.8ì´ ë˜ëŠ” ìˆœê°„ ì‹œì‘ 255~0 ì„ ì™•ë³µ ì‹œê°„ì´ ì§€ë‚ ìˆ˜ë¡ ë” ë¹ ë¥´ê²Œ
+    // ì‹œê°„ì´ ë‹¤ë˜ë©´ PlayerStaminaZero í•¨ìˆ˜ í˜¸ì¶œ
+    // ì¼ì • ì‹œê°„(ì„ì‹œ 3ì´ˆ) í›„ PlayerStaminaReset í•¨ìˆ˜ í˜¸ì¶œ
     public void StartLifeRoutine()
     {
         if (lifeRoutine == null)
@@ -41,7 +41,7 @@ public class GuageImageAlpha : MonoBehaviour
         {
             StopCoroutine(lifeRoutine);
             lifeRoutine = null;
-            // Áï½Ã ¿ÏÀü È¸º¹
+            // ì¦‰ì‹œ ì™„ì „ íšŒë³µ
             PlayerStaminaReset();
         }
     }
@@ -49,8 +49,8 @@ public class GuageImageAlpha : MonoBehaviour
     private IEnumerator LifeCoroutine()
     {
         float t = 0f;
-        // Áö±İ ¾ËÆÄ°ªÀÌ »¡¶óÁö¸é¼­ ¿Õº¹À» ÇÏ´Âµ¥ 5ÃÊ¸¦ ¹öÆ¼¸é ´Ù½Ã ¹İº¹ÇÔ
-        while (t < lifeTime)
+
+        while (true) // ë¬´í•œ ê¹œë¹¡ì„
         {
             t += Time.deltaTime;
             float speed = baseSpeed + acceleration * t;
@@ -58,28 +58,11 @@ public class GuageImageAlpha : MonoBehaviour
             SetAlpha(alpha);
             yield return null;
         }
-
-        // 5ÃÊ ¹öÅá´Ù¸é Á¦·Î »óÅÂ µ¹ÀÔ
-        lifeRoutine = null;
-
-        // 5ÃÊ ¹öÆ¼¸é ¿ÏÀü Á¦·Î
-        PlayerStaminaZero();
-
-        // ÀÌº¥Æ® È£Ãâ
-        OnStaminaEmpty?.Invoke();
-
-        // 3ÃÊ ±â´Ù·È´Ù°¡ È¸º¹
-        yield return new WaitForSeconds(resetDelay);
-
-        PlayerStaminaReset();
-
-        // ¿©±â¿¡¼­ º¹±¸ ÀÌº¥Æ® È£Ãâ
-        OnStaminaRecovered?.Invoke();
     }
 
     private void SetAlpha(float a)
     {
-        // Image.color.a´Â 0~1 »çÀÌ
+        // Image.color.aëŠ” 0~1 ì‚¬ì´
         var c1 = FilledGuageImage.color;
         c1.a = a;
         FilledGuageImage.color = c1;
@@ -89,15 +72,33 @@ public class GuageImageAlpha : MonoBehaviour
         BackgroundGuageImage.color = c2;
     }
 
+    public void StartZeroRoutine(System.Action onReset = null)
+    {
+        if (lifeRoutine != null)
+            StopCoroutine(lifeRoutine);
+
+        lifeRoutine = StartCoroutine(ZeroAndResetCoroutine(onReset));
+    }
+
+    private IEnumerator ZeroAndResetCoroutine(System.Action onReset)
+    {
+        PlayerStaminaZero();  // ì•ŒíŒŒê°’ 0 (ê²Œì´ì§€ ìˆ¨ê¸°ê¸°)
+        yield return new WaitForSeconds(resetDelay);
+        PlayerStaminaReset();  // ì•ŒíŒŒê°’ 1 (ê²Œì´ì§€ ë³´ì´ê¸°)
+        lifeRoutine = null;
+
+        onReset?.Invoke();  // ì˜ˆ: ê²Œì´ì§€ ê°’ì„ 0.2ë¡œ
+    }
+
     public void PlayerStaminaZero()
     {
-        // FilledGuageImage, BackgroundGuageImage ÀÇ alpha °ª -> 0À¸·Î º¯°æ
+        // FilledGuageImage, BackgroundGuageImage ì˜ alpha ê°’ -> 0ìœ¼ë¡œ ë³€ê²½
         SetAlpha(0f);
     }
 
     public void PlayerStaminaReset()
     {
-        // FilledGuageImage, BackgroundGuageImage ÀÇ alpha °ª -> 255À¸·Î º¯°æ
+        // FilledGuageImage, BackgroundGuageImage ì˜ alpha ê°’ -> 255ìœ¼ë¡œ ë³€ê²½
         SetAlpha(1f);
     }
 }
