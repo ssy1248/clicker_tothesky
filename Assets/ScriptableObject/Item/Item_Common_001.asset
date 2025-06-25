@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd1448107e318fc429c1f6c4d7a56972, type: 3}
-  m_Name: Test
+  m_Name: Item_Common_001
   m_EditorClassIdentifier: 
-  ItemId: 1
-  ItemImage: {fileID: 0}
+  ItemId: 0
+  ItemImage: {fileID: 21300000, guid: 3c41ea6c8cf640541a23f5eb00243ea7, type: 3}
   ItemName: "\uD56D\uC815\uC2E0\uC131 \uC57D"
   ItemDescription: "\uACFC\uBBFC\uD55C \uC2E0\uACBD \uBC18\uC751\uC744 \uC5B5\uB20C\uB7EC\uC8FC\uBA70,
     \uACF5\uBD80\uB97C \uC704\uD55C \uC9D1\uC911\uB825\uC744 \uB04C\uC5B4\uB0B4\uC900\uB2E4\uACE0
