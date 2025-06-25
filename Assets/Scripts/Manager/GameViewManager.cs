@@ -142,7 +142,7 @@ public class GameViewManager : MonoBehaviour
             if (!inputEnabled)
                 return;
 
-            SEManager.instance.PlaySE("click");
+            //SEManager.instance.PlaySE("click");
 
             Debug.Log("ClickDown");
             Addkiwi(GlobalManager.Instance.GetTouchAmount());
@@ -151,7 +151,6 @@ public class GameViewManager : MonoBehaviour
             gaugeManager.OnTouch();
 
             lastclickupdate = 0f;
-            kiwiAnim.Play("touch", 0, 0);
         }
 
         if (GlobalManager.Instance.kiwiAmount > 0)

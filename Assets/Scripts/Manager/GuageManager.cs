@@ -1,17 +1,17 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class GuageManager : MonoBehaviour
 {
-    [Header("°ÔÀÌÁö UI")]
+    [Header("ê²Œì´ì§€ UI")]
     [SerializeField]
-    private Image touchGaugeImage;
+    private Image touchGaugeImage; // ì§€ê¸ˆì€ ì°¨ì˜¤ë¥´ëŠ” ìŠ¤í”„ë¼ì´íŠ¸ë§Œ ê°€ì ¸ì˜¤ì§€ë§Œ ë‚˜ì¤‘ì— ë°°ê²½ê¹Œì§€ ê°€ì ¸ì™€ì„œ ì•ŒíŒŒê°’ ê±´ë“¤ì–´ì•¼ í• ë“¯
 
-    [Header("°ÔÀÌÁö ¼³Á¤")]
+    [Header("ê²Œì´ì§€ ì„¤ì •")]
     [SerializeField]
-    private float increaseRate = 0.1f;   // ÃÊ´ç ÀÚµ¿ Áõ°¡
+    private float increaseRate = 0.1f;   // ì´ˆë‹¹ ìë™ ì¦ê°€
     [SerializeField]
-    private float touchDecrease = 0.05f; // ÅÍÄ¡ ½Ã °¨¼Ò·®
+    private float touchDecrease = 0.05f; // í„°ì¹˜ ì‹œ ê°ì†ŒëŸ‰
     private float gaugeValue = 0f;
 
     private const float MIN_FILL = 0.22f;
@@ -22,13 +22,13 @@ public class GuageManager : MonoBehaviour
     private bool hasTriggeredBlink = false;
     private bool hasStoppedAnimation = false;
 
-    private const float DANGER_THRESHOLD_LOW = 0.05f;
-    private const float DANGER_THRESHOLD_HIGH = 0.95f;
+    private const float DANGER_THRESHOLD_LOW = 0.1f;
+    private const float DANGER_THRESHOLD_HIGH = 0.9f;
     private const float DANGER_DURATION = 5f;
 
     private void Start()
     {
-        // »ö»ó ¼³Á¤
+        // ìƒ‰ìƒ ì„¤ì •
         Color c = Color.green;
 
         GuageColorController.Instance.SetGaugeColor(c);
@@ -36,49 +36,51 @@ public class GuageManager : MonoBehaviour
 
     private void Update()
     {
-        // ÀÚµ¿ Áõ°¡
+        // ìë™ ì¦ê°€
         gaugeValue += increaseRate * Time.deltaTime;
         gaugeValue = Mathf.Clamp01(gaugeValue);
         UpdateGaugeUI();
 
-        // À§Çè ±¸°£ °¨Áö
-        if (gaugeValue <= DANGER_THRESHOLD_LOW || gaugeValue >= DANGER_THRESHOLD_HIGH)
+        bool isDangerNow = gaugeValue <= DANGER_THRESHOLD_LOW || gaugeValue >= DANGER_THRESHOLD_HIGH;
+
+        if (isDangerNow)
         {
             if (!isInDangerZone)
             {
-                // »õ·Î ÁøÀÔ
+                Debug.Log("ìœ„í—˜êµ¬ê°„ ì§„ì…");
                 isInDangerZone = true;
                 zoneTimer = 0f;
                 hasTriggeredBlink = false;
                 hasStoppedAnimation = false;
+
+                // ì§„ì… ì¦‰ì‹œ ê¹œë¹¡ì„ ì‹œì‘
+                GuageImageAlpha.Instance.StartLifeRoutine();
             }
 
             zoneTimer += Time.deltaTime;
 
-            if (zoneTimer >= DANGER_DURATION)
+            if (zoneTimer >= DANGER_DURATION && !hasStoppedAnimation)
             {
-                if (!hasTriggeredBlink)
-                {
-                    GuageImageAlpha.Instance.StartLifeRoutine();
-                    hasTriggeredBlink = true;
-                }
+                hasStoppedAnimation = true;
 
-                if (!hasStoppedAnimation)
-                {
-                    AnimationManager.Instance.AnimationAllStop();
-                    hasStoppedAnimation = true;
-                }
+                // ì• ë‹ˆë©”ì´ì…˜ë„ ë©ˆì¶”ê³ 
+                AnimationManager.Instance.AnimationAllStop();
+
+                // ê¹œë¹¡ì„ ì¤‘ì§€ ë° ê²Œì´ì§€ ìˆ¨ê¹€ í›„ íšŒë³µ ë£¨í‹´ ì‹œì‘
+                GuageImageAlpha.Instance.StartZeroRoutine(() => {
+                    // ì½œë°±ì—ì„œ ê²Œì´ì§€ ê°’ ì´ˆê¸°í™”
+                    gaugeValue = 0.2f;
+                    UpdateGaugeUI();
+                });
             }
         }
         else
         {
             if (isInDangerZone)
             {
-                // ±¸°£ ÀÌÅ» ½Ã ÃÊ±âÈ­
                 isInDangerZone = false;
                 zoneTimer = 0f;
 
-                // ±ôºıÀÓ Á¾·á, ¾Ö´Ï Àç°³
                 GuageImageAlpha.Instance.CancelLifeRoutine();
                 AnimationManager.Instance.AnimationAllPlay();
             }
