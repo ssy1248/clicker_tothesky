@@ -14,9 +14,6 @@ public class GuageManager : MonoBehaviour
     private float touchDecrease = 0.05f; // 터치 시 감소량
     private float gaugeValue = 0f;
 
-    private const float MIN_FILL = 0.22f;
-    private const float MAX_FILL = 0.927f;
-
     private float zoneTimer = 0f;
     private bool isInDangerZone = false;
     private bool hasTriggeredBlink = false;
@@ -25,6 +22,8 @@ public class GuageManager : MonoBehaviour
     private const float DANGER_THRESHOLD_LOW = 0.1f;
     private const float DANGER_THRESHOLD_HIGH = 0.9f;
     private const float DANGER_DURATION = 5f;
+
+    public float GaugeValue => gaugeValue;
 
     private void Start()
     {
@@ -53,7 +52,6 @@ public class GuageManager : MonoBehaviour
                 hasTriggeredBlink = false;
                 hasStoppedAnimation = false;
 
-                // 진입 즉시 깜빡임 시작
                 GuageImageAlpha.Instance.StartLifeRoutine();
             }
 
@@ -63,12 +61,9 @@ public class GuageManager : MonoBehaviour
             {
                 hasStoppedAnimation = true;
 
-                // 애니메이션도 멈추고
                 AnimationManager.Instance.AnimationAllStop();
 
-                // 깜빡임 중지 및 게이지 숨김 후 회복 루틴 시작
                 GuageImageAlpha.Instance.StartZeroRoutine(() => {
-                    // 콜백에서 게이지 값 초기화
                     gaugeValue = 0.2f;
                     UpdateGaugeUI();
                 });
@@ -96,7 +91,6 @@ public class GuageManager : MonoBehaviour
 
     private void UpdateGaugeUI()
     {
-        float normalized = Mathf.Clamp01(gaugeValue);
-        touchGaugeImage.fillAmount = Mathf.Lerp(MIN_FILL, MAX_FILL, normalized);
+        touchGaugeImage.fillAmount = gaugeValue;
     }
 }
