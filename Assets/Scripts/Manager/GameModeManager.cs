@@ -54,6 +54,8 @@ public class GameModeManager : MonoBehaviour
 
     private bool isStaminaEmpty = false;
 
+    private GuageManager guageManager;
+
     private void OnEnable()
     {
         GuageImageAlpha.OnStaminaEmpty += HandleStaminaEmpty;
@@ -106,6 +108,8 @@ public class GameModeManager : MonoBehaviour
 
         // 캐릭터의 시작 AnchoredPosition.x를 한 번 저장
         charStartX = CharacterImage.rectTransform.anchoredPosition.x;
+
+        guageManager = GameObject.FindFirstObjectByType<GuageManager>();
     }
 
     private void Start()
@@ -144,17 +148,22 @@ public class GameModeManager : MonoBehaviour
 
     private void IncreaseDistanceOverTime()
     {
-        // 1) 시간 흐름에 따라 거리 증가
-        distanceTimer += Time.deltaTime; //* speedMultiplier;
+        // GuageValue >= HIGH 일 때 속도 2배
+        float speedMultiplier = 1f;
 
-        // 2) 1초마다 거리 1 증가
+        if (guageManager != null && guageManager.GaugeValue >= 0.9f) // DANGER_THRESHOLD_HIGH
+        {
+            speedMultiplier = 2f;
+        }
+
+        distanceTimer += Time.deltaTime * speedMultiplier;
+
         while (distanceTimer >= 1f)
         {
             Distance++;
             distanceTimer -= 1f;
             UpdateDistanceText();
 
-            // 기존 체크포인트 문 열기/진입 로직
             float thresholdDistance = CheckPointDistance * doorOpenThreshold;
             if (!hasDoorOpenStarted && Distance >= thresholdDistance)
             {
