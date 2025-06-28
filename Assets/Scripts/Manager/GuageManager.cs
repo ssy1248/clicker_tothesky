@@ -19,8 +19,8 @@ public class GuageManager : MonoBehaviour
     private bool hasTriggeredBlink = false;
     private bool hasStoppedAnimation = false;
 
-    private const float DANGER_THRESHOLD_LOW = 0.1f;
-    private const float DANGER_THRESHOLD_HIGH = 0.9f;
+    public float DANGER_THRESHOLD_LOW = 0.1f;
+    public float DANGER_THRESHOLD_HIGH = 0.9f;
     private const float DANGER_DURATION = 5f;
 
     public float GaugeValue => gaugeValue;
