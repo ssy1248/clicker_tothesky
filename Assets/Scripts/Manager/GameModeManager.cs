@@ -9,14 +9,6 @@ public class GameModeManager : MonoBehaviour
     // 게임 거리 / 무한모드 나중에 생성될 스토리 모드의 분기를 나눌 스크립트로 사용할 예정
     
     [Header("UI 모음")]
-    // 거리를 나타낼 텍스트
-    [SerializeField]
-    private TextMeshProUGUI GameDistanceText;
-    // 체크포인트 거리를 보여줄 텍스트
-    [SerializeField]
-    private TextMeshProUGUI CheckPointDistanceText;
-    [SerializeField]
-    private Image FilledImage;
     [SerializeField]
     private Image CharacterImage;
     private GameViewManager gameViewManager;
@@ -80,14 +72,6 @@ public class GameModeManager : MonoBehaviour
 
     private void Awake()
     {
-        if(GameDistanceText == null)
-        {
-            GameDistanceText = GameObject.Find("GameDistanceText").GetComponent<TextMeshProUGUI>();
-        }
-        if (CheckPointDistanceText == null)
-        {
-            CheckPointDistanceText = GameObject.Find("CheckPointDistanceText").GetComponent<TextMeshProUGUI>();
-        }
         if (DoorObject == null)
         {
             DoorObject = GameObject.Find("CheckPoint");
@@ -117,11 +101,6 @@ public class GameModeManager : MonoBehaviour
         // 글로벌 변수에서 값을 가져오기
         Distance = GlobalVariable.Instance.PlayerCurrentDistance;
         CheckPointDistance = GlobalVariable.Instance.CheckPointDistance;
-
-        // 체크포인트 거리 텍스트 설정
-        CheckPointDistanceText.text = CheckPointDistance.ToString() + " M";
-
-        UpdateDistanceText();
     }
 
     void Update()
@@ -151,10 +130,15 @@ public class GameModeManager : MonoBehaviour
         // GuageValue >= HIGH 일 때 속도 2배
         float speedMultiplier = 1f;
 
-        if (guageManager != null && guageManager.GaugeValue >= 0.9f) // DANGER_THRESHOLD_HIGH
+        if (guageManager != null && guageManager.GaugeValue <= guageManager.DANGER_THRESHOLD_LOW)
         {
             speedMultiplier = 2f;
         }
+        else if (guageManager != null && guageManager.GaugeValue >= guageManager.DANGER_THRESHOLD_HIGH)
+        {
+            speedMultiplier = 0.5f;
+        }
+
 
         distanceTimer += Time.deltaTime * speedMultiplier;
 
@@ -162,7 +146,6 @@ public class GameModeManager : MonoBehaviour
         {
             Distance++;
             distanceTimer -= 1f;
-            UpdateDistanceText();
 
             float thresholdDistance = CheckPointDistance * doorOpenThreshold;
             if (!hasDoorOpenStarted && Distance >= thresholdDistance)
@@ -201,27 +184,21 @@ public class GameModeManager : MonoBehaviour
         DoorObject.transform.localScale = Vector3.Lerp(doorStartScale, doorOriginalScale, progress);
     }
 
-    private void UpdateDistanceText()
-    {
-        GameDistanceText.text = Distance.ToString() + " M";
-    }
-
     private void AnimateProgressFill()
     {
         // 1) 진행도 계산
-        float progress = Mathf.Clamp01(Distance / (float)CheckPointDistance);
+        //float progress = Mathf.Clamp01(Distance / (float)CheckPointDistance);
+        float progress = Mathf.SmoothStep(0, 1, Distance / (float)CheckPointDistance);
 
-        // 2) 게이지 채우기
-        FilledImage.fillAmount = progress;
+        // 2) y 위치 보간
+        float startY = -682f;
+        float endY = 805f;
+        float newY = Mathf.Lerp(startY, endY, progress);
 
-        // 3) 캐릭터 이동: 원래 위치(charStartX) + 진행도*게이지폭
-        RectTransform gaugeRT = FilledImage.rectTransform;
-        float gaugeWidth = gaugeRT.rect.width;
-
+        // 3) 캐릭터 위치 이동
         RectTransform charRT = CharacterImage.rectTransform;
         Vector2 anchored = charRT.anchoredPosition;
-
-        anchored.x = charStartX + gaugeWidth * progress;
+        anchored.y = newY;
         charRT.anchoredPosition = anchored;
     }
 }

@@ -15,6 +15,10 @@ public class GlobalVariable : MonoBehaviour
     [Header("플레이어 관련 변수")]
     public int PlayerCurrentDistance = 0;
 
+    [Header("수집품 관련 변수")]
+    // 각 맵에 존재하는 수집품 갯수를 받을 변순
+    public int TotalCollectCount = 0;
+
     [Header("게임 흐름 플래그")]
     public bool GameStarted = false; 
     public int ShopCount = 0;
