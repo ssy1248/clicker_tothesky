@@ -127,6 +127,10 @@ public class GameModeManager : MonoBehaviour
 
     private void IncreaseDistanceOverTime()
     {
+        // 애니메이션 정지 상태라면 갱신 중단
+        if (isStaminaEmpty)
+            return;
+
         // GuageValue >= HIGH 일 때 속도 2배
         float speedMultiplier = 1f;
 
@@ -184,10 +188,14 @@ public class GameModeManager : MonoBehaviour
         DoorObject.transform.localScale = Vector3.Lerp(doorStartScale, doorOriginalScale, progress);
     }
 
+    // AnimationAllStop을 하면 AnimateProgressFill을 멈춰야함
     private void AnimateProgressFill()
     {
+        // 애니메이션 정지 상태라면 위치 갱신 중단
+        if (isStaminaEmpty)
+            return;
+
         // 1) 진행도 계산
-        //float progress = Mathf.Clamp01(Distance / (float)CheckPointDistance);
         float progress = Mathf.SmoothStep(0, 1, Distance / (float)CheckPointDistance);
 
         // 2) y 위치 보간

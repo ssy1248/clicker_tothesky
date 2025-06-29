@@ -13,6 +13,12 @@ public class StageSelectPanel : BasePanel
         SceneManager.LoadScene("ShopScene");
     }
 
+    public void SetStageCollectSet(int CollectCount)
+    {
+        // 스테이지 최대 수집품 갯수 세팅
+        GlobalVariable.Instance.StageMaxCollectCount = CollectCount;
+    }
+
     public override void OnEnter(params object[] datas)
     {
         base.OnEnter(datas);
