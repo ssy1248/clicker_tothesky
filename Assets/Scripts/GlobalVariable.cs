@@ -23,6 +23,7 @@ public class GlobalVariable : MonoBehaviour
 
     [Header("플레이어 관련 변수")]
     public int PlayerCurrentDistance = 0;
+    public int PlayerCurrentPlayerStage = 0;
 
     [Header("수집품 관련 변수")]
     public List<CollectedItemInfo> collectedItems = new();
