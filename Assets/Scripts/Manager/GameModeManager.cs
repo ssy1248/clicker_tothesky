@@ -48,6 +48,10 @@ public class GameModeManager : MonoBehaviour
 
     private GuageManager guageManager;
 
+    [Header("수집품 생성 관련")]
+    private int nextCollectIndex = 0;
+    private float collectSpawnInterval;
+
     private void OnEnable()
     {
         GuageImageAlpha.OnStaminaEmpty += HandleStaminaEmpty;
@@ -60,15 +64,8 @@ public class GameModeManager : MonoBehaviour
         GuageImageAlpha.OnStaminaRecovered -= HandleStaminaRecovered;
     }
 
-    private void HandleStaminaEmpty()
-    {
-        isStaminaEmpty = true;
-    }
-
-    private void HandleStaminaRecovered()
-    {
-        isStaminaEmpty = false;
-    }
+    private void HandleStaminaEmpty() => isStaminaEmpty = true;
+    private void HandleStaminaRecovered() => isStaminaEmpty = false;
 
     private void Awake()
     {
@@ -101,11 +98,16 @@ public class GameModeManager : MonoBehaviour
         // 글로벌 변수에서 값을 가져오기
         Distance = GlobalVariable.Instance.PlayerCurrentDistance;
         CheckPointDistance = GlobalVariable.Instance.CheckPointDistance;
+
+        int totalCollectCount = GlobalVariable.Instance.StageMaxCollectCount;
+        collectSpawnInterval = totalCollectCount > 0
+            ? CheckPointDistance / (float)(totalCollectCount + 1)
+            : CheckPointDistance;
     }
 
     void Update()
     {
-        // ① 스태미나 비어있으면 거리 로직 통째로 스킵
+        // 스태미나 비어있으면 거리 로직 통째로 스킵
         if (isStaminaEmpty) 
             return;
 
@@ -118,6 +120,15 @@ public class GameModeManager : MonoBehaviour
             AnimateDoorScale();
             // 이동 게이지 조절 함수
             AnimateProgressFill();
+
+            // 테스트용: 스페이스바 누르면 거리 조건 만족 시 수집품 생성
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("Space pressed");
+                // 테스트를 위한 강제 소환
+                CollectManager.Instance.CreateCollectObject();
+                //TrySpawnCollectible();
+            }
         }
         else
         {
@@ -127,7 +138,10 @@ public class GameModeManager : MonoBehaviour
 
     private void IncreaseDistanceOverTime()
     {
-        // GuageValue >= HIGH 일 때 속도 2배
+        // 애니메이션 정지 상태라면 갱신 중단
+        if (isStaminaEmpty)
+            return;
+
         float speedMultiplier = 1f;
 
         if (guageManager != null && guageManager.GaugeValue <= guageManager.DANGER_THRESHOLD_LOW)
@@ -184,10 +198,14 @@ public class GameModeManager : MonoBehaviour
         DoorObject.transform.localScale = Vector3.Lerp(doorStartScale, doorOriginalScale, progress);
     }
 
+    // AnimationAllStop을 하면 AnimateProgressFill을 멈춰야함
     private void AnimateProgressFill()
     {
+        // 애니메이션 정지 상태라면 위치 갱신 중단
+        if (isStaminaEmpty)
+            return;
+
         // 1) 진행도 계산
-        //float progress = Mathf.Clamp01(Distance / (float)CheckPointDistance);
         float progress = Mathf.SmoothStep(0, 1, Distance / (float)CheckPointDistance);
 
         // 2) y 위치 보간
@@ -200,5 +218,19 @@ public class GameModeManager : MonoBehaviour
         Vector2 anchored = charRT.anchoredPosition;
         anchored.y = newY;
         charRT.anchoredPosition = anchored;
+    }
+
+    private void TrySpawnCollectible()
+    {
+        float expectedSpawnDistance = collectSpawnInterval * (nextCollectIndex + 1);
+
+        Debug.Log($"[TrySpawnCollectible] Distance: {Distance}, Expected: {expectedSpawnDistance}");
+
+        if (Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
+        {
+            Debug.Log("수집품 생성 조건 통과!");
+            CollectManager.Instance.CreateCollectObject(); // 프리팹은 내부에서 사용
+            nextCollectIndex++;
+        }
     }
 }
