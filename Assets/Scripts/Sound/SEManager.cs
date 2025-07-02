@@ -7,6 +7,7 @@ public class SoundEffect
 {
     public string key;
     public AudioClip clip;
+    public float volume;
 }
 
 public class SEManager : MonoBehaviour
@@ -21,9 +22,10 @@ public class SEManager : MonoBehaviour
 
     // **마스터 볼륨**
     public float masterVolume = 1f;
-    // Use this for initialization
+
     void Awake ()
     {
+        // 돈디스트로이언로드 추가
         if(instance == null)
         {
             instance = this;
