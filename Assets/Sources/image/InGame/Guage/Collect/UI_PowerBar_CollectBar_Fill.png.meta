@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_PowerBar_CollectBar_Fill_0: -4449404569051836713
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
