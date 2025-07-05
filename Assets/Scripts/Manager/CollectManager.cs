@@ -25,6 +25,8 @@ public class CollectManager : MonoBehaviour
     private RectTransform spawnedCollectible;
     private Coroutine collectRoutine;
 
+    private GuageManager guageManager;
+
     // 수집품의 시작(하단)과 끝(상단) 비율을 저장할 변수들
     private float targetFillMin;
     private float targetFillMax;
@@ -32,6 +34,12 @@ public class CollectManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        guageManager = FindFirstObjectByType<GuageManager>();
+        if (guageManager == null)
+        {
+            Debug.LogError("씬에서 GuageManager를 찾을 수 없습니다!");
+        }
     }
 
     public void CreateCollectObject()
@@ -44,6 +52,15 @@ public class CollectManager : MonoBehaviour
         RectTransform prefabRect = CollectObjectPrefab.GetComponent<RectTransform>();
         float collectibleFillHeight = prefabRect.rect.height / totalHeight;
         float centerFillValue = 1f - fillImage.fillAmount;
+
+        // GuageManager에서 안전지대 값을 가져와서 생성 위치 비율을 제한합니다.
+        if (guageManager != null)
+        {
+            centerFillValue = Mathf.Clamp(centerFillValue,
+                                          guageManager.DANGER_THRESHOLD_LOW,
+                                          guageManager.DANGER_THRESHOLD_HIGH);
+        }
+
         this.targetFillMin = centerFillValue - (collectibleFillHeight / 2f);
         this.targetFillMax = centerFillValue + (collectibleFillHeight / 2f);
         float spawnY = Mathf.Lerp(newMinY, newMaxY, centerFillValue);
@@ -85,8 +102,6 @@ public class CollectManager : MonoBehaviour
         while (spawnedCollectible != null)
         {
             float currentBarFill = fillImage.fillAmount;
-
-            Debug.Log($"[Check] Bar Fill: {currentBarFill}, Target Range: [{targetFillMin}, {targetFillMax}]");
 
             // 버퍼를 적용한 범위 판정
             if (currentBarFill >= (targetFillMin - buffer) && currentBarFill <= (targetFillMax + buffer))
