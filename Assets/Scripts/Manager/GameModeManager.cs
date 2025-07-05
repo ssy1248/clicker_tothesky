@@ -120,15 +120,6 @@ public class GameModeManager : MonoBehaviour
             AnimateDoorScale();
             // 이동 게이지 조절 함수
             AnimateProgressFill();
-
-            // 테스트용: 스페이스바 누르면 거리 조건 만족 시 수집품 생성
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("Space pressed");
-                // 테스트를 위한 강제 소환
-                CollectManager.Instance.CreateCollectObject();
-                //TrySpawnCollectible();
-            }
         }
         else
         {
@@ -160,6 +151,8 @@ public class GameModeManager : MonoBehaviour
         {
             Distance++;
             distanceTimer -= 1f;
+
+            TrySpawnCollectible();
 
             float thresholdDistance = CheckPointDistance * doorOpenThreshold;
             if (!hasDoorOpenStarted && Distance >= thresholdDistance)

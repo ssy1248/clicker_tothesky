@@ -1677,7 +1677,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -2315,11 +2315,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollectObjectPrefab: {fileID: 7469625315381850999, guid: f9356fe2b63e78b488c78c7b94c0f5c6, type: 3}
   CollectObejctCount: 0
-  MaxY: 463
-  MinY: -636
   fillImage: {fileID: 1236049199}
   barBackground: {fileID: 514314337}
-  spawnParent: {fileID: 1706067785}
 --- !u!1 &1976822331
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,35 +36,30 @@ public class CollectManager : MonoBehaviour
 
     public void CreateCollectObject()
     {
-        // --- 1. 모든 계산의 기준이 될 오른쪽 막대의 높이를 가져옴 ---
+        // --- 1. 위치 및 범위 계산 ---
         float barHeight = barBackground.rect.height;
-        // 오른쪽 막대의 로컬 Y좌표 최소/최대값 (Pivot이 (0.5, 0.5)일 경우)
         float newMinY = -barHeight / 2f;
         float newMaxY = barHeight / 2f;
-        float totalHeight = barHeight; // MaxY - MinY == barHeight
-
-        // --- 2. 수집품의 높이를 비율로 계산 ---
+        float totalHeight = barHeight;
         RectTransform prefabRect = CollectObjectPrefab.GetComponent<RectTransform>();
         float collectibleFillHeight = prefabRect.rect.height / totalHeight;
-
-        // --- 3. 수집품의 중심 비율과 범위 계산 (이전과 동일) ---
         float centerFillValue = 1f - fillImage.fillAmount;
         this.targetFillMin = centerFillValue - (collectibleFillHeight / 2f);
         this.targetFillMax = centerFillValue + (collectibleFillHeight / 2f);
-
-        // --- 4. 수집품 생성 ---
-        // Y좌표를 새로 계산된 Min/Max Y 기준으로 구함
         float spawnY = Mathf.Lerp(newMinY, newMaxY, centerFillValue);
 
-        // 부모를 spawnParent가 아닌 barBackground로 변경
-        GameObject obj = Instantiate(CollectObjectPrefab, barBackground.transform);
+        // --- 2. 좌표 변환 (두 번째 코드의 좌표 변환 로직) ---
+        Vector2 localPosInBar = new Vector2(0f, spawnY);
+        Vector3 worldPosition = barBackground.transform.TransformPoint(localPosInBar);
+
+        // --- 3. 수집품 생성 및 위치/순서 지정 (두 번째 코드의 생성/순서 로직) ---
+        Transform parentOfBar = barBackground.transform.parent;
+        GameObject obj = Instantiate(CollectObjectPrefab, parentOfBar);
         spawnedCollectible = obj.GetComponent<RectTransform>();
-
-        // X 좌표를 0으로 하여 부모(barBackground)의 중앙에 오도록 설정
-        spawnedCollectible.anchoredPosition = new Vector2(0f, spawnY);
-
+        spawnedCollectible.position = worldPosition;
         spawnedCollectible.SetAsLastSibling();
 
+        // --- 4. 코루틴 시작 ---
         if (collectRoutine != null)
         {
             StopCoroutine(collectRoutine);
