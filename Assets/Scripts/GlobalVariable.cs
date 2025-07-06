@@ -39,6 +39,8 @@ public class GlobalVariable : MonoBehaviour
     [Header("클리어 챕터 관련 변수")]
     public int PlayerClearRound = 0;
 
+    [Header("엔딩 관련 변수")]
+    public int EndingParameter = 0;
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;

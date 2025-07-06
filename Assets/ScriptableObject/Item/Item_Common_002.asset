@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 1
   ItemImage: {fileID: 21300000, guid: e68eed0ebe2b12b43b23ea68b6212197, type: 3}
+  displayScale: {x: 1.5, y: 1.5}
   ItemName: "\uD3F4\uB77C\uB85C\uC774\uB4DC"
   ItemDescription: "\uC124\uB0A0 \uC6A9\uB3C8 \uCBE4\uC73C\uB85C\uB3C4 \uC0AC\uB294\uB370\uC5D0
     \uBB38\uC81C \uC5C6\uB294 \uD50C\uB77C\uC2A4\uD2F1\uC73C\uB85C \uB41C \uC2FC
