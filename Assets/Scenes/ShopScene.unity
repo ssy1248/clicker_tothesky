@@ -710,6 +710,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39cb90b57c9464da0e4d9ff7416f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  descriptionImageRenderer: {fileID: 522183137}
+--- !u!212 &522183137 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 955057210295680570, guid: 51bcbca3086fa924abfca21772a28c07, type: 3}
+  m_PrefabInstance: {fileID: 522183133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &537672805 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 821969925998261328, guid: 51bcbca3086fa924abfca21772a28c07, type: 3}
