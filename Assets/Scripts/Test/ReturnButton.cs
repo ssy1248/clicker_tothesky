@@ -29,8 +29,8 @@ public class ReturnButton : MonoBehaviour
 
     public void ReturnGameScene()
     {
-        Debug.Log("버튼 눎림");
-        GlobalVariable.Instance.EnteredFromShop();
+        Debug.Log("버튼 눌림");
+        //GlobalVariable.Instance.EnteredFromShop();
         SceneManager.LoadScene("MainScene");
     }
 }
