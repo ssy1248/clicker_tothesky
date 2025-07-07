@@ -35,6 +35,8 @@ public class ItemScriptableObject : ScriptableObject
     public int ItemId;
     // 아이템 스프라이트
     public Sprite ItemImage;
+    // 아이템 설명 스프라이트
+    public Sprite ItemDescriptionImage;
 
     [Header("UI Settings")]
     [Tooltip("UI에 표시될 때의 크기 비율 (가로, 세로) 입니다. (1, 1)이 기본 크기입니다.")]
