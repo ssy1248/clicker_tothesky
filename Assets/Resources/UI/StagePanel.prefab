@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1783592811798793904}
   - component: {fileID: 2432118109752829069}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI_Stage_Roundnumb_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1051937872175861462}
   - component: {fileID: 8906205040391363576}
   - component: {fileID: 6256410667247451240}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI_Stage_Button_Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 8825485432535876664}
   - component: {fileID: 6170179489446356539}
   - component: {fileID: 6155125577474483912}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Memoris Button_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2399635188457236561}
   - component: {fileID: 8928274400081748757}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 1637543540880974549}
   - component: {fileID: 3834061686652779413}
   - component: {fileID: 1473833333395023690}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Back Button_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7130443980445798863}
   - component: {fileID: 1901376839561578706}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Item Frame_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6344311839907503185}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StagePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,7 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4481714870732162773}
   - component: {fileID: 4962236727543770150}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI_Stage_Stagetext_1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 1528388754773114000}
   - component: {fileID: 3065498858233340479}
   - component: {fileID: 8230698203401893315}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Right Button_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 2097460787070753435}
   - component: {fileID: 7517856460134771722}
   - component: {fileID: 4757324305440775833}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Left Button_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
