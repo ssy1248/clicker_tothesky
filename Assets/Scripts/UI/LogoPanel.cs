@@ -34,7 +34,7 @@ public class LogoPanel : BasePanel
     { 
         // 2) 기존 로직—로고 패널 닫고, 메인 패널 띄우고
         OnClose();
-        UIManager.Instance.PushPanel(UIPanelType.STAGE_SELECT_PANEL);
+        UIManager.Instance.PushPanel(UIPanelType.STAGE_PANEL);
     }
     
     public void OnClickCredit()

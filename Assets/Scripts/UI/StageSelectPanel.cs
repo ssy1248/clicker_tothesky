@@ -3,21 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class StageSelectPanel : BasePanel
 {
-    public override UIPanelType TypeOfPanel => UIPanelType.STAGE_SELECT_PANEL;
-
-    public void SetStageValue(int stageDistance)
-    {
-        // 각 스테이지 거리 세팅
-        GlobalVariable.Instance.CheckPointDistance = stageDistance;
-
-        SceneManager.LoadScene("ShopScene");
-    }
-
-    public void SetStageCollectSet(int CollectCount)
-    {
-        // 스테이지 최대 수집품 갯수 세팅
-        GlobalVariable.Instance.StageMaxCollectCount = CollectCount;
-    }
+    public override UIPanelType TypeOfPanel => UIPanelType.STAGE_PANEL;
 
     public override void OnEnter(params object[] datas)
     {
@@ -31,3 +17,13 @@ public class StageSelectPanel : BasePanel
         this.gameObject.SetActive(false);
     }
 }
+
+/*
+    스테이지   클리어 거리
+        1       110
+        2       162
+        3       214
+        4       266
+        5       318
+        6       370
+ */
