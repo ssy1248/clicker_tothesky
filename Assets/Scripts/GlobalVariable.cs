@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,14 @@ public class CollectedItemInfo
 {
     public int stageNumber;
     public int itemId;
+}
+
+[System.Serializable]
+public class GameData
+{
+    public int playerClearRound;
+    public List<CollectedItemInfo> collectedItems;
+    // 여기에 게임 종료 후에도 저장하고 싶은 다른 변수들을 추가할 수 있습니다.
 }
 
 public class GlobalVariable : MonoBehaviour
@@ -41,6 +50,11 @@ public class GlobalVariable : MonoBehaviour
 
     [Header("엔딩 관련 변수")]
     public int EndingParameter = 0;
+
+    [Header("게임 저장 관련")]
+    public bool isFirstTimeLaunch = true; // 처음 실행 여부 확인용 변수
+    private string saveFilePath;
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -63,6 +77,81 @@ public class GlobalVariable : MonoBehaviour
         // 처음 생성된 인스턴스라면 등록하고 씬 전환 시 파괴되지 않도록 설정
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        // 마지막에 저장/로드 관련 초기화 코드 추가
+        saveFilePath = Path.Combine(Application.persistentDataPath, "gamedata.json");
+        LoadGame();
+    }
+
+    // 게임을 종료할 때 자동으로 저장되도록 함
+    private void OnApplicationQuit()
+    {
+        SaveGame();
+    }
+
+    public void SaveGame()
+    {
+        // 1. 저장할 데이터만 모아서 GameData 객체를 만듭니다.
+        GameData dataToSave = new GameData();
+        dataToSave.playerClearRound = this.PlayerClearRound;
+        dataToSave.collectedItems = this.collectedItems;
+
+        // 2. GameData 객체를 JSON 문자열로 변환합니다.
+        string json = JsonUtility.ToJson(dataToSave, true);
+
+        // 3. 파일로 저장합니다.
+        File.WriteAllText(saveFilePath, json);
+        Debug.Log("게임 데이터가 저장되었습니다: " + saveFilePath);
+    }
+
+    public void LoadGame()
+    {
+        // 1. 저장 파일이 존재하는지 확인합니다.
+        if (File.Exists(saveFilePath))
+        {
+            // 2. 파일이 있다면, '처음 실행'이 아니므로 플래그를 false로 바꿉니다.
+            isFirstTimeLaunch = false;
+
+            // 3. 파일에서 JSON 문자열을 읽어옵니다.
+            string json = File.ReadAllText(saveFilePath);
+
+            // 4. JSON 문자열을 GameData 객체로 변환합니다.
+            GameData loadedData = JsonUtility.FromJson<GameData>(json);
+
+            // 5. 불러온 데이터를 현재 GlobalVariable에 적용합니다.
+            this.PlayerClearRound = loadedData.playerClearRound;
+            this.collectedItems = loadedData.collectedItems;
+
+            Debug.Log("게임 데이터를 불러왔습니다.");
+        }
+        else
+        {
+            // 저장 파일이 없으면 '처음 실행'입니다.
+            isFirstTimeLaunch = true;
+            Debug.Log("저장된 데이터가 없습니다. 새 게임을 시작합니다.");
+        }
+    }
+
+    public void DeleteSaveData()
+    {
+        // 저장 파일이 실제로 존재할 때만 삭제를 시도합니다.
+        if (File.Exists(saveFilePath))
+        {
+            File.Delete(saveFilePath);
+
+            // 현재 실행 중인 게임의 변수들도 초기화해줍니다.
+            isFirstTimeLaunch = true;
+            PlayerClearRound = 0;
+            collectedItems.Clear();
+
+            Debug.LogWarning("세이브 파일이 삭제되었습니다. 게임을 재시작하면 처음부터 시작합니다.");
+            // 더 확실하게 하려면 씬을 다시 로드하는 것도 좋습니다.
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            Debug.Log("삭제할 세이브 파일이 존재하지 않습니다.");
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -72,9 +161,6 @@ public class GlobalVariable : MonoBehaviour
 
         CollectManager.Instance.CollectObejctCount = StageMaxCollectCount;
     }
-
-    // 상점에서 돌아올 때 호출
-    public void EnteredFromShop() => ShopCount++;
 
     public void StartedGame() => GameStarted = true;
 
