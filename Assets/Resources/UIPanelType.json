@@ -13,8 +13,8 @@
 			"panelTypeString": "POPUP_PANEL",
 			"path": "UI/PopupPanel"
 		},{
-			"panelTypeString": "STAGE_SELECT_PANEL",
-			"path": "UI/StageSelectPanel"
+			"panelTypeString": "STAGE_PANEL",
+			"path": "UI/StagePanel"
 		}
 	]
 }
