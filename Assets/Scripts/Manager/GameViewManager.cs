@@ -97,6 +97,8 @@ public class GameViewManager : MonoBehaviour
         gameOver = true;
         Debug.Log("Time's up! 게임 끝");
 
+        // 게임 오버 UI 띄움
+
         GlobalVariable.Instance.CheckPointDistance = 0;
         GlobalVariable.Instance.PlayerCurrentDistance = 0;
     }

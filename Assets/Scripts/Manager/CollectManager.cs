@@ -46,6 +46,20 @@ public class CollectManager : MonoBehaviour
 
     public void CreateCollectObject()
     {
+        if (spawnedCollectible != null)
+        {
+            Debug.Log("새로운 수집품 생성을 위해 기존 수집품을 제거합니다.");
+
+            // 기존 수집품을 추적하던 코루틴이 있다면 확실히 정지시킵니다.
+            if (collectRoutine != null)
+            {
+                StopCoroutine(collectRoutine);
+            }
+
+            // 기존 수집품 게임 오브젝트를 파괴합니다.
+            Destroy(spawnedCollectible.gameObject);
+        }
+
         // --- 1. 위치 및 범위 계산 ---
         float barHeight = barBackground.rect.height;
         float newMinY = -barHeight / 2f;
@@ -132,6 +146,7 @@ public class CollectManager : MonoBehaviour
             if (stayTime >= maxStayTime)
             {
                 Debug.Log("수집 성공!");
+                CollectObejctCount++;
                 Destroy(spawnedCollectible.gameObject);
                 spawnedCollectible = null;
                 yield break;
