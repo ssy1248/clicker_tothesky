@@ -1,6 +1,7 @@
 using System;
 using BigNumber;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -28,6 +29,9 @@ public class GameViewManager : MonoBehaviour
     [Header("게이지 매니저")]
     [SerializeField]
     private GuageManager gaugeManager;
+
+    [Header("아이템 관련 변수")]
+    public float GameTimePlus = 0;
 
     private void OnEnable()
     {
@@ -62,8 +66,12 @@ public class GameViewManager : MonoBehaviour
     private void Awake()
     {
         gameTimeText = GameObject.Find("GameTimeText").GetComponent<TextMeshProUGUI>();
+    }
 
-        totalTime = GlobalManager.Instance.inGameCountTime;
+    private void Start()
+    {
+        // InGameItemManager가 GameTimePlus를 먼저 설정한 후, Start에서 타이머를 초기화합니다.
+        totalTime = GlobalManager.Instance.inGameCountTime + GameTimePlus;
         UpdateTimerUI();
     }
 
@@ -98,7 +106,8 @@ public class GameViewManager : MonoBehaviour
         if (totalTime > 0f)
         {
             totalTime -= Time.deltaTime;
-            if (totalTime < 0f) totalTime = 0f;
+            if (totalTime < 0f) 
+                totalTime = 0f;
             UpdateTimerUI();
 
             if (totalTime <= 30f && !blinkStarted)

@@ -21,6 +21,9 @@ public class GuageImageAlpha : MonoBehaviour
 
     private Coroutine lifeRoutine;
 
+    [Header("아이템 변수 관련")]
+    public float RecoverTime = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -83,7 +86,12 @@ public class GuageImageAlpha : MonoBehaviour
     private IEnumerator ZeroAndResetCoroutine(System.Action onReset)
     {
         PlayerStaminaZero();  // 알파값 0 (게이지 숨기기)
-        yield return new WaitForSeconds(resetDelay);
+
+        // resetDelay에 아이템 효과 값인 RecoverTime을 더해서 대기 시간을 계산합니다.
+        float totalDelay = resetDelay + RecoverTime;
+        Debug.Log($"총 회복 대기 시간: {totalDelay}초 (기본: {resetDelay} + 아이템: {RecoverTime})");
+
+        yield return new WaitForSeconds(totalDelay);
         PlayerStaminaReset();  // 알파값 1 (게이지 보이기)
         lifeRoutine = null;
 
