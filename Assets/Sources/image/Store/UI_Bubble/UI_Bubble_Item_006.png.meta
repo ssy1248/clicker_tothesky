@@ -142,10 +142,10 @@ TextureImporter:
       name: UI_Bubble_Item_006_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 20
-        width: 534
-        height: 360
+        x: 55
+        y: 0
+        width: 590
+        height: 465
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

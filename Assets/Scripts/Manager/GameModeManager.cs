@@ -6,49 +6,49 @@ using UnityEngine.SceneManagement;
 
 public class GameModeManager : MonoBehaviour
 {
-    // °ÔÀÓ °Å¸® / ¹«ÇÑ¸ðµå ³ªÁß¿¡ »ý¼ºµÉ ½ºÅä¸® ¸ðµåÀÇ ºÐ±â¸¦ ³ª´­ ½ºÅ©¸³Æ®·Î »ç¿ëÇÒ ¿¹Á¤
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ / ï¿½ï¿½ï¿½Ñ¸ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     
-    [Header("UI ¸ðÀ½")]
+    [Header("UI ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     private Image CharacterImage;
     private GameViewManager gameViewManager;
 
-    [Header("º¯¼ö ¸ðÀ½")]
-    // °Å¸®¸¦ ÃÊ±âÈ­ÇÒ ÃÊ±â º¯¼ö
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
+    // ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½
     [SerializeField]
     int Distance;
-    // 1ÃÊ¸¦ ´©ÀûÇÒ Å¸ÀÌ¸Ó º¯¼ö
+    // 1ï¿½Ê¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
     private float distanceTimer = 0f;
-    // Ã¼Å©Æ÷ÀÎÆ® °Å¸®
+    // Ã¼Å©ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Å¸ï¿½
     public int CheckPointDistance;
-    // Ã¼Å©Æ÷ÀÎÆ® »óÅÂ ÇÃ·¡±×
+    // Ã¼Å©ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
     private bool isAtCheckpoint = false;  
 
-    [Header("½ºÇÁ¶óÀÌÆ® ¸ðÀ½ & ¿ÀºêÁ§Æ® ¸ðÀ½")]
-    // Ã¼Å©Æ÷ÀÎÆ® ¹® ¿ÀºêÁ§Æ® -> ¹®ÀÇ ÃÖÁ¾ Å©±â´Â x 2 y 2(½ºÄÉÀÏ)
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ & ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½")]
+    // Ã¼Å©ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® -> ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ x 2 y 2(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
     [SerializeField]
     GameObject DoorObject;
 
-    // ¾Ö´Ï¸ÞÀÌ¼Ç¿ë ¼³Á¤
-    [Header("¾Ö´Ï¸ÞÀÌ¼Ç ¼³Á¤")]
+    // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+    [Header("ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField, Range(0f, 1f)]
-    private float doorOpenThreshold = 0.8f;  // Ã¼Å©Æ÷ÀÎÆ® °Å¸®ÀÇ ¸î ÆÛ¼¾Æ®¿¡¼­ ¹® ¿­±â ½ÃÀÛ
+    private float doorOpenThreshold = 0.8f;  // Ã¼Å©ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Û¼ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private bool hasDoorOpenStarted = false;
 
-    // ¿ø·¡ °ª º¸°ü¿ë
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private Vector3 doorOriginalScale;
     private Vector3 doorOriginalPosition;
     private Vector3 doorStartScale;
     [SerializeField] 
     private Vector3 doorTargetScale = new Vector3(2f, 2f, 1f);
-    // Ä³¸¯ÅÍ ÃÖÃÊ X ÁÂÇ¥ ÀúÀå¿ë
+    // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ X ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½
     private float charStartX;
 
     private bool isStaminaEmpty = false;
 
     private GuageManager guageManager;
 
-    [Header("¼öÁýÇ° »ý¼º °ü·Ã")]
+    [Header("ï¿½ï¿½ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     private int nextCollectIndex = 0;
     private float collectSpawnInterval;
 
@@ -75,19 +75,19 @@ public class GameModeManager : MonoBehaviour
             DoorObject.SetActive(false);
         }
 
-        // ÃÊ±â Æ®·£½ºÆû °ª ÀúÀå
+        // ï¿½Ê±ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         doorOriginalScale = doorTargetScale;
         doorOriginalPosition = DoorObject.transform.localPosition;
-        // ÃÊ±â ½ºÄÉÀÏ
+        // ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         doorStartScale = new Vector3(0.1f, 0.1f, doorOriginalScale.z);
 
-        // ¹® ¼û±è
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         DoorObject.SetActive(false);
 
         // GameViewManager
         gameViewManager = GameObject.Find("GameViewManager").GetComponent<GameViewManager>();
 
-        // Ä³¸¯ÅÍÀÇ ½ÃÀÛ AnchoredPosition.x¸¦ ÇÑ ¹ø ÀúÀå
+        // Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ AnchoredPosition.xï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         charStartX = CharacterImage.rectTransform.anchoredPosition.x;
 
         guageManager = GameObject.FindFirstObjectByType<GuageManager>();
@@ -95,7 +95,7 @@ public class GameModeManager : MonoBehaviour
 
     private void Start()
     {
-        // ±Û·Î¹ú º¯¼ö¿¡¼­ °ªÀ» °¡Á®¿À±â
+        // ï¿½Û·Î¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Distance = GlobalVariable.Instance.PlayerCurrentDistance;
         CheckPointDistance = GlobalVariable.Instance.CheckPointDistance;
 
@@ -107,29 +107,29 @@ public class GameModeManager : MonoBehaviour
 
     void Update()
     {
-        // ½ºÅÂ¹Ì³ª ºñ¾îÀÖÀ¸¸é °Å¸® ·ÎÁ÷ ÅëÂ°·Î ½ºÅµ
+        // ï¿½ï¿½ï¿½Â¹Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â°ï¿½ï¿½ ï¿½ï¿½Åµ
         if (isStaminaEmpty) 
             return;
 
-        // GameViewManager¿¡¼­ HandleStaminaZero ÇÔ¼ö°¡ ½ÇÇàÀÌ µÇ¸é Æ®¸®°Å¸¦ º¸³»¼­ °Å¸® Áõ°¡ ·ÎÁ÷À» ¸·´Â´Ù
+        // GameViewManagerï¿½ï¿½ï¿½ï¿½ HandleStaminaZero ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ Æ®ï¿½ï¿½ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½
         if (!isAtCheckpoint)
         {
-            // °Å¸® Áõ°¡ ·ÎÁ÷
+            // ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             IncreaseDistanceOverTime();
-            // °Å¸® ±â¹Ý ½ºÄÉÀÏ ¾÷µ¥ÀÌÆ®
+            // ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
             AnimateDoorScale();
-            // ÀÌµ¿ °ÔÀÌÁö Á¶Àý ÇÔ¼ö
+            // ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
             AnimateProgressFill();
         }
         else
         {
-            // Å¬¸®¾î ÆÐ³Î
+            // Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½
         } 
     }
 
     private void IncreaseDistanceOverTime()
     {
-        // ¾Ö´Ï¸ÞÀÌ¼Ç Á¤Áö »óÅÂ¶ó¸é °»½Å Áß´Ü
+        // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½
         if (isStaminaEmpty)
             return;
 
@@ -145,7 +145,7 @@ public class GameModeManager : MonoBehaviour
         }
 
 
-        distanceTimer += Time.deltaTime * speedMultiplier;
+        distanceTimer += (Time.deltaTime * 2.5f)*speedMultiplier;
 
         while (distanceTimer >= 1f)
         {
@@ -170,15 +170,15 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
-    // Ã¼Å©Æ÷ÀÎÆ® ÁøÀÔ Ã³¸®
+    // Ã¼Å©ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     private void EnterCheckpoint()
     {
         isAtCheckpoint = true;
-        // ¹® ½ºÄÉÀÏÀ» Á¤È®È÷ ¸ñÇ¥ ½ºÄÉÀÏ·Î ¼³Á¤
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½
         DoorObject.transform.localScale = doorOriginalScale;
     }
 
-    // °Å¸®¿¡ µû¶ó ¹® ½ºÄÉÀÏ º¸°£
+    // ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private void AnimateDoorScale()
     {
         if (!hasDoorOpenStarted)
@@ -187,26 +187,26 @@ public class GameModeManager : MonoBehaviour
         float thresholdDist = CheckPointDistance * doorOpenThreshold;
         float progress = Mathf.Clamp01((Distance - thresholdDist) / (CheckPointDistance - thresholdDist));
 
-        // doorTargetScale »ç¿ë
+        // doorTargetScale ï¿½ï¿½ï¿½
         DoorObject.transform.localScale = Vector3.Lerp(doorStartScale, doorOriginalScale, progress);
     }
 
-    // AnimationAllStopÀ» ÇÏ¸é AnimateProgressFillÀ» ¸ØÃç¾ßÇÔ
+    // AnimationAllStopï¿½ï¿½ ï¿½Ï¸ï¿½ AnimateProgressFillï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private void AnimateProgressFill()
     {
-        // ¾Ö´Ï¸ÞÀÌ¼Ç Á¤Áö »óÅÂ¶ó¸é À§Ä¡ °»½Å Áß´Ü
+        // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½
         if (isStaminaEmpty)
             return;
 
-        // 1) ÁøÇàµµ °è»ê
+        // 1) ï¿½ï¿½ï¿½àµµ ï¿½ï¿½ï¿½
         float progress = Mathf.SmoothStep(0, 1, Distance / (float)CheckPointDistance);
 
-        // 2) y À§Ä¡ º¸°£
+        // 2) y ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
         float startY = -682f;
         float endY = 805f;
         float newY = Mathf.Lerp(startY, endY, progress);
 
-        // 3) Ä³¸¯ÅÍ À§Ä¡ ÀÌµ¿
+        // 3) Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ìµï¿½
         RectTransform charRT = CharacterImage.rectTransform;
         Vector2 anchored = charRT.anchoredPosition;
         anchored.y = newY;
@@ -221,8 +221,8 @@ public class GameModeManager : MonoBehaviour
 
         if (Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
         {
-            Debug.Log("¼öÁýÇ° »ý¼º Á¶°Ç Åë°ú!");
-            CollectManager.Instance.CreateCollectObject(); // ÇÁ¸®ÆÕÀº ³»ºÎ¿¡¼­ »ç¿ë
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½!");
+            CollectManager.Instance.CreateCollectObject(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             nextCollectIndex++;
         }
     }
