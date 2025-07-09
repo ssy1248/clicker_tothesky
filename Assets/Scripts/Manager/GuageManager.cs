@@ -21,7 +21,7 @@ public class GuageManager : MonoBehaviour
 
     public float DANGER_THRESHOLD_LOW = 0.1f;
     public float DANGER_THRESHOLD_HIGH = 0.9f;
-    private const float DANGER_DURATION = 5f;
+    public float DANGER_DURATION = 5f;
 
     public float GaugeValue => gaugeValue;
 

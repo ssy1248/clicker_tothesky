@@ -6,51 +6,52 @@ using UnityEngine.SceneManagement;
 
 public class GameModeManager : MonoBehaviour
 {
-    // ���� �Ÿ� / ���Ѹ�� ���߿� ������ ���丮 ����� �б⸦ ���� ��ũ��Ʈ�� ����� ����
-    
-    [Header("UI ����")]
+    [Header("UI 모음")]
     [SerializeField]
     private Image CharacterImage;
     private GameViewManager gameViewManager;
 
-    [Header("���� ����")]
-    // �Ÿ��� �ʱ�ȭ�� �ʱ� ����
+    [Header("변수 모음")]
+    // 거리를 초기화할 초기 변수
     [SerializeField]
     int Distance;
-    // 1�ʸ� ������ Ÿ�̸� ����
+    // 1초를 누적할 타이머 변수
     private float distanceTimer = 0f;
-    // üũ����Ʈ �Ÿ�
+    // 체크포인트 거리
     public int CheckPointDistance;
-    // üũ����Ʈ ���� �÷���
-    private bool isAtCheckpoint = false;  
+    // 체크포인트 상태 플래그
+    private bool isAtCheckpoint = false;
 
-    [Header("��������Ʈ ���� & ������Ʈ ����")]
-    // üũ����Ʈ �� ������Ʈ -> ���� ���� ũ��� x 2 y 2(������)
+    [Header("스프라이트 모음 & 오브젝트 모음")]
+    // 체크포인트 문 오브젝트 -> 문의 최종 크기는 x 2 y 2(스케일)
     [SerializeField]
     GameObject DoorObject;
 
-    // �ִϸ��̼ǿ� ����
-    [Header("�ִϸ��̼� ����")]
+    // 애니메이션용 설정
+    [Header("애니메이션 설정")]
     [SerializeField, Range(0f, 1f)]
-    private float doorOpenThreshold = 0.8f;  // üũ����Ʈ �Ÿ��� �� �ۼ�Ʈ���� �� ���� ����
+    private float doorOpenThreshold = 0.8f;  // 체크포인트 거리의 몇 퍼센트에서 문 열기 시작
     private bool hasDoorOpenStarted = false;
 
-    // ���� �� ������
+    // 원래 값 보관용
     private Vector3 doorOriginalScale;
     private Vector3 doorOriginalPosition;
     private Vector3 doorStartScale;
     [SerializeField] 
     private Vector3 doorTargetScale = new Vector3(2f, 2f, 1f);
-    // ĳ���� ���� X ��ǥ �����
+    // 캐릭터 최초 X 좌표 저장용
     private float charStartX;
 
     private bool isStaminaEmpty = false;
 
     private GuageManager guageManager;
 
-    [Header("����ǰ ���� ����")]
+    [Header("수집품 생성 관련")]
     private int nextCollectIndex = 0;
     private float collectSpawnInterval;
+
+    [Header("아이템 효과 변수")]
+    public float SpeedItemPlus = 0;
 
     private void OnEnable()
     {
@@ -75,19 +76,19 @@ public class GameModeManager : MonoBehaviour
             DoorObject.SetActive(false);
         }
 
-        // �ʱ� Ʈ������ �� ����
+        // 초기 트랜스폼 값 저장
         doorOriginalScale = doorTargetScale;
         doorOriginalPosition = DoorObject.transform.localPosition;
-        // �ʱ� ������
+        // 초기 스케일
         doorStartScale = new Vector3(0.1f, 0.1f, doorOriginalScale.z);
 
-        // �� ����
+        // 문 숨김
         DoorObject.SetActive(false);
 
         // GameViewManager
         gameViewManager = GameObject.Find("GameViewManager").GetComponent<GameViewManager>();
 
-        // ĳ������ ���� AnchoredPosition.x�� �� �� ����
+        // 캐릭터의 시작 AnchoredPosition.x를 한 번 저장
         charStartX = CharacterImage.rectTransform.anchoredPosition.x;
 
         guageManager = GameObject.FindFirstObjectByType<GuageManager>();
@@ -95,7 +96,7 @@ public class GameModeManager : MonoBehaviour
 
     private void Start()
     {
-        // �۷ι� �������� ���� ��������
+        // 글로벌 변수에서 값을 가져오기
         Distance = GlobalVariable.Instance.PlayerCurrentDistance;
         CheckPointDistance = GlobalVariable.Instance.CheckPointDistance;
 
@@ -107,29 +108,29 @@ public class GameModeManager : MonoBehaviour
 
     void Update()
     {
-        // ���¹̳� ��������� �Ÿ� ���� ��°�� ��ŵ
+        // 스태미나 비어있으면 거리 로직 통째로 스킵
         if (isStaminaEmpty) 
             return;
 
-        // GameViewManager���� HandleStaminaZero �Լ��� ������ �Ǹ� Ʈ���Ÿ� ������ �Ÿ� ���� ������ ���´�
+        // GameViewManager에서 HandleStaminaZero 함수가 실행이 되면 트리거를 보내서 거리 증가 로직을 막는다
         if (!isAtCheckpoint)
         {
-            // �Ÿ� ���� ����
+            // 거리 증가 로직
             IncreaseDistanceOverTime();
-            // �Ÿ� ��� ������ ������Ʈ
+            // 거리 기반 스케일 업데이트
             AnimateDoorScale();
-            // �̵� ������ ���� �Լ�
+            // 이동 게이지 조절 함수
             AnimateProgressFill();
         }
         else
         {
-            // Ŭ���� �г�
-        } 
+            // 클리어 패널
+        }
     }
 
     private void IncreaseDistanceOverTime()
     {
-        // �ִϸ��̼� ���� ���¶�� ���� �ߴ�
+        // 애니메이션 정지 상태라면 갱신 중단
         if (isStaminaEmpty)
             return;
 
@@ -145,7 +146,7 @@ public class GameModeManager : MonoBehaviour
         }
 
 
-        distanceTimer += (Time.deltaTime * 2.5f)*speedMultiplier;
+        distanceTimer += ((Time.deltaTime * 2f) * speedMultiplier) + SpeedItemPlus;
 
         while (distanceTimer >= 1f)
         {
@@ -170,15 +171,15 @@ public class GameModeManager : MonoBehaviour
         }
     }
 
-    // üũ����Ʈ ���� ó��
+    // 체크포인트 진입 처리
     private void EnterCheckpoint()
     {
         isAtCheckpoint = true;
-        // �� �������� ��Ȯ�� ��ǥ �����Ϸ� ����
+        // 문 스케일을 정확히 목표 스케일로 설정
         DoorObject.transform.localScale = doorOriginalScale;
     }
 
-    // �Ÿ��� ���� �� ������ ����
+    // 거리에 따라 문 스케일 보간
     private void AnimateDoorScale()
     {
         if (!hasDoorOpenStarted)
@@ -187,26 +188,26 @@ public class GameModeManager : MonoBehaviour
         float thresholdDist = CheckPointDistance * doorOpenThreshold;
         float progress = Mathf.Clamp01((Distance - thresholdDist) / (CheckPointDistance - thresholdDist));
 
-        // doorTargetScale ���
+        // doorTargetScale 사용
         DoorObject.transform.localScale = Vector3.Lerp(doorStartScale, doorOriginalScale, progress);
     }
 
-    // AnimationAllStop�� �ϸ� AnimateProgressFill�� �������
+    // AnimationAllStop을 하면 AnimateProgressFill을 멈춰야함
     private void AnimateProgressFill()
     {
-        // �ִϸ��̼� ���� ���¶�� ��ġ ���� �ߴ�
+        // 애니메이션 정지 상태라면 위치 갱신 중단
         if (isStaminaEmpty)
             return;
 
-        // 1) ���൵ ���
+        // 1) 진행도 계산
         float progress = Mathf.SmoothStep(0, 1, Distance / (float)CheckPointDistance);
 
-        // 2) y ��ġ ����
+        // 2) y 위치 보간
         float startY = -682f;
         float endY = 805f;
         float newY = Mathf.Lerp(startY, endY, progress);
 
-        // 3) ĳ���� ��ġ �̵�
+        // 3) 캐릭터 위치 이동
         RectTransform charRT = CharacterImage.rectTransform;
         Vector2 anchored = charRT.anchoredPosition;
         anchored.y = newY;
@@ -221,8 +222,7 @@ public class GameModeManager : MonoBehaviour
 
         if (Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
         {
-            Debug.Log("����ǰ ���� ���� ���!");
-            CollectManager.Instance.CreateCollectObject(); // �������� ���ο��� ���
+            CollectManager.Instance.CreateCollectObject(); // 프리팹은 내부에서 사용
             nextCollectIndex++;
         }
     }

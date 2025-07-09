@@ -20,12 +20,14 @@ public class CollectManager : MonoBehaviour
     [Header("게이지 연동")]
     public Image fillImage; // FillAmount 기반
     public RectTransform barBackground; // Fill의 부모인 바 영역
-    //public Transform spawnParent; // 생성된 수집품의 부모 오브젝트
 
     private RectTransform spawnedCollectible;
     private Coroutine collectRoutine;
 
     private GuageManager guageManager;
+
+    [Header("아이템 변수 관련")]
+    public float CollectRangeModify = 0;
 
     // 수집품의 시작(하단)과 끝(상단) 비율을 저장할 변수들
     private float targetFillMin;
@@ -61,8 +63,19 @@ public class CollectManager : MonoBehaviour
                                           guageManager.DANGER_THRESHOLD_HIGH);
         }
 
-        this.targetFillMin = centerFillValue - (collectibleFillHeight / 2f);
-        this.targetFillMax = centerFillValue + (collectibleFillHeight / 2f);
+        // ================== 아이템 효과 적용 부분 ==================
+        // 기존 판정 범위의 절반(반지름)을 계산합니다.
+        float originalRadius = collectibleFillHeight / 2f;
+
+        // 아이템 효과를 적용하여 판정 범위 반지름을 수정합니다.
+        // CollectRangeModify는 전체 범위 증가량이므로, 절반을 반지름에 더합니다.
+        float modifiedRadius = originalRadius + (CollectRangeModify / 2f);
+
+        // 수정된 반지름으로 최종 범위를 설정합니다.
+        this.targetFillMin = centerFillValue - modifiedRadius;
+        this.targetFillMax = centerFillValue + modifiedRadius;
+        // ========================================================
+
         float spawnY = Mathf.Lerp(newMinY, newMaxY, centerFillValue);
 
         // --- 2. 좌표 변환 (두 번째 코드의 좌표 변환 로직) ---

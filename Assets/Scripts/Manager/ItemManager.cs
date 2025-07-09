@@ -84,6 +84,5 @@ public class ItemManager : MonoBehaviour
             spriteRenderer.gameObject.SetActive(true);
             spriteRenderer.sprite = itemData.ItemImage;
         }
-
     }
 }

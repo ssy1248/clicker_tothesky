@@ -10,35 +10,6 @@ public class GlobalManager : SingletonBehaviour<GlobalManager>
     public int clickLevel = 1;
     public int inGameCountTime = 120;
 
-    //void OnEnable()
-    //{
-    //    SceneManager.sceneLoaded += OnSceneLoaded;
-    //}
-
-    //void OnDisable()
-    //{
-    //    SceneManager.sceneLoaded -= OnSceneLoaded;
-    //}
-
-    //private void Start()
-    //{
-    //    // 처음에도 현재 씬 정보를 한 번 처리
-    //    OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
-    //}
-
-    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    //{
-    //    if (scene.name != "MainScene")
-    //        return;
-
-    //    // 게임 시작 플래그 or 상점 복귀 플래그
-    //    bool showUI = GlobalVariable.Instance.GameStarted
-    //               || GlobalVariable.Instance.ShopCount > 0;
-
-    //    foreach (var go in UIObjects)
-    //        go.SetActive(showUI);
-    //}
-
     public BigDouble GetTouchAmount()
     {
         return clickLevel ;
