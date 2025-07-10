@@ -18,6 +18,7 @@ public class GameViewManager : MonoBehaviour
     [Header("UI")]
     [SerializeField]
     private TextMeshProUGUI gameTimeText;
+    public GameObject GameOverPanel;
 
     [Header("타임 패널")]
     [SerializeField]
@@ -98,6 +99,7 @@ public class GameViewManager : MonoBehaviour
         Debug.Log("Time's up! 게임 끝");
 
         // 게임 오버 UI 띄움
+        GameOverPanel.SetActive(true);
 
         GlobalVariable.Instance.CheckPointDistance = 0;
         GlobalVariable.Instance.PlayerCurrentDistance = 0;
