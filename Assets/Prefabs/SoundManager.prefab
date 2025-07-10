@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5048026860169763486}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -281.32175, y: -789.7353, z: 12.82781}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,6 +45,94 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect:
-  - key: click
-    clip: {fileID: 8300000, guid: f6e6c7b32ee5cb14babf8bc79e2769d2, type: 3}
+  - key: Breath1
+    clip: {fileID: 0}
+    volume: 0
+  - key: Breath2
+    clip: {fileID: 0}
+    volume: 0
+  - key: Breath3
+    clip: {fileID: 0}
+    volume: 0
+  - key: Breath4
+    clip: {fileID: 0}
+    volume: 0
+  - key: UIClick
+    clip: {fileID: 0}
+    volume: 0
+  - key: CountDown
+    clip: {fileID: 0}
+    volume: 0
+  - key: DoorShake1
+    clip: {fileID: 0}
+    volume: 0
+  - key: DoorShake2
+    clip: {fileID: 0}
+    volume: 0
+  - key: DoorShake3
+    clip: {fileID: 0}
+    volume: 0
+  - key: DoorShake4
+    clip: {fileID: 0}
+    volume: 0
+  - key: DoorTouch
+    clip: {fileID: 0}
+    volume: 0
+  - key: EyeStart
+    clip: {fileID: 0}
+    volume: 0
+  - key: Eye1
+    clip: {fileID: 0}
+    volume: 0
+  - key: Eye2
+    clip: {fileID: 0}
+    volume: 0
+  - key: Eye3
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
+  - key: 
+    clip: {fileID: 0}
+    volume: 0
   masterVolume: 0

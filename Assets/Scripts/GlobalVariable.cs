@@ -30,6 +30,10 @@ public class GlobalVariable : MonoBehaviour
     // 체크포인트 거리
     public int CheckPointDistance = 50;
 
+    [Header("게임 관련 변수")]
+    public float GameTime = 0;
+    public float LastClearTime = 0f; // 마지막으로 클리어한 시간 저장
+
     [Header("플레이어 관련 변수")]
     public int PlayerCurrentDistance = 0;
     public int PlayerCurrentPlayerStage = 0;
@@ -184,6 +188,23 @@ public class GlobalVariable : MonoBehaviour
     public int GetCollectedCountByStage(int stage)
     {
         return collectedItems.FindAll(item => item.stageNumber == stage).Count;
+    }
+
+    public void SetupStage(int stageIndex, StageDatabase db)
+    {
+        // 스테이지 데이터 가져오기
+        StageData data = db.allStageData[stageIndex];
+
+        // 플레이할 스테이지 정보 설정
+        PlayerCurrentPlayerStage = stageIndex;
+        CheckPointDistance = data.clearDistance;
+        StageMaxCollectCount = data.maxCollectibles;
+        GameTime = data.gameTime;
+
+        // 게임 플레이와 직접 관련된 변수 초기화
+        PlayerCurrentDistance = 0;
+        LastClearTime = 0f;
+        // ... 그 외에 스테이지 시작 시 초기화되어야 할 다른 변수들 ...
     }
 }
 
