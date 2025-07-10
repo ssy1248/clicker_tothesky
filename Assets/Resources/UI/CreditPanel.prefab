@@ -141,7 +141,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Director\n\n\uBB38\uCC2C\uC6B1\n\nGame Designer\n\n\uBB38\uCC2C\uC6B1\n\n\uC774\uC720\uC131\n\n\uAE40\uC120\uAE30\n\nArt\n\n\uAE40\uB355\uACE4\n\nSound
-    Designer\n\n\uC724\uD64D\uC900\n\nMusic Director\n\n\uC815\uC77C\uC9C4\n\n"
+    Designer\n\n\uC724\uD64D\uC900\n\nMusic Director\n\n\uC815\uC77C\uC9C4\n\nDeveloper\n\n\uC1A1\uC2B9\uB82C\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4fe2af3280d70bf4685f6e4864f0183c, type: 2}
   m_sharedMaterial: {fileID: 7875009381565623572, guid: 4fe2af3280d70bf4685f6e4864f0183c, type: 2}
