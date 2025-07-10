@@ -145,8 +145,14 @@ public class GameModeManager : MonoBehaviour
             speedMultiplier = 0.5f;
         }
 
+        // 1. 기본 속도를 계산합니다.
+        float baseSpeed = Time.deltaTime * 2f * speedMultiplier;
 
-        distanceTimer += ((Time.deltaTime * 2f) * speedMultiplier) + SpeedItemPlus;
+        // 2. 아이템으로 인한 속도 증가 배율을 계산합니다. -> SpeedItemPlus가 0.2라면 1.2배(20% 증가)가 됩니다.
+        float itemSpeedMultiplier = 1f + SpeedItemPlus;
+
+        // 3. 최종 속도를 계산하여 distanceTimer에 더합니다.
+        distanceTimer += baseSpeed * itemSpeedMultiplier;
 
         while (distanceTimer >= 1f)
         {
