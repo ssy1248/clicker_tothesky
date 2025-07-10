@@ -146,7 +146,8 @@ public class CollectManager : MonoBehaviour
             if (stayTime >= maxStayTime)
             {
                 Debug.Log("수집 성공!");
-                CollectObejctCount++;
+                // 수집한 갯수 증가
+                GlobalVariable.Instance.TotalGetCollectCount = CollectObejctCount++;
                 Destroy(spawnedCollectible.gameObject);
                 spawnedCollectible = null;
                 yield break;

@@ -45,8 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CheckPointDistance: 50
-  CheckPointTouchCount: 10
+  GameTime: 0
+  LastClearTime: 0
   PlayerCurrentDistance: 0
+  PlayerCurrentPlayerStage: 0
+  collectedItems: []
+  StageMaxCollectCount: 0
+  TotalGetCollectCount: 0
   GameStarted: 0
   ShopCount: 0
   PlayerClearRound: 0
+  EndingParameter: 0
+  isFirstTimeLaunch: 1

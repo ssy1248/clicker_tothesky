@@ -8,7 +8,17 @@ public class GlobalManager : SingletonBehaviour<GlobalManager>
     public BigDouble kiwiAmount;
 
     public int clickLevel = 1;
-    public int inGameCountTime = 120;
+    public float inGameCountTime = 120;
+
+    private void Start()
+    {
+        // GlobalVariable 싱글톤 인스턴스가 존재하는지 안전하게 확인합니다.
+        if (GlobalVariable.Instance != null)
+        {
+            // StagePanel에서 설정한 GameTime 값을 inGameCountTime에 할당합니다.
+            inGameCountTime = GlobalVariable.Instance.GameTime;
+        }
+    }
 
     public BigDouble GetTouchAmount()
     {

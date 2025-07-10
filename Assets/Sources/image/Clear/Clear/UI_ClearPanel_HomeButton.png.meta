@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      UI_ClearPanel_HomeButton_0: -2251385639541540431
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

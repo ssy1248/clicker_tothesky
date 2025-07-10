@@ -23,14 +23,14 @@ public class GameModeManager : MonoBehaviour
     private bool isAtCheckpoint = false;
 
     [Header("스프라이트 모음 & 오브젝트 모음")]
-    // 체크포인트 문 오브젝트 -> 문의 최종 크기는 x 2 y 2(스케일)
+    // 체크포인트 문 오브젝트 -> 문의 최종 크기는 x 0.2 y 0.18(스케일)
     [SerializeField]
     GameObject DoorObject;
 
     // 애니메이션용 설정
     [Header("애니메이션 설정")]
     [SerializeField, Range(0f, 1f)]
-    private float doorOpenThreshold = 0.8f;  // 체크포인트 거리의 몇 퍼센트에서 문 열기 시작
+    private float doorOpenThreshold = 0.8f;  // 체크포인트 거리의 몇 퍼센트에서 문 나타나기 시작
     private bool hasDoorOpenStarted = false;
 
     // 원래 값 보관용
@@ -38,7 +38,7 @@ public class GameModeManager : MonoBehaviour
     private Vector3 doorOriginalPosition;
     private Vector3 doorStartScale;
     [SerializeField] 
-    private Vector3 doorTargetScale = new Vector3(2f, 2f, 1f);
+    private Vector3 doorTargetScale = new Vector3(0.2f, 0.18f, 1f);
     // 캐릭터 최초 X 좌표 저장용
     private float charStartX;
 
@@ -146,7 +146,7 @@ public class GameModeManager : MonoBehaviour
         }
 
         // 1. 기본 속도를 계산합니다.
-        float baseSpeed = Time.deltaTime * 2f * speedMultiplier;
+        float baseSpeed = Time.deltaTime * 3f * speedMultiplier;
 
         // 2. 아이템으로 인한 속도 증가 배율을 계산합니다. -> SpeedItemPlus가 0.2라면 1.2배(20% 증가)가 됩니다.
         float itemSpeedMultiplier = 1f + SpeedItemPlus;
@@ -158,6 +158,8 @@ public class GameModeManager : MonoBehaviour
         {
             Distance++;
             distanceTimer -= 1f;
+
+            GlobalVariable.Instance.PlayerCurrentDistance = this.Distance;
 
             TrySpawnCollectible();
 

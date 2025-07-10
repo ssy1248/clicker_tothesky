@@ -983,28 +983,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageRoundNumberImage: {fileID: 1567837650981459591}
+  stageDatabase: {fileID: 11400000, guid: ffc5e898ac3a5fa409af523fa70d195f, type: 2}
   allStageData:
   - stageName: "1\uC6D4"
     stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
-    clearDistance: 110
+    gameTime: 60
+    clearDistance: 130
     maxCollectibles: 3
   - stageName: "2\uC6D4"
     stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
-    clearDistance: 162
+    gameTime: 64
+    clearDistance: 184
     maxCollectibles: 3
   - stageName: "3\uC6D4"
     stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
-    clearDistance: 214
-    maxCollectibles: 3
+    gameTime: 68
+    clearDistance: 238
+    maxCollectibles: 4
   - stageName: "4\uC6D4"
     stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
-    clearDistance: 266
-    maxCollectibles: 3
+    gameTime: 72
+    clearDistance: 292
+    maxCollectibles: 4
   - stageName: "5\uC6D4"
     stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
-    clearDistance: 318
-    maxCollectibles: 3
+    gameTime: 76
+    clearDistance: 346
+    maxCollectibles: 5
   - stageName: "6\uC6D4"
     stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
-    clearDistance: 370
-    maxCollectibles: 3
+    gameTime: 80
+    clearDistance: 400
+    maxCollectibles: 6
