@@ -15,31 +15,31 @@ MonoBehaviour:
   allStageData:
   - stageName: "1\uC6D4"
     stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
-    gameTime: 60
-    clearDistance: 130
+    gameTime: 80
+    clearDistance: 400
     maxCollectibles: 3
   - stageName: "2\uC6D4"
     stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
-    gameTime: 64
-    clearDistance: 184
+    gameTime: 86
+    clearDistance: 500
     maxCollectibles: 3
   - stageName: "3\uC6D4"
     stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
-    gameTime: 68
-    clearDistance: 238
+    gameTime: 88
+    clearDistance: 550
     maxCollectibles: 4
   - stageName: "4\uC6D4"
     stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
-    gameTime: 72
-    clearDistance: 292
+    gameTime: 90
+    clearDistance: 600
     maxCollectibles: 4
   - stageName: "5\uC6D4"
     stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
-    gameTime: 76
-    clearDistance: 346
+    gameTime: 92
+    clearDistance: 650
     maxCollectibles: 5
   - stageName: "6\uC6D4"
     stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
-    gameTime: 80
-    clearDistance: 400
-    maxCollectibles: 6
+    gameTime: 94
+    clearDistance: 800
+    maxCollectibles: 5
