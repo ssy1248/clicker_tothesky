@@ -44,6 +44,8 @@ public class GlobalVariable : MonoBehaviour
     public int StageMaxCollectCount = 0;
     // È¹µæÇÑ ¼öÁıÇ°ÀÇ °¹¼ö
     public int TotalGetCollectCount = 0;
+    // È¹µæ ¸øÇÑ ¼öÁıÇ°ÀÇ °¹¼ö
+    public int LossCollectCount = 0;
 
     [Header("°ÔÀÓ Èå¸§ ÇÃ·¡±×")]
     public bool GameStarted = false;
