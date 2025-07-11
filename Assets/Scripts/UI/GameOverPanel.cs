@@ -29,14 +29,18 @@ public class GameOverPanel : MonoBehaviour
     /// </summary>
     public void PressRestart()
     {
-        // 1. 현재 스테이지 인덱스를 가져옵니다.
+        // 1. 현재 스테이지의 기본 데이터를 세팅
         int currentStageIndex = GlobalVariable.Instance.PlayerCurrentPlayerStage;
-
-        // 2. SetupStage 함수를 호출하여 현재 스테이지의 초기값으로 모든 상태를 리셋합니다.
         GlobalVariable.Instance.SetupStage(currentStageIndex, stageDatabase);
 
-        // 3. 씬을 다시 로드합니다.
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // 2. 이전에 선택했던 아이템 목록을 모두 초기화합니다.
+        if (SelectedItemList.Instance != null)
+        {
+            SelectedItemList.Instance.ClearItems();
+        }
+
+        // 3. ShopScene으로 이동합니다.
+        SceneManager.LoadScene("ShopScene");
     }
 
     /// <summary>
