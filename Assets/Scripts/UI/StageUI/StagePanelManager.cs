@@ -29,6 +29,19 @@ public class StagePanelManager : MonoBehaviour
 
     void Start()
     {
+        // 1. GlobalVariable에서 플레이어가 마지막으로 클리어한 스테이지 정보를 가져옴 - PlayerClearRound는 0부터 시작하는 인덱스이므로, 다음 스테이지는 +1을 해줍니다.
+        int nextStageIndex = GlobalVariable.Instance.PlayerClearRound + 1;
+
+        // 2. 만약 모든 스테이지를 클리어했다면, 마지막 스테이지를 표시
+        if (nextStageIndex >= stageDatabase.allStageData.Length)
+        {
+            nextStageIndex = stageDatabase.allStageData.Length - 1;
+        }
+
+        // 3. 계산된 인덱스를 현재 스테이지 인덱스로 설정
+        currentStageIndex = nextStageIndex;
+
+        // 4. UI를 업데이트
         UpdateStageUI();
     }
 

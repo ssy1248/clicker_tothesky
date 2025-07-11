@@ -12,7 +12,11 @@ public class GuageManager : MonoBehaviour
     private float increaseRate = 0.1f;   // 초당 자동 증가
     [SerializeField]
     private float touchDecrease = 0.05f; // 터치 시 감소량
-    private float gaugeValue = 0f;
+
+    [SerializeField, Range(0.11f, 0.89f)] // 안전한 범위 내에서만 조절 가능하게 설정
+    private float startingGaugeValue = 0.15f;
+
+    private float gaugeValue;
 
     private float zoneTimer = 0f;
     private bool isInDangerZone = false;
@@ -27,6 +31,8 @@ public class GuageManager : MonoBehaviour
 
     private void Start()
     {
+        gaugeValue = startingGaugeValue;
+
         // 색상 설정
         Color c = Color.green;
 
@@ -35,11 +41,36 @@ public class GuageManager : MonoBehaviour
 
     private void Update()
     {
-        // 자동 증가
-        gaugeValue += increaseRate * Time.deltaTime;
+        // 1. 현재 게이지 위치에 따른 속도 배율을 결정합니다.
+        float rateMultiplier = 1.0f; // 기본 배율은 1배
+
+        // 게이지의 1/3 지점 (약 0.333)
+        const float LOWER_THIRD = 1f / 3f;
+        // 게이지의 2/3 지점 (약 0.666)
+        const float UPPER_THIRD = 2f / 3f;
+
+        if (gaugeValue <= LOWER_THIRD)
+        {
+            // 아래쪽 구간(0 ~ 1/3): 1배속
+            rateMultiplier = 1.0f;
+        }
+        else if (gaugeValue <= UPPER_THIRD)
+        {
+            // 중간 구간(1/3 ~ 2/3): 1.5배속
+            rateMultiplier = 1.5f;
+        }
+        else
+        {
+            // 위쪽 구간(2/3 ~ 1): 2배속
+            rateMultiplier = 2.0f;
+        }
+
+        // 2. 결정된 배율을 적용하여 게이지 값을 증가시킵니다.
+        gaugeValue += increaseRate * rateMultiplier * Time.deltaTime;
         gaugeValue = Mathf.Clamp01(gaugeValue);
         UpdateGaugeUI();
 
+        // 3. 위험 구간 로직은 그대로 유지됩니다.
         bool isDangerNow = gaugeValue <= DANGER_THRESHOLD_LOW || gaugeValue >= DANGER_THRESHOLD_HIGH;
 
         if (isDangerNow)

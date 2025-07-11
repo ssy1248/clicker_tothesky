@@ -141,6 +141,7 @@ public class GameViewManager : MonoBehaviour
             totalTime -= Time.deltaTime;
             if (totalTime < 0f) 
                 totalTime = 0f;
+
             UpdateTimerUI();
 
             if (totalTime <= 30f && !blinkStarted)
@@ -148,15 +149,20 @@ public class GameViewManager : MonoBehaviour
                 timePanel.StartBlinking();
                 blinkStarted = true;
             }
-
-            if (totalTime == 0f)
-                OnGameOver();
         }
 
-        // 클리어 조건 확인
+        // 1. 시간 초과를 먼저 확인
+        if (totalTime <= 0f)
+        {
+            OnGameOver();
+            return; // 게임 오버 처리 후 즉시 Update 종료
+        }
+
+        // 2. 시간 초과가 아닐 경우에만 클리어 조건을 확인
         if (GlobalVariable.Instance.PlayerCurrentDistance >= GlobalVariable.Instance.CheckPointDistance)
         {
-            OnGameClear(); // 목표 거리에 도달하면 클리어 처리
+            OnGameClear();
+            return; // 클리어 처리 후 즉시 Update 종료
         }
 
         if (EventSystem.current.IsPointerOverGameObject())

@@ -17,7 +17,12 @@ public class AnimationManager : MonoBehaviour
 
     public void AnimationAllStop()
     {
-        PlayerAnimator.speed = 0f;
+        // 시작하자마자 애니메이션 이상하게 시작됨
+
+        // 플레이어는 'IsStamina' 파라미터를 true로 설정하여 지치는 애니메이션으로 전환
+        PlayerAnimator.SetBool("IsStamina", true);
+
+        // 나머지 환경 관련 애니메이션은 재생 속도를 0으로 만들어 정지
         StairAnimator.speed = 0f;
         PlayerShadowAnimator.speed = 0f;
         if (BackgroundAnimator != null)
@@ -26,7 +31,10 @@ public class AnimationManager : MonoBehaviour
 
     public void AnimationAllPlay()
     {
-        PlayerAnimator.speed = 1f;
+        // 플레이어는 'IsStamina' 파라미터를 false로 설정하여 다시 달리는 애니메이션으로 전환
+        PlayerAnimator.SetBool("IsStamina", false);
+
+        // 나머지 환경 관련 애니메이션은 재생 속도를 1로 만들어 다시 재생
         StairAnimator.speed = 1f;
         PlayerShadowAnimator.speed = 1f;
         if (BackgroundAnimator != null)
