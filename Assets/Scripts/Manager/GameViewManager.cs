@@ -161,8 +161,8 @@ public class GameViewManager : MonoBehaviour
         // 2. 시간 초과가 아닐 경우에만 클리어 조건을 확인
         if (GlobalVariable.Instance.PlayerCurrentDistance >= GlobalVariable.Instance.CheckPointDistance)
         {
-            OnGameClear();
-            return; // 클리어 처리 후 즉시 Update 종료
+            OnGameClear(); // 목표 거리에 도달하면 클리어 처리
+            return;
         }
 
         if (EventSystem.current.IsPointerOverGameObject())
@@ -206,7 +206,7 @@ public class GameViewManager : MonoBehaviour
         int oldClearRound = GlobalVariable.Instance.PlayerClearRound;
 
         // 현재 클리어한 스테이지와 이전 기록을 비교하여 더 높은 쪽을 저장
-        GlobalVariable.Instance.PlayerClearRound = Mathf.Max(oldClearRound, currentStage);
+        GlobalVariable.Instance.PlayerClearRound = Mathf.Max(oldClearRound, currentStage + 1);
 
         // (선택사항) 클리어한 스테이지가 현재 최고 기록보다 높으면 갱신
         // if (GlobalVariable.Instance.PlayerCurrentPlayerStage > GlobalVariable.Instance.PlayerClearRound)

@@ -11,6 +11,8 @@ public class GameModeManager : MonoBehaviour
     [Header("UI 모음")]
     [SerializeField]
     private Image CharacterImage;
+    [SerializeField]
+    private RectTransform progressTrackBar;
     private GameViewManager gameViewManager;
 
     [Header("변수 모음")]
@@ -54,6 +56,10 @@ public class GameModeManager : MonoBehaviour
 
     [Header("아이템 효과 변수")]
     public float SpeedItemPlus = 0;
+
+    [Header("거리 및 속도")]
+    [SerializeField] private float distancePerSecond = 5f; // 초당 이동하는 거리(속도)
+    private float currentFloatDistance = 0f; // 정밀한 거리 계산을 위한 float 변수
 
     private GameObject currentCollectible = null;
     private void OnEnable()
@@ -115,6 +121,9 @@ public class GameModeManager : MonoBehaviour
     {
         // 글로벌 변수에서 값을 가져오기
         Distance = GlobalVariable.Instance.PlayerCurrentDistance;
+
+        currentFloatDistance = Distance;
+
         CheckPointDistance = GlobalVariable.Instance.CheckPointDistance;
 
         int totalCollectCount = GlobalVariable.Instance.StageMaxCollectCount;
@@ -145,12 +154,12 @@ public class GameModeManager : MonoBehaviour
 
     private void IncreaseDistanceOverTime()
     {
-        // 애니메이션 정지 상태라면 갱신 중단
+        // 스태미나가 비었으면 진행 중단
         if (isStaminaEmpty)
             return;
 
+        // 1. 게이지 상태에 따른 속도 배율 계산 (기존과 동일)
         float speedMultiplier = 1f;
-
         if (guageManager != null && guageManager.GaugeValue <= guageManager.DANGER_THRESHOLD_LOW)
         {
             speedMultiplier = 2f;
@@ -160,46 +169,36 @@ public class GameModeManager : MonoBehaviour
             speedMultiplier = 0.5f;
         }
 
-        // 1. 기본 속도를 계산합니다.
-        float baseSpeed = Time.deltaTime * 3f * speedMultiplier;
-
-        // 2. 아이템으로 인한 속도 증가 배율을 계산합니다. -> SpeedItemPlus가 0.2라면 1.2배(20% 증가)가 됩니다.
+        // 2. 아이템 효과에 따른 속도 배율 계산 (기존과 동일)
         float itemSpeedMultiplier = 1f + SpeedItemPlus;
 
-        // 3. 최종 속도를 계산하여 distanceTimer에 더합니다.
-        distanceTimer += baseSpeed * itemSpeedMultiplier;
+        // 3. 최종 속도를 계산하여 이번 프레임에 이동한 거리를 구함
+        float distanceThisFrame = distancePerSecond * speedMultiplier * itemSpeedMultiplier * Time.deltaTime;
 
-        while (distanceTimer >= 1f)
+        // 4. 정밀 거리에 더해줌
+        currentFloatDistance += distanceThisFrame;
+
+        // 5. UI나 로직에 사용할 정수형 Distance 변수도 업데이트
+        Distance = (int)currentFloatDistance;
+
+        // 6. 전역 변수에도 반영
+        GlobalVariable.Instance.PlayerCurrentDistance = this.Distance;
+
+        // 7. 수집품 생성 조건 확인
+        TrySpawnCollectible();
+
+        // 8. 문이 나타날 거리에 도달했는지 확인합니다.
+        float thresholdDistance = CheckPointDistance * doorOpenThreshold;
+        if (!hasDoorOpenStarted && Distance >= thresholdDistance)
         {
-            Distance++;
-            distanceTimer -= 1f;
+            // 문이 나타나기 시작했다는 플래그를 true로 설정합니다. (이래야 AnimateDoorScale이 작동)
+            hasDoorOpenStarted = true;
 
-            GlobalVariable.Instance.PlayerCurrentDistance = this.Distance;
-
-            TrySpawnCollectible();
-
-            float thresholdDistance = CheckPointDistance * doorOpenThreshold;
-            if (!hasDoorOpenStarted && Distance >= thresholdDistance)
-            {
-                hasDoorOpenStarted = true;
-                DoorObject.SetActive(true);
-                DoorObject.transform.localScale = doorStartScale;
-                DoorObject.transform.localPosition = doorOriginalPosition;
-            }
-            if (Distance >= CheckPointDistance)
-            {
-                EnterCheckpoint();
-                break;
-            }
+            // 문 오브젝트를 활성화하고 초기 상태(작은 크기)로 설정합니다.
+            DoorObject.SetActive(true);
+            DoorObject.transform.localScale = doorStartScale;
+            DoorObject.transform.localPosition = doorOriginalPosition;
         }
-    }
-
-    // 체크포인트 진입 처리
-    private void EnterCheckpoint()
-    {
-        isAtCheckpoint = true;
-        // 문 스케일을 정확히 목표 스케일로 설정
-        DoorObject.transform.localScale = doorOriginalScale;
     }
 
     // 거리에 따라 문 스케일 보간
@@ -222,19 +221,20 @@ public class GameModeManager : MonoBehaviour
         if (isStaminaEmpty)
             return;
 
-        // 1) 진행도 계산
+        // 1) 진행도 계산 (기존과 동일)
         float progress = Mathf.SmoothStep(0, 1, Distance / (float)CheckPointDistance);
 
-        // 2) y 위치 보간
-        float startY = -682f;
-        float endY = 805f;
+        // 2) 연결된 트랙의 높이를 기준으로 시작과 끝 Y좌표를 동적으로 계산
+        //    (트랙의 Pivot이 중앙(0.5, 0.5)에 있다고 가정)
+        float barHeight = progressTrackBar.rect.height;
+        float startY = -barHeight / 2f;
+        float endY = barHeight / 2f;
         float newY = Mathf.Lerp(startY, endY, progress);
 
         // 3) 캐릭터 위치 이동
         RectTransform charRT = CharacterImage.rectTransform;
-        Vector2 anchored = charRT.anchoredPosition;
-        anchored.y = newY;
-        charRT.anchoredPosition = anchored;
+        // x좌표는 0으로 고정하여 항상 트랙의 중앙에 있도록 함
+        charRT.anchoredPosition = new Vector2(0, newY);
     }
 
     private void TrySpawnCollectible()

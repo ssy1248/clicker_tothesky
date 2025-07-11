@@ -481,6 +481,7 @@ MonoBehaviour:
   touchGaugeImage: {fileID: 1236049199}
   increaseRate: 0.1
   touchDecrease: 0.05
+  startingGaugeValue: 0.15
   DANGER_THRESHOLD_LOW: 0.1
   DANGER_THRESHOLD_HIGH: 0.9
   DANGER_DURATION: 5
@@ -1013,12 +1014,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterImage: {fileID: 595994723}
+  progressTrackBar: {fileID: 1446865939}
   Distance: 0
   CheckPointDistance: 0
   DoorObject: {fileID: 176000532}
   doorOpenThreshold: 0.8
   doorTargetScale: {x: 0.2, y: 0.18, z: 1}
   SpeedItemPlus: 0
+  distancePerSecond: 5
 --- !u!1 &708763649
 GameObject:
   m_ObjectHideFlags: 0

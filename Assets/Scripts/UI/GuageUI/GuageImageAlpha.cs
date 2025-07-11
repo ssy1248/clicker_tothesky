@@ -102,11 +102,15 @@ public class GuageImageAlpha : MonoBehaviour
     {
         // FilledGuageImage, BackgroundGuageImage 의 alpha 값 -> 0으로 변경
         SetAlpha(0f);
+
+        OnStaminaEmpty?.Invoke();
     }
 
     public void PlayerStaminaReset()
     {
         // FilledGuageImage, BackgroundGuageImage 의 alpha 값 -> 255으로 변경
         SetAlpha(1f);
+
+        OnStaminaRecovered?.Invoke();
     }
 }

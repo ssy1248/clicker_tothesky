@@ -97,6 +97,11 @@ public class GlobalVariable : MonoBehaviour
 
     public void SaveGame()
     {
+        if (isFirstTimeLaunch)
+        {
+            isFirstTimeLaunch = false;
+        }
+
         // 1. 저장할 데이터만 모아서 GameData 객체를 만듭니다.
         GameData dataToSave = new GameData();
         dataToSave.playerClearRound = this.PlayerClearRound;

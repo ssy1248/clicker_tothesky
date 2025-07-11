@@ -68,14 +68,27 @@ public class LogoPanel : BasePanel
 
         if (activeIntroPlayer != null)
         {
-            OnClose(); // 로고 패널 닫기
+            // 1. VideoPlayer 오브젝트에서 VideoManager 스크립트를 찾습니다.
+            VideoManager videoManager = activeIntroPlayer.GetComponent<VideoManager>();
+            if (videoManager == null)
+            {
+                Debug.LogError("VideoPlayer 오브젝트에 VideoManager 스크립트가 없습니다!");
+                FinishIntroSequence(); // 비디오 매니저가 없으면 그냥 스킵 처리
+                return;
+            }
 
-            // 2. 비디오 플레이어의 자식 오브젝트에서 스킵 버튼을 찾습니다.
+            OnClose();
+
+            // 2. 스킵 버튼을 찾습니다.
             skipButton = activeIntroPlayer.GetComponentInChildren<Button>();
             if (skipButton != null)
             {
-                // 3. 스킵 버튼에 'FinishIntroSequence' 함수를 리스너로 등록
-                skipButton.onClick.AddListener(FinishIntroSequence);
+                // 3. VideoManager에게 LogoPanel 자신(this)을 알려줘서 나중에 통신할 수 있게 합니다.
+                videoManager.Initialize(this);
+
+                // 4. 스킵 버튼의 리스너를 모두 지우고, 'ShowPopUpUI' 함수를 새로 등록합니다.
+                skipButton.onClick.RemoveAllListeners();
+                skipButton.onClick.AddListener(videoManager.ShowPopUpUI);
             }
 
             // 4. 비디오 재생이 끝나면 실행될 함수를 등록합니다.
@@ -84,10 +97,6 @@ public class LogoPanel : BasePanel
             // 5. 비디오 플레이어 오브젝트를 활성화하고 재생합니다.
             activeIntroPlayer.gameObject.SetActive(true);
             activeIntroPlayer.Play();
-
-            // 6. 플래그 변경 및 저장
-            GlobalVariable.Instance.isFirstTimeLaunch = false;
-            GlobalVariable.Instance.SaveGame();
         }
         else
         {
@@ -103,17 +112,13 @@ public class LogoPanel : BasePanel
     }
 
     // 영상이 끝나거나, 스킵될 때 공통으로 호출되는 함수
-    private void FinishIntroSequence()
+    public void FinishIntroSequence()
     {
         // 이미 처리가 끝났으면 중복 실행 방지
         if (activeIntroPlayer == null) return;
 
         // 1. 등록했던 모든 이벤트를 해제하여 중복 호출을 막습니다.
         activeIntroPlayer.loopPointReached -= OnIntroVideoEnd;
-        if (skipButton != null)
-        {
-            skipButton.onClick.RemoveListener(FinishIntroSequence);
-        }
 
         // 2. 비디오 플레이어는 다시 비활성화 합니다.
         activeIntroPlayer.gameObject.SetActive(false);

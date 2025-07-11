@@ -92,10 +92,8 @@ public class GuageManager : MonoBehaviour
             {
                 hasStoppedAnimation = true;
 
-                AnimationManager.Instance.AnimationAllStop();
-
                 GuageImageAlpha.Instance.StartZeroRoutine(() => {
-                    gaugeValue = 0.2f;
+                    gaugeValue = 0.2f; // 게이지 회복
                     UpdateGaugeUI();
                 });
             }
