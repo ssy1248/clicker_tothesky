@@ -206,7 +206,10 @@ public class GlobalVariable : MonoBehaviour
         // 게임 플레이와 직접 관련된 변수 초기화
         PlayerCurrentDistance = 0;
         LastClearTime = 0f;
-        // ... 그 외에 스테이지 시작 시 초기화되어야 할 다른 변수들 ...
+
+        // 수집품 변수 초기화
+        TotalGetCollectCount = 0;
+        LossCollectCount = 0;
     }
 }
 

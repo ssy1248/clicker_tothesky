@@ -136,7 +136,8 @@ public class CollectManager : MonoBehaviour
             if (stayTime >= maxStayTime)
             {
                 Debug.Log("수집 성공!");
-                GlobalVariable.Instance.TotalGetCollectCount++; // 카운트 증가 로직 수정
+                GlobalVariable.Instance.TotalGetCollectCount++;
+                Debug.Log($"수집품 갯수 : {GlobalVariable.Instance.TotalGetCollectCount}");
 
                 // GameModeManager에 수집이 끝났다고 알림
                 GameModeManager.Instance.OnCollectibleCollected();
