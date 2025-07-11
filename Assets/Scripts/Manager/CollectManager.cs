@@ -136,7 +136,8 @@ public class CollectManager : MonoBehaviour
             if (stayTime >= maxStayTime)
             {
                 Debug.Log("수집 성공!");
-                GlobalVariable.Instance.TotalGetCollectCount++; // 카운트 증가 로직 수정
+                GlobalVariable.Instance.TotalGetCollectCount++;
+                Debug.Log($"수집품 갯수 : {GlobalVariable.Instance.TotalGetCollectCount}");
 
                 // GameModeManager에 수집이 끝났다고 알림
                 GameModeManager.Instance.OnCollectibleCollected();
@@ -159,5 +160,29 @@ public class CollectManager : MonoBehaviour
                 return img;
         }
         return null;
+    }
+
+    /// <summary>
+    /// 현재 활성화된 수집품과 관련 코루틴을 강제로 종료하고 파괴합니다.
+    /// </summary>
+    public void DestroyCurrentCollectible()
+    {
+        if (spawnedCollectible != null)
+        {
+            Debug.Log("시간 초과 또는 다음 수집품 생성을 위해 기존 수집품을 파괴합니다.");
+
+            // 현재 실행중인 코루틴을 반드시 정지
+            if (collectRoutine != null)
+            {
+                StopCoroutine(collectRoutine);
+            }
+
+            // 게임 오브젝트 파괴
+            Destroy(spawnedCollectible.gameObject);
+
+            // 참조 변수들을 깨끗하게 초기화
+            spawnedCollectible = null;
+            collectRoutine = null;
+        }
     }
 }

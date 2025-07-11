@@ -44,6 +44,8 @@ public class GlobalVariable : MonoBehaviour
     public int StageMaxCollectCount = 0;
     // 획득한 수집품의 갯수
     public int TotalGetCollectCount = 0;
+    // 획득 못한 수집품의 갯수
+    public int LossCollectCount = 0;
 
     [Header("게임 흐름 플래그")]
     public bool GameStarted = false;
@@ -204,7 +206,10 @@ public class GlobalVariable : MonoBehaviour
         // 게임 플레이와 직접 관련된 변수 초기화
         PlayerCurrentDistance = 0;
         LastClearTime = 0f;
-        // ... 그 외에 스테이지 시작 시 초기화되어야 할 다른 변수들 ...
+
+        // 수집품 변수 초기화
+        TotalGetCollectCount = 0;
+        LossCollectCount = 0;
     }
 }
 

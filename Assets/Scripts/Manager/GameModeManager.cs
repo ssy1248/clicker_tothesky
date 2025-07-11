@@ -241,10 +241,18 @@ public class GameModeManager : MonoBehaviour
     {
         float expectedSpawnDistance = collectSpawnInterval * (nextCollectIndex + 1);
 
-        // ▼▼▼ 수집품이 화면에 없을 때만 생성하도록 조건 추가 ▼▼▼
-        if (currentCollectible == null && Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
+        if (Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
         {
-            // CreateCollectObject가 생성된 오브젝트를 반환하도록 수정할 예정
+            // 1. 만약 이전에 수집하지 못한 수집품이 있다면,
+            if (currentCollectible != null)
+            {
+                // 수집못한 수집품 갯수 증가
+                GlobalVariable.Instance.LossCollectCount++;
+                // 2. CollectManager에게 파괴를 명령합니다.
+                CollectManager.Instance.DestroyCurrentCollectible();
+            }
+
+            // 3. 새로운 수집품 생성을 요청하고, 그 참조를 저장합니다.
             currentCollectible = CollectManager.Instance.CreateCollectObject();
             nextCollectIndex++;
         }
