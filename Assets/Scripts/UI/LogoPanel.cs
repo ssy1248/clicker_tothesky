@@ -7,6 +7,8 @@ public class LogoPanel : BasePanel
     public Button buttonStart;
     
     public Button buttonCredit;
+
+    public Button buttonExit;
     public override UIPanelType TypeOfPanel => UIPanelType.LOGO_PANEL;
 
     private VideoPlayer activeIntroPlayer; // 현재 활성화된 비디오 플레이어 참조
@@ -151,5 +153,18 @@ public class LogoPanel : BasePanel
     {
         OnClose();
         UIManager.Instance.PushPanel(UIPanelType.CREDIT_PANEL);
+    }
+
+    public void OnClickExit()
+    {
+        Debug.Log("게임 종료 버튼이 클릭되었습니다.");
+
+        // 유니티 에디터에서 실행 중일 경우
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        // 실제 빌드된 게임(PC, 모바일 등)에서 실행 중일 경우
+#else
+    Application.Quit();
+#endif
     }
 }
