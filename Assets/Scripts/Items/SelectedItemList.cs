@@ -35,4 +35,13 @@ public class SelectedItemList : MonoBehaviour
             Debug.Log($"{itemToAdd.ItemName} 아이템이 목록에 추가되었습니다.");
         }
     }
+
+    /// <summary>
+    /// 선택된 아이템 목록을 모두 비웁니다.
+    /// </summary>
+    public void ClearItems()
+    {
+        selectedItems.Clear();
+        Debug.Log("선택된 아이템 목록이 초기화되었습니다.");
+    }
 }

@@ -44,23 +44,9 @@ public class CollectManager : MonoBehaviour
         }
     }
 
-    public void CreateCollectObject()
+    public GameObject CreateCollectObject()
     {
-        if (spawnedCollectible != null)
-        {
-            Debug.Log("새로운 수집품 생성을 위해 기존 수집품을 제거합니다.");
-
-            // 기존 수집품을 추적하던 코루틴이 있다면 확실히 정지시킵니다.
-            if (collectRoutine != null)
-            {
-                StopCoroutine(collectRoutine);
-            }
-
-            // 기존 수집품 게임 오브젝트를 파괴합니다.
-            Destroy(spawnedCollectible.gameObject);
-        }
-
-        // --- 1. 위치 및 범위 계산 ---
+        // 1. 위치 및 범위 계산
         float barHeight = barBackground.rect.height;
         float newMinY = -barHeight / 2f;
         float newMaxY = barHeight / 2f;
@@ -92,23 +78,27 @@ public class CollectManager : MonoBehaviour
 
         float spawnY = Mathf.Lerp(newMinY, newMaxY, centerFillValue);
 
-        // --- 2. 좌표 변환 (두 번째 코드의 좌표 변환 로직) ---
+        // 2. 좌표 변환
         Vector2 localPosInBar = new Vector2(0f, spawnY);
         Vector3 worldPosition = barBackground.transform.TransformPoint(localPosInBar);
 
-        // --- 3. 수집품 생성 및 위치/순서 지정 (두 번째 코드의 생성/순서 로직) ---
+        // 3. 수집품 생성 및 위치/순서 지정
         Transform parentOfBar = barBackground.transform.parent;
         GameObject obj = Instantiate(CollectObjectPrefab, parentOfBar);
         spawnedCollectible = obj.GetComponent<RectTransform>();
         spawnedCollectible.position = worldPosition;
         spawnedCollectible.SetAsLastSibling();
 
-        // --- 4. 코루틴 시작 ---
+        // 4. 코루틴 시작
+        // 이전에 실행되던 코루틴이 있다면 정지 (안전을 위해)
         if (collectRoutine != null)
         {
             StopCoroutine(collectRoutine);
         }
         collectRoutine = StartCoroutine(CheckOverlapRoutine());
+
+        // 생성된 게임 오브젝트를 반환
+        return obj;
     }
 
     private IEnumerator CheckOverlapRoutine()
@@ -146,8 +136,11 @@ public class CollectManager : MonoBehaviour
             if (stayTime >= maxStayTime)
             {
                 Debug.Log("수집 성공!");
-                // 수집한 갯수 증가
-                GlobalVariable.Instance.TotalGetCollectCount = CollectObejctCount++;
+                GlobalVariable.Instance.TotalGetCollectCount++; // 카운트 증가 로직 수정
+
+                // GameModeManager에 수집이 끝났다고 알림
+                GameModeManager.Instance.OnCollectibleCollected();
+
                 Destroy(spawnedCollectible.gameObject);
                 spawnedCollectible = null;
                 yield break;

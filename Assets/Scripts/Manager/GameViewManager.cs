@@ -37,6 +37,9 @@ public class GameViewManager : MonoBehaviour
     [Header("아이템 관련 변수")]
     public float GameTimePlus = 0;
 
+    // 다른 스크립트에서 게임이 끝났는지(클리어 또는 오버) 확인할 수 있도록 해주는 프로퍼티
+    public bool IsGameFinished => gameOver || gameClear;
+
     private void OnEnable()
     {
         GuageImageAlpha.OnStaminaEmpty += HandleStaminaEmpty;

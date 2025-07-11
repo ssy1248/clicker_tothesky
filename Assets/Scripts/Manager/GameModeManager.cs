@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameModeManager : MonoBehaviour
 {
+    public static GameModeManager Instance;
+
     [Header("UI 모음")]
     [SerializeField]
     private Image CharacterImage;
@@ -53,6 +55,7 @@ public class GameModeManager : MonoBehaviour
     [Header("아이템 효과 변수")]
     public float SpeedItemPlus = 0;
 
+    private GameObject currentCollectible = null;
     private void OnEnable()
     {
         GuageImageAlpha.OnStaminaEmpty += HandleStaminaEmpty;
@@ -70,6 +73,20 @@ public class GameModeManager : MonoBehaviour
 
     private void Awake()
     {
+        // 싱글톤 패턴 구현
+        if (Instance == null)
+        {
+            // Instance가 비어있으면 자기 자신을 할당
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            // 새로 생긴 이 오브젝트는 파괴하여 단 하나만 존재하도록 보장
+            Debug.LogWarning("GameModeManager의 인스턴스가 이미 존재하여 새로 생긴 것을 파괴합니다.");
+            Destroy(gameObject);
+            return; // 파괴될 오브젝트는 아래 로직을 실행할 필요 없음
+        }
+
         if (DoorObject == null)
         {
             DoorObject = GameObject.Find("CheckPoint");
@@ -108,24 +125,22 @@ public class GameModeManager : MonoBehaviour
 
     void Update()
     {
+        // 1. 가장 먼저 GameViewManager를 통해 게임이 끝났는지 확인하고, 끝났으면 즉시 함수 종료
+        if (gameViewManager.IsGameFinished)
+        {
+            return;
+        }
+
         // 스태미나 비어있으면 거리 로직 통째로 스킵
         if (isStaminaEmpty) 
             return;
 
-        // GameViewManager에서 HandleStaminaZero 함수가 실행이 되면 트리거를 보내서 거리 증가 로직을 막는다
-        if (!isAtCheckpoint)
-        {
-            // 거리 증가 로직
-            IncreaseDistanceOverTime();
-            // 거리 기반 스케일 업데이트
-            AnimateDoorScale();
-            // 이동 게이지 조절 함수
-            AnimateProgressFill();
-        }
-        else
-        {
-            // 클리어 패널
-        }
+        // 거리 증가 로직
+        IncreaseDistanceOverTime();
+        // 거리 기반 스케일 업데이트
+        AnimateDoorScale();
+        // 이동 게이지 조절 함수
+        AnimateProgressFill();
     }
 
     private void IncreaseDistanceOverTime()
@@ -226,12 +241,17 @@ public class GameModeManager : MonoBehaviour
     {
         float expectedSpawnDistance = collectSpawnInterval * (nextCollectIndex + 1);
 
-        Debug.Log($"[TrySpawnCollectible] Distance: {Distance}, Expected: {expectedSpawnDistance}");
-
-        if (Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
+        // ▼▼▼ 수집품이 화면에 없을 때만 생성하도록 조건 추가 ▼▼▼
+        if (currentCollectible == null && Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
         {
-            CollectManager.Instance.CreateCollectObject(); // 프리팹은 내부에서 사용
+            // CreateCollectObject가 생성된 오브젝트를 반환하도록 수정할 예정
+            currentCollectible = CollectManager.Instance.CreateCollectObject();
             nextCollectIndex++;
         }
+    }
+
+    public void OnCollectibleCollected()
+    {
+        currentCollectible = null;
     }
 }
