@@ -14,8 +14,8 @@ public class GuageImageAlpha : MonoBehaviour
     public Image BackgroundGuageImage;
 
     [Header("라이프타임 세팅")]
-    public float lifeTime = 5f;  // 왕복 지속 시간
-    public float resetDelay = 3f;  // 스테미나 제로 후 리셋까지 딜레이
+    public float lifeTime = 3f;  // 왕복 지속 시간
+    public float resetDelay = 5f;  // 스테미나 제로 후 리셋까지 딜레이
     public float baseSpeed = 1f;  // 초기 왕복 스피드
     public float acceleration = 1f;  // 초당 스피드 증가량
 
