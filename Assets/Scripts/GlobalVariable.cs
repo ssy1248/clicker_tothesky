@@ -16,6 +16,7 @@ public class GameData
 {
     public int playerClearRound;
     public List<CollectedItemInfo> collectedItems;
+    public bool hasStartedGameBefore;
     // 여기에 게임 종료 후에도 저장하고 싶은 다른 변수들을 추가할 수 있습니다.
 }
 
@@ -58,7 +59,7 @@ public class GlobalVariable : MonoBehaviour
     public int EndingParameter = 0;
 
     [Header("게임 저장 관련")]
-    public bool isFirstTimeLaunch = true; // 처음 실행 여부 확인용 변수
+    public bool hasStartedGameBefore = false;
     private string saveFilePath;
 
     void OnEnable()
@@ -97,15 +98,11 @@ public class GlobalVariable : MonoBehaviour
 
     public void SaveGame()
     {
-        if (isFirstTimeLaunch)
-        {
-            isFirstTimeLaunch = false;
-        }
-
         // 1. 저장할 데이터만 모아서 GameData 객체를 만듭니다.
         GameData dataToSave = new GameData();
         dataToSave.playerClearRound = this.PlayerClearRound;
         dataToSave.collectedItems = this.collectedItems;
+        dataToSave.hasStartedGameBefore = this.hasStartedGameBefore;
 
         // 2. GameData 객체를 JSON 문자열로 변환합니다.
         string json = JsonUtility.ToJson(dataToSave, true);
@@ -120,25 +117,23 @@ public class GlobalVariable : MonoBehaviour
         // 1. 저장 파일이 존재하는지 확인합니다.
         if (File.Exists(saveFilePath))
         {
-            // 2. 파일이 있다면, '처음 실행'이 아니므로 플래그를 false로 바꿉니다.
-            isFirstTimeLaunch = false;
-
-            // 3. 파일에서 JSON 문자열을 읽어옵니다.
+            // 2. 파일에서 JSON 문자열을 읽어옵니다.
             string json = File.ReadAllText(saveFilePath);
 
-            // 4. JSON 문자열을 GameData 객체로 변환합니다.
+            // 3. JSON 문자열을 GameData 객체로 변환합니다.
             GameData loadedData = JsonUtility.FromJson<GameData>(json);
 
-            // 5. 불러온 데이터를 현재 GlobalVariable에 적용합니다.
+            // 4. 불러온 데이터를 현재 GlobalVariable에 적용합니다.
             this.PlayerClearRound = loadedData.playerClearRound;
             this.collectedItems = loadedData.collectedItems;
+            this.hasStartedGameBefore = loadedData.hasStartedGameBefore;
 
             Debug.Log("게임 데이터를 불러왔습니다.");
         }
         else
         {
             // 저장 파일이 없으면 '처음 실행'입니다.
-            isFirstTimeLaunch = true;
+            hasStartedGameBefore = false;
             Debug.Log("저장된 데이터가 없습니다. 새 게임을 시작합니다.");
         }
     }
@@ -151,7 +146,7 @@ public class GlobalVariable : MonoBehaviour
             File.Delete(saveFilePath);
 
             // 현재 실행 중인 게임의 변수들도 초기화해줍니다.
-            isFirstTimeLaunch = true;
+            hasStartedGameBefore = false;
             PlayerClearRound = 0;
             collectedItems.Clear();
 

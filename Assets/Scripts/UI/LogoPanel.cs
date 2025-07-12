@@ -50,15 +50,21 @@ public class LogoPanel : BasePanel
 
     public void OnClickStart()
     {
-        // 첫 실행 플래그를 확인합니다.
-        if (GlobalVariable.Instance.isFirstTimeLaunch)
+        // "게임을 한 번이라도 시작한 적이 없는가?"를 확인합니다.
+        if (GlobalVariable.Instance.hasStartedGameBefore == false)
         {
-            // 처음 실행하는 경우
+            // 1. 이제 첫 플레이를 시작했으므로 플래그를 true로 변경합니다.
+            GlobalVariable.Instance.hasStartedGameBefore = true;
+
+            // 2. 이 상태를 즉시 저장하여, 다음 실행부터는 인트로가 나오지 않도록 합니다.
+            GlobalVariable.Instance.SaveGame();
+
+            // 3. 처음 실행하는 경우이므로 인트로 비디오를 재생합니다.
             PlayIntroVideo();
         }
         else
         {
-            // 이미 플레이한 적이 있는 경우
+            // 이미 플레이한 적이 있는 경우 스테이지 선택 패널로 바로 이동합니다.
             ShowStagePanel();
         }
     }
