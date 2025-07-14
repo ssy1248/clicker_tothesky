@@ -18,28 +18,59 @@ MonoBehaviour:
     gameTime: 80
     clearDistance: 400
     maxCollectibles: 3
+    collectiblesInStage:
+    - {fileID: 11400000, guid: 7208d1265c5968449a158ccfa22253a8, type: 2}
+    - {fileID: 11400000, guid: 6257ae3211711ef45ad0d2dc63a7f00f, type: 2}
+    - {fileID: 11400000, guid: f3df4b06f88f4754ea0321c92ab59820, type: 2}
   - stageName: "2\uC6D4"
     stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
     gameTime: 86
     clearDistance: 500
     maxCollectibles: 3
+    collectiblesInStage:
+    - {fileID: 11400000, guid: 1a09459e322d7884aa4fe4b22fba1afc, type: 2}
+    - {fileID: 11400000, guid: e235291fae901d44998b71d1cf18fb13, type: 2}
+    - {fileID: 11400000, guid: 10b531437e77dde4f90cf58c5b96e731, type: 2}
   - stageName: "3\uC6D4"
     stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
     gameTime: 88
     clearDistance: 550
     maxCollectibles: 4
+    collectiblesInStage:
+    - {fileID: 11400000, guid: 0e2cf4ad052118e4ea98679c97456c5d, type: 2}
+    - {fileID: 11400000, guid: 2c87ce016855b4941af88e58e45a7f16, type: 2}
+    - {fileID: 11400000, guid: 089a3f4f751515145a021cc311aa5583, type: 2}
+    - {fileID: 11400000, guid: 2c881dd024a5d4a46a2606fe2f4e7146, type: 2}
   - stageName: "4\uC6D4"
     stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
     gameTime: 90
     clearDistance: 600
     maxCollectibles: 4
+    collectiblesInStage:
+    - {fileID: 11400000, guid: ee5664510b9ebb14089978a32d75519f, type: 2}
+    - {fileID: 11400000, guid: 152c83ed287ab274ead23a2b2cbb665b, type: 2}
+    - {fileID: 11400000, guid: 36d9c0a24c9e0fd4ba12abeee38e7eb1, type: 2}
+    - {fileID: 11400000, guid: d1ffada02a1d57c41b8ca9a7a9abfd4c, type: 2}
   - stageName: "5\uC6D4"
     stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
     gameTime: 92
     clearDistance: 650
     maxCollectibles: 5
+    collectiblesInStage:
+    - {fileID: 11400000, guid: c3351f47ef36e1c40ab9c991ebfe066d, type: 2}
+    - {fileID: 11400000, guid: 16901fd309f5783488e95cee8ac30d62, type: 2}
+    - {fileID: 11400000, guid: c3eaeeeae28d5d643be20a65d39e5768, type: 2}
+    - {fileID: 11400000, guid: 17b50a1f4848e1e4f9c4475faf4076df, type: 2}
+    - {fileID: 11400000, guid: 69d9ca1fc8f2a084ebf2f62926606216, type: 2}
   - stageName: "6\uC6D4"
     stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
     gameTime: 94
     clearDistance: 800
     maxCollectibles: 5
+    collectiblesInStage:
+    - {fileID: 11400000, guid: d92a990fc1a00c247934925239f7a2dd, type: 2}
+    - {fileID: 11400000, guid: 4bf2cfec0c9b2a94ca48f6b1a092274e, type: 2}
+    - {fileID: 11400000, guid: e49bc7f5aaf3cbe4b8439fed9a24a548, type: 2}
+    - {fileID: 11400000, guid: c1906e25be4a1434d95408d7bfd46cf2, type: 2}
+    - {fileID: 11400000, guid: d65c7cef2c428df429628fb8ec52b9fc, type: 2}
+    - {fileID: 11400000, guid: ad95e4c80e8a80145983bd43b4d0570e, type: 2}
