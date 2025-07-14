@@ -13,10 +13,6 @@ public class CollectManager : MonoBehaviour
     [SerializeField]
     public int CollectObejctCount;
 
-    //[Header("생성 위치 설정")]
-    //public float MaxY = 662f;
-    //public float MinY = -440f;
-
     [Header("게이지 연동")]
     public Image fillImage; // FillAmount 기반
     public RectTransform barBackground; // Fill의 부모인 바 영역
@@ -44,7 +40,7 @@ public class CollectManager : MonoBehaviour
         }
     }
 
-    public GameObject CreateCollectObject()
+    public GameObject CreateCollectObject(CollectScriptableObject collectData)
     {
         // 1. 위치 및 범위 계산
         float barHeight = barBackground.rect.height;
@@ -82,12 +78,17 @@ public class CollectManager : MonoBehaviour
         Vector2 localPosInBar = new Vector2(0f, spawnY);
         Vector3 worldPosition = barBackground.transform.TransformPoint(localPosInBar);
 
-        // 3. 수집품 생성 및 위치/순서 지정
+        // --- 3. 수집품 생성 및 데이터 할당 ---
         Transform parentOfBar = barBackground.transform.parent;
         GameObject obj = Instantiate(CollectObjectPrefab, parentOfBar);
         spawnedCollectible = obj.GetComponent<RectTransform>();
-        spawnedCollectible.position = worldPosition;
-        spawnedCollectible.SetAsLastSibling();
+
+        // ▼▼▼ 생성된 오브젝트에 데이터 심어주기 ▼▼▼
+        Collectiable collectibleComponent = obj.GetComponent<Collectiable>();
+        if (collectibleComponent != null)
+        {
+            collectibleComponent.data = collectData;
+        }
 
         // 4. 코루틴 시작
         // 이전에 실행되던 코루틴이 있다면 정지 (안전을 위해)
@@ -135,9 +136,20 @@ public class CollectManager : MonoBehaviour
 
             if (stayTime >= maxStayTime)
             {
-                Debug.Log("수집 성공!");
-                GlobalVariable.Instance.TotalGetCollectCount++;
-                Debug.Log($"수집품 갯수 : {GlobalVariable.Instance.TotalGetCollectCount}");
+                // 1. 수집한 오브젝트에서 Collectible 컴포넌트와 데이터를 가져옵니다.
+                Collectiable collectedComponent = spawnedCollectible.GetComponent<Collectiable>();
+                if (collectedComponent != null && collectedComponent.data != null)
+                {
+                    // 2. GlobalVariable에 어떤 스테이지의 어떤 아이템을 수집했는지 기록합니다.
+                    int stageNum = GlobalVariable.Instance.PlayerCurrentPlayerStage;
+                    int itemId = collectedComponent.data.CollectId;
+                    GlobalVariable.Instance.CollectItem(stageNum, itemId);
+                }
+                else
+                {
+                    // 데이터가 없는 경우, 이전처럼 전체 카운트만 올립니다.
+                    GlobalVariable.Instance.TotalGetCollectCount++;
+                }
 
                 // GameModeManager에 수집이 끝났다고 알림
                 GameModeManager.Instance.OnCollectibleCollected();

@@ -12,6 +12,9 @@ public struct StageData
     public float gameTime; // 스테이지 시간
     public int clearDistance; // 클리어 목표 거리
     public int maxCollectibles; // 최대 수집품 개수
+
+    // 이 스테이지에서 등장할 수집품들의 목록
+    public List<CollectScriptableObject> collectiblesInStage;
 }
 
 public class StagePanelManager : MonoBehaviour
@@ -26,6 +29,7 @@ public class StagePanelManager : MonoBehaviour
     public StageData[] allStageData; // Sprite 배열 대신 StageData 배열 사용
 
     private int currentStageIndex = 0; // 현재 선택된 월 인덱스 (0 = 1월)
+    public GameObject MemoryPanel;
 
     void Start()
     {
@@ -103,6 +107,11 @@ public class StagePanelManager : MonoBehaviour
         {
             UIManager.Instance.PushPanel(UIPanelType.LOGO_PANEL);
         }
+    }
+
+    public void MemoryButton()
+    {
+        MemoryPanel.SetActive(true);
     }
 }
 

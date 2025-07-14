@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "CollectiableObject", menuName = "Game Data/Collectiable")]
 public class CollectScriptableObject : ScriptableObject
 {
     // 수집품 아이디(필수)

@@ -740,7 +740,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5355572405530161530}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7313606344155018470}
+        m_TargetAssemblyTypeName: StagePanelManager, Assembly-CSharp
+        m_MethodName: MemoryButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8367764548531079049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,3 +1027,4 @@ MonoBehaviour:
     gameTime: 80
     clearDistance: 400
     maxCollectibles: 6
+  MemoryPanel: {fileID: 885192015773673216, guid: 9ef061612ec3b9d458bf34d1cb3e1096, type: 3}

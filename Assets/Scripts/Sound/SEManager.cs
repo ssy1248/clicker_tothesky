@@ -3,11 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+// 사운드 타입을 구분하기 위한 열거형
+public enum SoundType
+{
+    SE, // 효과음
+    BGM // 배경음
+}
+
 [System.Serializable]
 public class SoundEffect
 {
     public string key;
     public AudioClip clip;
+    public SoundType soundType; // 이 사운드의 타입을 지정 (SE 또는 BGM)
     [Range(0f, 1f)]
     public float volume = 1f;
 }
@@ -15,16 +23,17 @@ public class SoundEffect
 public class SEManager : MonoBehaviour
 {
     [SerializeField]
-    List<SoundEffect> effect;
+    List<SoundEffect> effectList;
     List<AudioSource> audioPool;
 
     public static SEManager instance;
 
     Dictionary<string, SoundEffect> se_map;
 
-    // 마스터 볼륨
     [Range(0f, 1f)]
-    public float masterVolume = 1f;
+    public float seVolume = 1f; // 효과음 전체 볼륨
+    [Range(0f, 1f)]
+    public float bgmVolume = 1f; // 배경음 전체 볼륨
 
     void Awake ()
     {
@@ -40,11 +49,9 @@ public class SEManager : MonoBehaviour
                 audioPool.Add(src);
             }
 
-            // --- 변경점 2: Dictionary에 SoundEffect 객체 전체를 저장 ---
             se_map = new Dictionary<string, SoundEffect>();
-            foreach (var e in effect)
+            foreach (var e in effectList) // 리스트 이름 변경
             {
-                // AudioClip만이 아닌, SoundEffect 객체(e) 자체를 저장합니다.
                 se_map[e.key] = e;
             }
             DontDestroyOnLoad(gameObject);
@@ -95,25 +102,32 @@ public class SEManager : MonoBehaviour
             StopSound(se_map[key].clip);
     }
 
-    // --- 변경점 3: PlaySound가 SoundEffect 객체를 인자로 받도록 수정 ---
+    // 3: PlaySound가 SoundEffect 객체를 인자로 받도록 수정
     void PlaySound(SoundEffect sfx)
     {
         var AS = GetOrCreateSource(false);
         AS.clip = sfx.clip;
         AS.loop = false;
-        // 볼륨을 마스터 볼륨과 개별 볼륨의 곱으로 설정합니다.
-        AS.volume = masterVolume * sfx.volume;
+
+        // 사운드 타입에 맞는 카테고리 볼륨을 가져옵니다.
+        float categoryVolume = (sfx.soundType == SoundType.BGM) ? bgmVolume : seVolume;
+        // 최종 볼륨 = 카테고리 볼륨 * 개별 사운드 볼륨
+        AS.volume = categoryVolume * sfx.volume;
+
         AS.Play();
     }
 
-    // --- 변경점 4: LoopPlaySound도 SoundEffect 객체를 인자로 받도록 수정 ---
+    // 4: LoopPlaySound도 SoundEffect 객체를 인자로 받도록 수정
     void LoopPlaySound(SoundEffect sfx)
     {
         var AS = GetOrCreateSource(true);
         AS.clip = sfx.clip;
         AS.loop = true;
-        // 볼륨을 동일한 방식으로 계산합니다.
-        AS.volume = masterVolume * sfx.volume;
+
+        // ▼▼▼ 볼륨 계산 로직 수정 ▼▼▼
+        float categoryVolume = (sfx.soundType == SoundType.BGM) ? bgmVolume : seVolume;
+        AS.volume = categoryVolume * sfx.volume;
+
         AS.Play();
     }
 
@@ -130,23 +144,37 @@ public class SEManager : MonoBehaviour
         }
     }
 
-    // --- 변경점 5: SetMasterVolume이 재생 중인 사운드 볼륨을 올바르게 재계산하도록 수정 ---
-    public void SetMasterVolume(float volume)
+    /// <summary>
+    /// 효과음(SE)의 전체 볼륨을 조절합니다. 옵션 슬라이더 등에서 호출합니다.
+    /// </summary>
+    public void SetSEVolume(float volume)
     {
-        // masterVolume 값이 0과 1 사이를 벗어나지 않도록 합니다.
-        masterVolume = Mathf.Clamp01(volume);
+        seVolume = Mathf.Clamp01(volume);
+        UpdateAllPlayingSoundsVolume();
+    }
 
-        // 마스터 볼륨이 변경되면, 현재 재생 중인 모든 사운드의 볼륨을 업데이트합니다.
+    /// <summary>
+    /// 배경음(BGM)의 전체 볼륨을 조절합니다. 옵션 슬라이더 등에서 호출합니다.
+    /// </summary>
+    public void SetBGMVolume(float volume)
+    {
+        bgmVolume = Mathf.Clamp01(volume);
+        UpdateAllPlayingSoundsVolume();
+    }
+
+    // 현재 재생중인 모든 사운드의 볼륨을 새 설정에 맞게 업데이트하는 헬퍼 함수
+    private void UpdateAllPlayingSoundsVolume()
+    {
         foreach (var AS in audioPool)
         {
             if (AS.isPlaying)
             {
-                // 현재 재생 중인 클립에 해당하는 원본 SoundEffect를 찾습니다.
                 SoundEffect playingSfx = FindSfxByClip(AS.clip);
                 if (playingSfx != null)
                 {
-                    // 새로운 마스터 볼륨을 적용하여 볼륨을 다시 계산합니다.
-                    AS.volume = masterVolume * playingSfx.volume;
+                    // 타입에 맞는 카테고리 볼륨을 다시 적용
+                    float categoryVolume = (playingSfx.soundType == SoundType.BGM) ? bgmVolume : seVolume;
+                    AS.volume = categoryVolume * playingSfx.volume;
                 }
             }
         }
@@ -156,7 +184,7 @@ public class SEManager : MonoBehaviour
     private SoundEffect FindSfxByClip(AudioClip clip)
     {
         // Linq를 사용해 간결하게 검색합니다.
-        return effect.FirstOrDefault(sfx => sfx.clip == clip);
+        return effectList.FirstOrDefault(sfx => sfx.clip == clip);
     }
 
     // 이 헬퍼 함수는 변경되지 않았습니다.

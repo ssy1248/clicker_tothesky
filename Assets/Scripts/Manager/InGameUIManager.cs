@@ -42,5 +42,4 @@ public class InGameUIManager : MonoBehaviour
         UIPercent.SetActive(true);
         inGameUI.SetActive(true);
     }
-
 }
