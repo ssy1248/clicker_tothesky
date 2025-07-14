@@ -175,7 +175,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2296103126322231851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4616461099123778513}
+        m_TargetAssemblyTypeName: LogoPanel, Assembly-CSharp
+        m_MethodName: OnClickCredit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1679247844095004236
 GameObject:
   m_ObjectHideFlags: 0

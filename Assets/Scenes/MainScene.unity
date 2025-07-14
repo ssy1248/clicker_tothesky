@@ -477,7 +477,6 @@ Transform:
   - {fileID: 1662807565}
   - {fileID: 2074677051}
   - {fileID: 690404078}
-  - {fileID: 270044838}
   - {fileID: 263637037}
   - {fileID: 722770712}
   - {fileID: 299463039}
@@ -534,51 +533,6 @@ MonoBehaviour:
   StairAnimator: {fileID: 1388807109}
   BackgroundAnimator: {fileID: 0}
   PlayerShadowAnimator: {fileID: 1774471932}
---- !u!1 &270044837
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 270044838}
-  - component: {fileID: 270044839}
-  m_Layer: 0
-  m_Name: GameOverManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &270044838
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270044837}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 239814479}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &270044839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270044837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67c6eb9d6237178428b636f0a8e80c0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameOverUIObject: {fileID: 0}
 --- !u!1 &299463038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,6 +1165,7 @@ MonoBehaviour:
   DoorObject: {fileID: 176000532}
   doorOpenThreshold: 0.8
   doorTargetScale: {x: 0.2, y: 0.18, z: 1}
+  stageDatabase: {fileID: 11400000, guid: ffc5e898ac3a5fa409af523fa70d195f, type: 2}
   SpeedItemPlus: 0
   distancePerSecond: 5
 --- !u!1 &708763649

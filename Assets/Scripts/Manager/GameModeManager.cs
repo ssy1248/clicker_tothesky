@@ -50,6 +50,9 @@ public class GameModeManager : MonoBehaviour
 
     private GuageManager guageManager;
 
+    [Header("스테이지 데이터베이스")]
+    public StageDatabase stageDatabase;
+
     [Header("수집품 생성 관련")]
     private int nextCollectIndex = 0;
     private float collectSpawnInterval;
@@ -237,23 +240,44 @@ public class GameModeManager : MonoBehaviour
         charRT.anchoredPosition = new Vector2(0, newY);
     }
 
+    //private void TrySpawnCollectible()
+    //{
+    //    float expectedSpawnDistance = collectSpawnInterval * (nextCollectIndex + 1);
+
+    //    if (Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
+    //    {
+    //        // 1. 만약 이전에 수집하지 못한 수집품이 있다면,
+    //        if (currentCollectible != null)
+    //        {
+    //            // 수집못한 수집품 갯수 증가
+    //            GlobalVariable.Instance.LossCollectCount++;
+    //            // 2. CollectManager에게 파괴를 명령합니다.
+    //            CollectManager.Instance.DestroyCurrentCollectible();
+    //        }
+
+    //        // 3. 새로운 수집품 생성을 요청하고, 그 참조를 저장합니다.
+    //        currentCollectible = CollectManager.Instance.CreateCollectObject();
+    //        nextCollectIndex++;
+    //    }
+    //}
+
     private void TrySpawnCollectible()
     {
         float expectedSpawnDistance = collectSpawnInterval * (nextCollectIndex + 1);
 
         if (Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
         {
-            // 1. 만약 이전에 수집하지 못한 수집품이 있다면,
-            if (currentCollectible != null)
-            {
-                // 수집못한 수집품 갯수 증가
-                GlobalVariable.Instance.LossCollectCount++;
-                // 2. CollectManager에게 파괴를 명령합니다.
-                CollectManager.Instance.DestroyCurrentCollectible();
-            }
+            // ... (기존 수집품 파괴 로직은 동일) ...
 
-            // 3. 새로운 수집품 생성을 요청하고, 그 참조를 저장합니다.
-            currentCollectible = CollectManager.Instance.CreateCollectObject();
+            // 1. 현재 스테이지 정보를 가져옵니다.
+            int currentStageIndex = GlobalVariable.Instance.PlayerCurrentPlayerStage;
+            StageData currentStageData = stageDatabase.allStageData[currentStageIndex];
+
+            // 2. 이번에 생성할 수집품 데이터를 스테이지 정보에서 가져옵니다.
+            CollectScriptableObject collectibleToSpawn = currentStageData.collectiblesInStage[nextCollectIndex];
+
+            // 3. CollectManager에게 특정 데이터를 가진 수집품 생성을 요청합니다.
+            currentCollectible = CollectManager.Instance.CreateCollectObject(collectibleToSpawn);
             nextCollectIndex++;
         }
     }
