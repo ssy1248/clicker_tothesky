@@ -12,8 +12,6 @@ public class ItemInfo : MonoBehaviour, IPointerClickHandler
     // 클릭 이벤트
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log(gameObject.name + "가 클릭되었습니다!");
-
         // 1. ItemInfoPanel을 찾거나, 인스펙터에서 할당된 것을 사용
         if (itemInfoPanel == null)
         {

@@ -39,8 +39,8 @@ public class GameUtill : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(message: "Start");
-        Debug.Log(message: SetFriendlyTime(totalSeconds: 1234234));
+        //Debug.Log(message: "Start");
+        //Debug.Log(message: SetFriendlyTime(totalSeconds: 1234234));
     }
     
     // Update is called once per frame

@@ -175,17 +175,10 @@ public class GameViewManager : MonoBehaviour
 
             //SEManager.instance.PlaySE("click");
 
-            Debug.Log("ClickDown");
-
             // 게이지 감소는 GaugeManager에서 관리
             gaugeManager.OnTouch();
 
             lastclickupdate = 0f;
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            Debug.Log("ClickUp");
         }
     }
 

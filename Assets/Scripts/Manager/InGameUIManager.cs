@@ -23,8 +23,6 @@ public class InGameUIManager : MonoBehaviour
     // 씬이 완전히 로드된 직후에 호출됩니다
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded 호출됨");
-
         if (scene.name != "MainScene")
             return;
 
