@@ -172,284 +172,128 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 26133bdda867f33499289298a369d0fd, type: 3}
+      propertyPath: effectList.Array.size
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[15].key
+      propertyPath: effectList.Array.data[0].key
+      value: Breath1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[1].key
+      value: Breath2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[2].key
+      value: Breath3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[3].key
+      value: Breath4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[4].key
+      value: UI Click
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[5].key
+      value: CountDown
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[6].key
+      value: DoorShake1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[7].key
+      value: DoorShake2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[8].key
+      value: DoorShake3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[9].key
+      value: DoorShake4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[10].key
+      value: DoorTouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[11].key
+      value: EyeStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[12].key
+      value: Eye1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[13].key
+      value: Eye2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[14].key
+      value: Eye3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[15].key
       value: Eye4
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[16].key
+      propertyPath: effectList.Array.data[16].key
       value: Eye5
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[17].key
+      propertyPath: effectList.Array.data[17].key
       value: FootStep1
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[18].key
+      propertyPath: effectList.Array.data[18].key
       value: FootStep2
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[19].key
+      propertyPath: effectList.Array.data[19].key
       value: FootStep3
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: eeab16e9f34ac43498280743442cb701, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[20].key
+      propertyPath: effectList.Array.data[20].key
       value: FootStep4
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[21].key
+      propertyPath: effectList.Array.data[21].key
+      value: FootStep5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[22].key
+      value: FootStep6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
+      propertyPath: effectList.Array.data[23].key
       value: GameClear
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[22].key
-      value: StageClear
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[23].key
-      value: GameStart
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[24].key
+      propertyPath: effectList.Array.data[24].key
       value: LobbyStart
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[25].key
-      value: ShopAmbience
+      propertyPath: effectList.Array.data[25].key
+      value: GameStart
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[26].key
+      propertyPath: effectList.Array.data[26].key
       value: ShopItem
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[27].key
-      value: ShopOpen
+      propertyPath: effectList.Array.data[27].key
+      value: Zombie Hand1
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[28].key
-      value: StoryGet
+      propertyPath: effectList.Array.data[28].key
+      value: Zombie Hand2
       objectReference: {fileID: 0}
     - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0dfa5fe42282593459005004f66b25f5, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[3].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9235b2cdce9c19c46805172fb8d31e2a, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[4].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: f223214097d762241aa985a02664a652, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[5].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: afc6fc60ad9456b4a9adbe1737e9d7c5, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[6].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: a1f16cee68937a7439c247f684b64c75, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[7].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: b696616906a0b8f49991b6e6d4ed71af, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[8].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 749e13d9fce66f94b994861a43b2f9d3, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[9].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 2a81e257fbc791744a210fb9d061ca86, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[10].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9ab85a4a42760a64c9eb1c9b9f4ae2e8, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[11].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c86fac1e785d41a4babd9646ae72f691, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[12].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: d94ebff930f368d42acf28bb31e8a4e7, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[13].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 28f8a42ed845d254c944d5921b1d4252, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[14].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c5923db1a955c4c4baf048bbd741e3c3, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[15].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c61aaa7b4b45aff4c92076626b788df0, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[16].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9b3798071c1343c4b9cbf56df6272400, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[17].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: e50c235b7dfee0d4bb3126297b6fb5f6, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[18].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 034f5bab59a909e408128151a75c4af3, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[19].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: fa1a70ad7a2d4dd4faa888f2cefc61b6, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[20].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 55650689d1fb11243b28126a078e726c, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[21].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1e96148ba107f5848b9a69e596decfe0, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[22].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8b3238d9f3844f441a74f4cf6992be98, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[23].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8647a0a201a7abd4f9729cf5c96467c4, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[24].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c3d486becfe79c844b71e5b5af2bfca9, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[25].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 41db785576d5b7a4d8744b2122459ef6, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[26].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 312d2889b026885449dc08b694028d07, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[27].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 346b4f4d0e1451e489b773b87004a5a8, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[28].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 865449f4bd3cbf246b609c835dc114db, type: 3}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[0].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[1].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[2].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[3].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[4].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[5].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[6].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[7].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[8].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[9].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[10].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[11].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[12].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[13].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[14].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[15].volume
-      value: 0.06442748
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[16].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[17].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[18].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[19].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[20].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[21].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[22].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[23].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[24].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[25].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517545100179362054, guid: 8fbe85d2b581dab46b26971df2fcdbe1, type: 3}
-      propertyPath: effect.Array.data[26].volume
-      value: 1
+      propertyPath: effectList.Array.data[29].key
+      value: Zombie Hand3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

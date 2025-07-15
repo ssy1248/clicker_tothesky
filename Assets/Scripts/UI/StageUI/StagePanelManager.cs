@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -107,11 +108,6 @@ public class StagePanelManager : MonoBehaviour
         {
             UIManager.Instance.PushPanel(UIPanelType.LOGO_PANEL);
         }
-    }
-
-    public void MemoryButton()
-    {
-        MemoryPanel.SetActive(true);
     }
 }
 

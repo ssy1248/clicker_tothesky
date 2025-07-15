@@ -160,15 +160,15 @@ RectTransform:
   m_GameObject: {fileID: 2008482962153483068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6205491535858289964}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -270, y: 555}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -280, y: 570}
+  m_SizeDelta: {x: 100, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6235098397577742802
 CanvasRenderer:
@@ -649,15 +649,15 @@ RectTransform:
   m_GameObject: {fileID: 5518195504182129663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6205491535858289964}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 275, y: 560}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 280, y: 570}
+  m_SizeDelta: {x: 110, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1994299730558993544
 CanvasRenderer:
@@ -741,9 +741,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7313606344155018470}
-        m_TargetAssemblyTypeName: StagePanelManager, Assembly-CSharp
-        m_MethodName: MemoryButton
+      - m_Target: {fileID: 6373508381021913042}
+        m_TargetAssemblyTypeName: StageSelectPanel, Assembly-CSharp
+        m_MethodName: OnClickMemoryPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1002,29 +1002,35 @@ MonoBehaviour:
     gameTime: 60
     clearDistance: 130
     maxCollectibles: 3
+    collectiblesInStage: []
   - stageName: "2\uC6D4"
     stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
     gameTime: 64
     clearDistance: 184
     maxCollectibles: 3
+    collectiblesInStage: []
   - stageName: "3\uC6D4"
     stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
     gameTime: 68
     clearDistance: 238
     maxCollectibles: 4
+    collectiblesInStage: []
   - stageName: "4\uC6D4"
     stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
     gameTime: 72
     clearDistance: 292
     maxCollectibles: 4
+    collectiblesInStage: []
   - stageName: "5\uC6D4"
     stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
     gameTime: 76
     clearDistance: 346
     maxCollectibles: 5
+    collectiblesInStage: []
   - stageName: "6\uC6D4"
     stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
     gameTime: 80
     clearDistance: 400
     maxCollectibles: 6
+    collectiblesInStage: []
   MemoryPanel: {fileID: 885192015773673216, guid: 9ef061612ec3b9d458bf34d1cb3e1096, type: 3}
