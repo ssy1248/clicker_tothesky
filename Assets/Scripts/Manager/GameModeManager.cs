@@ -267,11 +267,18 @@ public class GameModeManager : MonoBehaviour
 
         if (Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
         {
-            // ... (기존 수집품 파괴 로직은 동일) ...
-
             // 1. 현재 스테이지 정보를 가져옵니다.
             int currentStageIndex = GlobalVariable.Instance.PlayerCurrentPlayerStage;
             StageData currentStageData = stageDatabase.allStageData[currentStageIndex];
+
+            Debug.Log($"스테이지 {currentStageIndex + 1}의 수집품 생성 시도. 목록 개수: {currentStageData.collectiblesInStage.Count}, 다음 인덱스: {nextCollectIndex}");
+
+            // 목록에 접근하기 전에 개수를 확인
+            if (nextCollectIndex >= currentStageData.collectiblesInStage.Count)
+            {
+                Debug.LogError($"생성하려는 수집품 인덱스({nextCollectIndex})가 스테이지({currentStageIndex + 1})의 수집품 목록 크기({currentStageData.collectiblesInStage.Count})를 벗어났습니다! StageDatabase를 확인해주세요.");
+                return;
+            }
 
             // 2. 이번에 생성할 수집품 데이터를 스테이지 정보에서 가져옵니다.
             CollectScriptableObject collectibleToSpawn = currentStageData.collectiblesInStage[nextCollectIndex];

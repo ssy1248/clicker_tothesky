@@ -51,7 +51,6 @@ public class CollectManager : MonoBehaviour
         float collectibleFillHeight = prefabRect.rect.height / totalHeight;
         float centerFillValue = 1f - fillImage.fillAmount;
 
-        // GuageManager에서 안전지대 값을 가져와서 생성 위치 비율을 제한합니다.
         if (guageManager != null)
         {
             centerFillValue = Mathf.Clamp(centerFillValue,
@@ -59,18 +58,11 @@ public class CollectManager : MonoBehaviour
                                           guageManager.DANGER_THRESHOLD_HIGH);
         }
 
-        // ================== 아이템 효과 적용 부분 ==================
-        // 기존 판정 범위의 절반(반지름)을 계산합니다.
         float originalRadius = collectibleFillHeight / 2f;
-
-        // 아이템 효과를 적용하여 판정 범위 반지름을 수정합니다.
-        // CollectRangeModify는 전체 범위 증가량이므로, 절반을 반지름에 더합니다.
         float modifiedRadius = originalRadius + (CollectRangeModify / 2f);
 
-        // 수정된 반지름으로 최종 범위를 설정합니다.
         this.targetFillMin = centerFillValue - modifiedRadius;
         this.targetFillMax = centerFillValue + modifiedRadius;
-        // ========================================================
 
         float spawnY = Mathf.Lerp(newMinY, newMaxY, centerFillValue);
 
@@ -78,27 +70,29 @@ public class CollectManager : MonoBehaviour
         Vector2 localPosInBar = new Vector2(0f, spawnY);
         Vector3 worldPosition = barBackground.transform.TransformPoint(localPosInBar);
 
-        // --- 3. 수집품 생성 및 데이터 할당 ---
+        // -3. 수집품 생성 및 데이터 할당
         Transform parentOfBar = barBackground.transform.parent;
         GameObject obj = Instantiate(CollectObjectPrefab, parentOfBar);
         spawnedCollectible = obj.GetComponent<RectTransform>();
 
-        // ▼▼▼ 생성된 오브젝트에 데이터 심어주기 ▼▼▼
         Collectiable collectibleComponent = obj.GetComponent<Collectiable>();
         if (collectibleComponent != null)
         {
             collectibleComponent.data = collectData;
         }
 
-        // 4. 코루틴 시작
-        // 이전에 실행되던 코루틴이 있다면 정지 (안전을 위해)
+        // 4. 위치/순서 지정
+        spawnedCollectible.position = worldPosition;
+        spawnedCollectible.SetAsLastSibling();
+
+        // 5. 코루틴 시작
         if (collectRoutine != null)
         {
             StopCoroutine(collectRoutine);
         }
         collectRoutine = StartCoroutine(CheckOverlapRoutine());
 
-        // 생성된 게임 오브젝트를 반환
+        // 6. 생성된 게임 오브젝트 반환
         return obj;
     }
 
