@@ -16,6 +16,12 @@ public class StageSelectPanel : BasePanel
         base.OnClose();
         this.gameObject.SetActive(false);
     }
+
+    public void OnClickMemoryPanel()
+    {
+        OnClose();
+        UIManager.Instance.PushPanel(UIPanelType.MEMORY_PANEL);
+    }
 }
 
 /*

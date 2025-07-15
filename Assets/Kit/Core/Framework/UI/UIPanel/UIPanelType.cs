@@ -7,6 +7,7 @@ public enum UIPanelType
     CREDIT_PANEL,
     POPUP_PANEL,
     STAGE_PANEL,
+    MEMORY_PANEL,
 }
 
 public enum UIPanelStyleType
