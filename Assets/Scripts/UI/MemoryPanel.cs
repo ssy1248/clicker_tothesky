@@ -8,7 +8,7 @@ public class MemoryPanel : BasePanel
     public override UIPanelType TypeOfPanel => UIPanelType.MEMORY_PANEL;
 
     [Header("UI 요소 연결")]
-    public Image[] memorySlots = new Image[6]; // 수집품 이미지를 표시할 6개의 UI Image 슬롯
+    public Image[] memorySlots = new Image[6];  // 수집품 이미지를 표시할 6개의 UI Image 슬롯
     public TextMeshProUGUI collectNameText;     // 수집품 이름을 표시할 텍스트
     public TextMeshProUGUI collectDescText;     // 수집품 설명을 표시할 텍스트
     public Button nextPageButton;
@@ -17,6 +17,9 @@ public class MemoryPanel : BasePanel
     [Header("데이터 및 리소스")]
     public StageDatabase stageDatabase; // 모든 스테이지 정보가 담긴 데이터베이스
     public Sprite unknownItemSprite;    // 아직 수집하지 못한 아이템을 표시할 '?' 스프라이트
+
+    public string unknownItemName;
+    public string unknownItemDescription;
 
     // 정렬된 전체 수집품 목록을 담을 리스트
     private List<CollectScriptableObject> masterCollectibleList;
@@ -59,9 +62,6 @@ public class MemoryPanel : BasePanel
             masterCollectibleList.AddRange(stage.collectiblesInStage);
         }
 
-        // (선택사항) ID 순으로 정렬. StageDatabase에 순서대로 넣었다면 생략 가능.
-        // masterCollectibleList = masterCollectibleList.OrderBy(item => item.CollectId).ToList();
-
         // 전체 페이지 수 계산 (한 페이지에 6개 기준)
         if (masterCollectibleList.Count > 0)
         {
@@ -77,30 +77,27 @@ public class MemoryPanel : BasePanel
         // 6개의 UI 슬롯을 순회
         for (int i = 0; i < memorySlots.Length; i++)
         {
-            // 현재 페이지와 슬롯 인덱스를 기반으로 마스터 리스트에서의 인덱스를 계산
             int itemIndex = currentPage * 6 + i;
 
             // 해당 인덱스가 실제 아이템 목록 범위 안에 있는지 확인
             if (itemIndex < masterCollectibleList.Count)
             {
+                memorySlots[i].gameObject.SetActive(true);
+
                 // 1. 표시할 아이템 데이터를 가져옵니다.
                 CollectScriptableObject itemData = masterCollectibleList[itemIndex];
 
-                // 2. 이 아이템을 플레이어가 수집했는지 GlobalVariable에 확인합니다.
-                //    (이전 단계에서 StageData에 수집품을 넣었으므로, stage 인덱스를 찾아야 함)
-                //    (간단하게 하기 위해 지금은 ID로만 확인, 더 정확하려면 Stage ID도 비교해야 함)
+                // 2. 이 아이템을 플레이어가 수집했는지 확인합니다.
                 bool isCollected = GlobalVariable.Instance.collectedItems.Exists(ci => ci.itemId == itemData.CollectId);
 
                 // 3. 수집 여부에 따라 스프라이트를 다르게 표시합니다.
                 if (isCollected)
                 {
                     memorySlots[i].sprite = itemData.CollectSprite;
-                    memorySlots[i].color = Color.white; // 수집했다면 원래 색상
                 }
                 else
                 {
                     memorySlots[i].sprite = unknownItemSprite;
-                    memorySlots[i].color = Color.black; // 수집 못했다면 어둡게
                 }
             }
             else
@@ -114,7 +111,6 @@ public class MemoryPanel : BasePanel
         prevPageButton.interactable = (currentPage > 0);
         nextPageButton.interactable = (currentPage < maxPages);
     }
-
 
     public void ShowNextPage()
     {
@@ -134,7 +130,7 @@ public class MemoryPanel : BasePanel
         }
     }
 
-    public void OnBackButton()
+    public void ReturnButton()
     {
         OnClose();
         UIManager.Instance.PushPanel(UIPanelType.STAGE_PANEL);

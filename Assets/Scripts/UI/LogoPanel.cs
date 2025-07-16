@@ -5,10 +5,9 @@ using UnityEngine.Video;
 public class LogoPanel : BasePanel
 {
     public Button buttonStart;
-    
     public Button buttonCredit;
-
     public Button buttonExit;
+   
     public override UIPanelType TypeOfPanel => UIPanelType.LOGO_PANEL;
 
     private VideoPlayer activeIntroPlayer; // 현재 활성화된 비디오 플레이어 참조
