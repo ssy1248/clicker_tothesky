@@ -105,6 +105,13 @@ public class SEManager : MonoBehaviour
     // 3: PlaySound가 SoundEffect 객체를 인자로 받도록 수정
     void PlaySound(SoundEffect sfx)
     {
+        if (sfx == null || sfx.clip == null)
+        {
+            // Key가 유효해도 Clip이 없으면 경고를 남기고 넘어갑니다.
+            if (sfx != null) Debug.LogWarning(sfx.key + " 키의 오디오 클립이 비어있습니다.");
+            return; // 여기서 함수 실행을 중단
+        }
+
         var AS = GetOrCreateSource(false);
         AS.clip = sfx.clip;
         AS.loop = false;
@@ -120,6 +127,13 @@ public class SEManager : MonoBehaviour
     // 4: LoopPlaySound도 SoundEffect 객체를 인자로 받도록 수정
     void LoopPlaySound(SoundEffect sfx)
     {
+        if (sfx == null || sfx.clip == null)
+        {
+            if (sfx != null) Debug.LogWarning(sfx.key + " 키의 오디오 클립이 비어있습니다. (루프)");
+            return; // 여기서 함수 실행을 중단
+        }
+
+
         var AS = GetOrCreateSource(true);
         AS.clip = sfx.clip;
         AS.loop = true;

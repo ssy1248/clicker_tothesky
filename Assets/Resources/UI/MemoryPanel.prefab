@@ -231,7 +231,10 @@ MonoBehaviour:
   nextPageButton: {fileID: 2246216357225769662}
   prevPageButton: {fileID: 3400571452563852669}
   stageDatabase: {fileID: 11400000, guid: ffc5e898ac3a5fa409af523fa70d195f, type: 2}
-  unknownItemSprite: {fileID: 0}
+  unknownItemSprite: {fileID: -6465955290774060565, guid: 679dae6f356eb6f43947fa2c46347e25, type: 3}
+  unknownItemName: "\uBBF8\uD68D\uB4DD \uC218\uC9D1\uD488"
+  unknownItemDescription: "\uC2A4\uD14C\uC774\uC9C0\uB97C \uC9C4\uD589\uD558\uBA70
+    \uC218\uC9D1\uD488\uC744 \uBAA8\uC73C\uC138\uC694"
 --- !u!1 &1977094520964180144
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +957,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4218065541094278865}
         m_TargetAssemblyTypeName: MemoryPanel, Assembly-CSharp
-        m_MethodName: OnBackButton
+        m_MethodName: ReturnButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
