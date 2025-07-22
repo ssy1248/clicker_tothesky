@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7439824e075cb4e489abbc60a9ec422b, type: 3}
+  m_Name: Chapter
+  m_EditorClassIdentifier: 
+  allChapterData:
+  - chapterName: "1\uD559\uB144 1\uD559\uAE30"
+    stagesInChapter:
+    - stageName: "1\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
+      gameTime: 80
+      clearDistance: 400
+      clearScore: 0
+      collectScore: 0
+      extraTime: 0
+      maxCollectibles: 3
+      collectiblesInStage:
+      - {fileID: 11400000, guid: 7208d1265c5968449a158ccfa22253a8, type: 2}
+      - {fileID: 11400000, guid: 6257ae3211711ef45ad0d2dc63a7f00f, type: 2}
+      - {fileID: 11400000, guid: f3df4b06f88f4754ea0321c92ab59820, type: 2}
+    - stageName: "2\uC6D4"
+      stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
+      gameTime: 0
+      clearDistance: 0
+      clearScore: 0
+      collectScore: 0
+      extraTime: 0
+      maxCollectibles: 0
+      collectiblesInStage: []
+    - stageName: "3\uC6D4"
+      stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
+      gameTime: 0
+      clearDistance: 0
+      clearScore: 0
+      collectScore: 0
+      extraTime: 0
+      maxCollectibles: 0
+      collectiblesInStage: []
+    - stageName: "4\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
+      gameTime: 0
+      clearDistance: 0
+      clearScore: 0
+      collectScore: 0
+      extraTime: 0
+      maxCollectibles: 0
+      collectiblesInStage: []
+    - stageName: "5\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
+      gameTime: 0
+      clearDistance: 0
+      clearScore: 0
+      collectScore: 0
+      extraTime: 0
+      maxCollectibles: 0
+      collectiblesInStage: []
+    - stageName: "6\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
+      gameTime: 0
+      clearDistance: 0
+      clearScore: 0
+      collectScore: 0
+      extraTime: 0
+      maxCollectibles: 0
+      collectiblesInStage: []

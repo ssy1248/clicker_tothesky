@@ -188,7 +188,7 @@ public class GameModeManager : MonoBehaviour
         GlobalVariable.Instance.PlayerCurrentDistance = this.Distance;
 
         // 7. 수집품 생성 조건 확인
-        TrySpawnCollectible();
+        //TrySpawnCollectible();
 
         // 8. 문이 나타날 거리에 도달했는지 확인합니다.
         float thresholdDistance = CheckPointDistance * doorOpenThreshold;
@@ -246,48 +246,27 @@ public class GameModeManager : MonoBehaviour
 
     //    if (Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
     //    {
-    //        // 1. 만약 이전에 수집하지 못한 수집품이 있다면,
-    //        if (currentCollectible != null)
+    //        // 1. 현재 스테이지 정보를 가져옵니다.
+    //        int currentStageIndex = GlobalVariable.Instance.PlayerCurrentPlayerStage;
+    //        StageData currentStageData = stageDatabase.allStageData[currentStageIndex];
+
+    //        Debug.Log($"스테이지 {currentStageIndex + 1}의 수집품 생성 시도. 목록 개수: {currentStageData.collectiblesInStage.Count}, 다음 인덱스: {nextCollectIndex}");
+
+    //        // 목록에 접근하기 전에 개수를 확인
+    //        if (nextCollectIndex >= currentStageData.collectiblesInStage.Count)
     //        {
-    //            // 수집못한 수집품 갯수 증가
-    //            GlobalVariable.Instance.LossCollectCount++;
-    //            // 2. CollectManager에게 파괴를 명령합니다.
-    //            CollectManager.Instance.DestroyCurrentCollectible();
+    //            Debug.LogError($"생성하려는 수집품 인덱스({nextCollectIndex})가 스테이지({currentStageIndex + 1})의 수집품 목록 크기({currentStageData.collectiblesInStage.Count})를 벗어났습니다! StageDatabase를 확인해주세요.");
+    //            return;
     //        }
 
-    //        // 3. 새로운 수집품 생성을 요청하고, 그 참조를 저장합니다.
-    //        currentCollectible = CollectManager.Instance.CreateCollectObject();
+    //        // 2. 이번에 생성할 수집품 데이터를 스테이지 정보에서 가져옵니다.
+    //        CollectScriptableObject collectibleToSpawn = currentStageData.collectiblesInStage[nextCollectIndex];
+
+    //        // 3. CollectManager에게 특정 데이터를 가진 수집품 생성을 요청합니다.
+    //        currentCollectible = CollectManager.Instance.CreateCollectObject(collectibleToSpawn);
     //        nextCollectIndex++;
     //    }
     //}
-
-    private void TrySpawnCollectible()
-    {
-        float expectedSpawnDistance = collectSpawnInterval * (nextCollectIndex + 1);
-
-        if (Distance >= expectedSpawnDistance && nextCollectIndex < GlobalVariable.Instance.StageMaxCollectCount)
-        {
-            // 1. 현재 스테이지 정보를 가져옵니다.
-            int currentStageIndex = GlobalVariable.Instance.PlayerCurrentPlayerStage;
-            StageData currentStageData = stageDatabase.allStageData[currentStageIndex];
-
-            Debug.Log($"스테이지 {currentStageIndex + 1}의 수집품 생성 시도. 목록 개수: {currentStageData.collectiblesInStage.Count}, 다음 인덱스: {nextCollectIndex}");
-
-            // 목록에 접근하기 전에 개수를 확인
-            if (nextCollectIndex >= currentStageData.collectiblesInStage.Count)
-            {
-                Debug.LogError($"생성하려는 수집품 인덱스({nextCollectIndex})가 스테이지({currentStageIndex + 1})의 수집품 목록 크기({currentStageData.collectiblesInStage.Count})를 벗어났습니다! StageDatabase를 확인해주세요.");
-                return;
-            }
-
-            // 2. 이번에 생성할 수집품 데이터를 스테이지 정보에서 가져옵니다.
-            CollectScriptableObject collectibleToSpawn = currentStageData.collectiblesInStage[nextCollectIndex];
-
-            // 3. CollectManager에게 특정 데이터를 가진 수집품 생성을 요청합니다.
-            currentCollectible = CollectManager.Instance.CreateCollectObject(collectibleToSpawn);
-            nextCollectIndex++;
-        }
-    }
 
     public void OnCollectibleCollected()
     {

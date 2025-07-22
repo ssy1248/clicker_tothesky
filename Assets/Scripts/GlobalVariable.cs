@@ -192,24 +192,55 @@ public class GlobalVariable : MonoBehaviour
         return collectedItems.FindAll(item => item.stageNumber == stage).Count;
     }
 
-    public void SetupStage(int stageIndex, StageDatabase db)
+    public void SetupStage(int stageIndex, ChapterDatabase db)
     {
-        // 스테이지 데이터 가져오기
-        StageData data = db.allStageData[stageIndex];
+        // 1. 통합 인덱스를 (챕터, 스테이지) 인덱스로 변환합니다.
+        var indices = GetChapterStageFromFlatIndex(stageIndex, db);
 
-        // 플레이할 스테이지 정보 설정
-        PlayerCurrentPlayerStage = stageIndex;
-        CheckPointDistance = data.clearDistance;
-        StageMaxCollectCount = data.maxCollectibles;
-        GameTime = data.gameTime;
+        // 2. 유효한 스테이지 데이터를 찾았는지 확인합니다.
+        if (indices.chapter != -1 && indices.stage != -1)
+        {
+            // 3. 변환된 인덱스를 사용해 정확한 스테이지 데이터를 가져옵니다.
+            StageData data = db.allChapterData[indices.chapter].stagesInChapter[indices.stage];
 
-        // 게임 플레이와 직접 관련된 변수 초기화
-        PlayerCurrentDistance = 0;
-        LastClearTime = 0f;
+            // 4. 플레이할 스테이지 정보 설정
+            PlayerCurrentPlayerStage = stageIndex; // 전체 인덱스는 그대로 저장
+            CheckPointDistance = data.clearDistance;
+            //StageMaxCollectCount = data.maxCollectibles; // 수집품 개수 설정
+            GameTime = data.gameTime;
 
-        // 수집품 변수 초기화
-        TotalGetCollectCount = 0;
-        LossCollectCount = 0;
+            // 5. 게임 플레이와 직접 관련된 변수 초기화
+            PlayerCurrentDistance = 0;
+            LastClearTime = 0f;
+            TotalGetCollectCount = 0;
+            LossCollectCount = 0;
+        }
+        else
+        {
+            Debug.LogError($"ChapterDatabase에서 통합 인덱스 {stageIndex}에 해당하는 스테이지를 찾을 수 없습니다!");
+        }
+    }
+
+    /// <summary>
+    /// 전체 스테이지 기준의 통합 인덱스를 (챕터 인덱스, 해당 챕터 내의 스테이지 인덱스)로 변환합니다.
+    /// </summary>
+    private (int chapter, int stage) GetChapterStageFromFlatIndex(int flatIndex, ChapterDatabase db)
+    {
+        if (db == null) return (-1, -1); // 데이터베이스가 없으면 에러 반환
+
+        int accumulatedStages = 0;
+        for (int i = 0; i < db.allChapterData.Length; i++)
+        {
+            int stagesInThisChapter = db.allChapterData[i].stagesInChapter.Length;
+            if (flatIndex < accumulatedStages + stagesInThisChapter)
+            {
+                // flatIndex가 현재 챕터 범위 내에 있으면, 올바른 (챕터, 스테이지) 인덱스를 반환
+                return (i, flatIndex - accumulatedStages);
+            }
+            accumulatedStages += stagesInThisChapter;
+        }
+
+        return (-1, -1); // 모든 챕터를 찾아도 인덱스를 찾지 못하면 에러 반환
     }
 }
 
