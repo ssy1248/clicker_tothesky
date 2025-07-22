@@ -7,8 +7,8 @@ public class GameOverPanel : MonoBehaviour
     public Button RestartButton;
     public Button HomeButton;
 
-    [Header("스테이지 데이터베이스")]
-    public StageDatabase stageDatabase;
+    [Header("챕터 데이터베이스")]
+    public ChapterDatabase chapterDatabase;
 
     // 스크립트가 활성화될 때 버튼에 리스너를 자동 등록
     private void OnEnable()
@@ -31,7 +31,7 @@ public class GameOverPanel : MonoBehaviour
     {
         // 1. 현재 스테이지의 기본 데이터를 세팅
         int currentStageIndex = GlobalVariable.Instance.PlayerCurrentPlayerStage;
-        GlobalVariable.Instance.SetupStage(currentStageIndex, stageDatabase);
+        GlobalVariable.Instance.SetupStage(currentStageIndex, chapterDatabase);
 
         // 2. 이전에 선택했던 아이템 목록을 모두 초기화합니다.
         if (SelectedItemList.Instance != null)

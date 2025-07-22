@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RestartButton: {fileID: 6876862586969951713}
   HomeButton: {fileID: 4648510476880079596}
-  stageDatabase: {fileID: 11400000, guid: ffc5e898ac3a5fa409af523fa70d195f, type: 2}
+  chapterDatabase: {fileID: 11400000, guid: 42d1bb1a27f9d2247830eac22dde611f, type: 2}
 --- !u!114 &4757010267329851227
 MonoBehaviour:
   m_ObjectHideFlags: 0

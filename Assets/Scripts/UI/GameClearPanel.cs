@@ -12,8 +12,8 @@ public class GameClearPanel : MonoBehaviour
     [Header("UI 버튼")]
     public Button nextRoundButton; // 마지막 스테이지에서 비활성화하기 위해 연결
 
-    [Header("스테이지 데이터베이스")]
-    public StageDatabase stageDatabase;
+    [Header("챕터 데이터베이스")]
+    public ChapterDatabase chapterDatabase;
 
     private void OnEnable()
     {
@@ -36,8 +36,17 @@ public class GameClearPanel : MonoBehaviour
 
         // 3. 마지막 라운드일 경우 '다음' 버튼 비활성화
         int currentPlayStage = GlobalVariable.Instance.PlayerCurrentPlayerStage;
-        // 데이터베이스의 전체 길이를 기준으로 마지막 스테이지인지 확인
-        if (currentPlayStage >= stageDatabase.allStageData.Length - 1)
+        int totalStageCount = 0;
+        if (chapterDatabase != null)
+        {
+            foreach (ChapterData chapter in chapterDatabase.allChapterData)
+            {
+                totalStageCount += chapter.stagesInChapter.Length;
+            }
+        }
+
+        // 현재 플레이한 스테이지가 전체 스테이지 중 마지막인지 확인합니다.
+        if (currentPlayStage >= totalStageCount - 1)
         {
             nextRoundButton.gameObject.SetActive(false);
         }
@@ -63,7 +72,7 @@ public class GameClearPanel : MonoBehaviour
         int nextStageIndex = GlobalVariable.Instance.PlayerCurrentPlayerStage + 1;
 
         // 다음 스테이지 정보 세팅
-        GlobalVariable.Instance.SetupStage(nextStageIndex, stageDatabase);
+        GlobalVariable.Instance.SetupStage(nextStageIndex, chapterDatabase);
 
         // 상점 씬으로 이동
         SceneManager.LoadScene("ShopScene");
