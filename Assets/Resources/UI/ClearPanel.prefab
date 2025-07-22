@@ -638,7 +638,7 @@ MonoBehaviour:
   clearTimeText: {fileID: 1727522437223773825}
   collectCountText: {fileID: 3593286149888352883}
   nextRoundButton: {fileID: 217557746533143477}
-  stageDatabase: {fileID: 11400000, guid: ffc5e898ac3a5fa409af523fa70d195f, type: 2}
+  chapterDatabase: {fileID: 11400000, guid: 42d1bb1a27f9d2247830eac22dde611f, type: 2}
 --- !u!114 &2716692963047093875
 MonoBehaviour:
   m_ObjectHideFlags: 0

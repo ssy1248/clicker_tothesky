@@ -8,8 +8,8 @@ public class PauseManager : MonoBehaviour
     [Header("UI 연결")]
     public GameObject pauseMenuUI; // 인스펙터에서 PopUpUI를 연결
 
-    [Header("스테이지 데이터베이스")]
-    public StageDatabase stageDatabase; // 인스펙터에서 연결
+    [Header("챕터 데이터베이스")]
+    public ChapterDatabase chapterDatabase; // 인스펙터에서 연결
 
     private void Awake()
     {
@@ -62,7 +62,7 @@ public class PauseManager : MonoBehaviour
         int currentStageIndex = GlobalVariable.Instance.PlayerCurrentPlayerStage;
 
         // 2. 현재 스테이지의 초기값으로 모든 상태를 리셋합니다.
-        GlobalVariable.Instance.SetupStage(currentStageIndex, stageDatabase);
+        GlobalVariable.Instance.SetupStage(currentStageIndex, chapterDatabase);
 
         // 3. 아이템을 다시 고르기 위해 상점 씬으로 이동합니다.
         SceneManager.LoadScene("ShopScene");
