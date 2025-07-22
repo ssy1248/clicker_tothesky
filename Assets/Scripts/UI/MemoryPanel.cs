@@ -59,7 +59,7 @@ public class MemoryPanel : BasePanel
         foreach (StageData stage in stageDatabase.allStageData)
         {
             // 각 스테이지에 포함된 모든 수집품을 마스터 리스트에 추가
-            masterCollectibleList.AddRange(stage.collectiblesInStage);
+            //masterCollectibleList.AddRange(stage.collectiblesInStage);
         }
 
         // 전체 페이지 수 계산 (한 페이지에 6개 기준)
