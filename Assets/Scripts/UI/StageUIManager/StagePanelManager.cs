@@ -17,8 +17,6 @@ public class StagePanelManager : MonoBehaviour
     private int currentChapterIndex = 0;
     private int currentStageIndex = 0;
 
-    public GameObject MemoryPanel;
-
     void Start()
     {
         // 1. GlobalVariable에서 "도전 가능한 최고 스테이지"의 통합 인덱스를 가져옵니다.
@@ -139,16 +137,16 @@ public class StagePanelManager : MonoBehaviour
 
     public void ReturnMenu()
     {
-        GameObject logoPanel = GameObject.Find("LogoPanel(Clone)");
+        GameObject chapterPanel = GameObject.Find("ChapterPanel(Clone)");
 
-        if (logoPanel != null) // stagePanel을 찾았다면 (null이 아니라면)
+        if (chapterPanel != null) // stagePanel을 찾았다면 (null이 아니라면)
         {
             // 해당 오브젝트를 활성화합니다.
-            logoPanel.SetActive(true);
+            chapterPanel.SetActive(true);
         }
         else
         {
-            UIManager.Instance.PushPanel(UIPanelType.LOGO_PANEL);
+            UIManager.Instance.PushPanel(UIPanelType.CHAPTER_PANEL);
         }
     }
 }

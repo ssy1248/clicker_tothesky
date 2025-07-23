@@ -6,6 +6,7 @@ public enum UIPanelType
     LOGO_PANEL,
     CREDIT_PANEL,
     POPUP_PANEL,
+    CHAPTER_PANEL,
     STAGE_PANEL,
     MEMORY_PANEL,
 }

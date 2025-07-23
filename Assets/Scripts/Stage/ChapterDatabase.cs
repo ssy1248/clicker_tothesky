@@ -24,4 +24,30 @@ public class ChapterData
 public class ChapterDatabase : ScriptableObject
 {
     public ChapterData[] allChapterData;
+
+    public (int chapter, int stage) GetChapterStageFromFlatIndex(int flatIndex)
+    {
+        if (allChapterData == null) return (-1, -1);
+
+        int accumulatedStages = 0;
+        for (int i = 0; i < allChapterData.Length; i++)
+        {
+            int stagesInThisChapter = allChapterData[i].stagesInChapter.Length;
+            if (flatIndex < accumulatedStages + stagesInThisChapter)
+            {
+                return (i, flatIndex - accumulatedStages);
+            }
+            accumulatedStages += stagesInThisChapter;
+        }
+
+        // 모든 스테이지를 클리어한 경우, 마지막 챕터의 마지막 스테이지를 반환
+        if (allChapterData.Length > 0)
+        {
+            int lastChapter = allChapterData.Length - 1;
+            int lastStage = allChapterData[lastChapter].stagesInChapter.Length - 1;
+            return (lastChapter, lastStage);
+        }
+
+        return (-1, -1);
+    }
 }

@@ -3,21 +3,30 @@
 		{
 			"panelTypeString": "MAIN_PANEL",
 			"path": "UI/MainPanel"
-		},{
+		},
+		{
 			"panelTypeString": "LOGO_PANEL",
 			"path": "UI/LogoPanel"
-		},{
+		},
+		{
 			"panelTypeString": "CREDIT_PANEL",
 			"path": "UI/CreditPanel"
-		},{
+		},
+		{
 			"panelTypeString": "POPUP_PANEL",
 			"path": "UI/PopupPanel"
-		},{
+		},
+		{
 			"panelTypeString": "STAGE_PANEL",
 			"path": "UI/StagePanel"
-		},{
+		},
+		{
 			"panelTypeString": "MEMORY_PANEL",
 			"path": "UI/MemoryPanel"
+		},
+		{
+			"panelTypeString": "CHAPTER_PANEL",
+			"path": "UI/ChapterPanel"
 		}
 
 	]

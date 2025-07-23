@@ -133,6 +133,6 @@ public class MemoryPanel : BasePanel
     public void ReturnButton()
     {
         OnClose();
-        UIManager.Instance.PushPanel(UIPanelType.STAGE_PANEL);
+        UIManager.Instance.PushPanel(UIPanelType.CHAPTER_PANEL);
     }
 }

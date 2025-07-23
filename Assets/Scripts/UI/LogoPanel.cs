@@ -64,7 +64,7 @@ public class LogoPanel : BasePanel
         else
         {
             // 이미 플레이한 적이 있는 경우 스테이지 선택 패널로 바로 이동합니다.
-            ShowStagePanel();
+            ShowChapterPanel();
         }
     }
 
@@ -108,7 +108,7 @@ public class LogoPanel : BasePanel
         else
         {
             Debug.LogWarning("인트로 비디오 플레이어를 찾을 수 없습니다. 스테이지 선택으로 넘어갑니다.");
-            ShowStagePanel();
+            ShowChapterPanel();
         }
     }
 
@@ -135,7 +135,23 @@ public class LogoPanel : BasePanel
         skipButton = null;
 
         // 4. 스테이지 선택 패널을 보여줍니다.
-        ShowStagePanel();
+        ShowChapterPanel();
+    }
+
+    private void ShowChapterPanel()
+    {
+        OnClose(); // 로고 패널 닫기
+
+        // 기존의 스테이지 패널을 찾거나 새로 띄우는 로직
+        GameObject stagePanel = GameObject.Find("ChapterPanel(Clone)");
+        if (stagePanel != null)
+        {
+            stagePanel.SetActive(true);
+        }
+        else
+        {
+            UIManager.Instance.PushPanel(UIPanelType.CHAPTER_PANEL);
+        }
     }
 
     private void ShowStagePanel()
