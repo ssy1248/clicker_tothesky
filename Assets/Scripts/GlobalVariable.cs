@@ -17,6 +17,7 @@ public class GameData
     public int playerClearRound;
     public List<CollectedItemInfo> collectedItems;
     public bool hasStartedGameBefore;
+    public List<float> chapterConditions;
     // 여기에 게임 종료 후에도 저장하고 싶은 다른 변수들을 추가할 수 있습니다.
 }
 
@@ -35,6 +36,14 @@ public class GlobalVariable : MonoBehaviour
     public float GameTime = 0;
     public float LastClearTime = 0f; // 마지막으로 클리어한 시간 저장
 
+    [Header("클리어 챕터 관련 변수")]
+    public int PlayerClearRound = 0;
+    [System.NonSerialized] // 저장되지 않도록 설정
+    public int lastStartedChapter = -1; // -1은 아직 아무 챕터도 시작 안했다는 의미
+
+    [Header("챕터 컨디션")]
+    public List<float> chapterConditions = new List<float>();
+
     [Header("플레이어 관련 변수")]
     public int PlayerCurrentDistance = 0;
     public int PlayerCurrentPlayerStage = 0;
@@ -51,9 +60,6 @@ public class GlobalVariable : MonoBehaviour
     [Header("게임 흐름 플래그")]
     public bool GameStarted = false;
     public int ShopCount = 0;
-
-    [Header("클리어 챕터 관련 변수")]
-    public int PlayerClearRound = 0;
 
     [Header("엔딩 관련 변수")]
     public int EndingParameter = 0;
@@ -103,6 +109,7 @@ public class GlobalVariable : MonoBehaviour
         dataToSave.playerClearRound = this.PlayerClearRound;
         dataToSave.collectedItems = this.collectedItems;
         dataToSave.hasStartedGameBefore = this.hasStartedGameBefore;
+        dataToSave.chapterConditions = this.chapterConditions;
 
         // 2. GameData 객체를 JSON 문자열로 변환합니다.
         string json = JsonUtility.ToJson(dataToSave, true);
@@ -127,6 +134,12 @@ public class GlobalVariable : MonoBehaviour
             this.PlayerClearRound = loadedData.playerClearRound;
             this.collectedItems = loadedData.collectedItems;
             this.hasStartedGameBefore = loadedData.hasStartedGameBefore;
+
+            // 저장된 컨디션 데이터가 있으면 로드, 없으면 새로 생성
+            if (loadedData.chapterConditions != null && loadedData.chapterConditions.Count > 0)
+            {
+                this.chapterConditions = loadedData.chapterConditions;
+            }
 
             Debug.Log("게임 데이터를 불러왔습니다.");
         }
@@ -214,6 +227,10 @@ public class GlobalVariable : MonoBehaviour
             LastClearTime = 0f;
             TotalGetCollectCount = 0;
             LossCollectCount = 0;
+
+            // 스테이지가 세팅된다는 것은 해당 챕터를 '시작'했다는 의미입니다.
+            // 현재 플레이할 스테이지의 챕터 인덱스를 저장합니다.
+            this.lastStartedChapter = indices.chapter;
         }
         else
         {

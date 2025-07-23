@@ -1038,7 +1038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1713613440}
-  stageDatabase: {fileID: 11400000, guid: ffc5e898ac3a5fa409af523fa70d195f, type: 2}
+  chapterDatabase: {fileID: 0}
 --- !u!1 &657539274
 GameObject:
   m_ObjectHideFlags: 0
