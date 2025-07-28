@@ -145,9 +145,6 @@ public class CollectManager : MonoBehaviour
                     GlobalVariable.Instance.TotalGetCollectCount++;
                 }
 
-                // GameModeManager에 수집이 끝났다고 알림
-                GameModeManager.Instance.OnCollectibleCollected();
-
                 Destroy(spawnedCollectible.gameObject);
                 spawnedCollectible = null;
                 yield break;

@@ -177,8 +177,6 @@ public class GlobalVariable : MonoBehaviour
     {
         if (scene.name != "MainScene")
             return;
-
-        CollectManager.Instance.CollectObejctCount = StageMaxCollectCount;
     }
 
     public void StartedGame() => GameStarted = true;

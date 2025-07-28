@@ -19,6 +19,8 @@ public class GameViewManager : MonoBehaviour
     [Header("UI")]
     [SerializeField]
     private TextMeshProUGUI gameTimeText;
+    [SerializeField]
+    private TextMeshProUGUI distanceText; // 목표 거리를 표시할 텍스트
     public GameObject GameOverPanel;
     public GameObject GameClearPanel;
 
@@ -81,6 +83,18 @@ public class GameViewManager : MonoBehaviour
         totalTime = GlobalManager.Instance.inGameCountTime + GameTimePlus;
         initialTotalTime = totalTime;
         UpdateTimerUI();
+
+        // 1. GlobalVariable에서 현재 스테이지의 목표 거리를 가져옵니다.
+        int clearDistance = GlobalVariable.Instance.CheckPointDistance;
+
+        // 2. "목표거리 M" 형식의 문자열을 만듭니다.
+        string distanceString = $"{clearDistance} M";
+
+        // 3. 텍스트 UI에 문자열을 할당합니다.
+        if (distanceText != null)
+        {
+            distanceText.text = distanceString;
+        }
     }
 
     public void ResetTimer(int seconds)
@@ -178,6 +192,9 @@ public class GameViewManager : MonoBehaviour
             // 게이지 감소는 GaugeManager에서 관리
             gaugeManager.OnTouch();
 
+            // GameModeManager에게 터치 신호를 전달하여 거리를 계산하도록 합니다.
+            GameModeManager.Instance.OnPlayerTouch();
+
             lastclickupdate = 0f;
         }
     }
@@ -215,5 +232,18 @@ public class GameViewManager : MonoBehaviour
 
         // 5. 진행상황 저장
         GlobalVariable.Instance.SaveGame();
+    }
+
+    /// <summary>
+    /// 남은 거리를 계산하여 UI 텍스트를 업데이트합니다.
+    /// GameModeManager가 호출해 줄 함수입니다.
+    /// </summary>
+    /// <param name="remainingDistance">표시할 남은 거리 값</param>
+    public void UpdateRemainingDistanceUI(int remainingDistance)
+    {
+        if (distanceText != null)
+        {
+            distanceText.text = $"{remainingDistance} M";
+        }
     }
 }

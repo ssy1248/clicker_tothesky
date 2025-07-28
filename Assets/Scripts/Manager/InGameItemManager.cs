@@ -8,7 +8,6 @@ public class InGameItemManager : MonoBehaviour
     public GameModeManager gameModeManager;
     public GameViewManager gameViewManager;
     public GuageImageAlpha guageImageAlpha;
-    public CollectManager collectManager;
 
     private void Awake()
     {
@@ -26,7 +25,6 @@ public class InGameItemManager : MonoBehaviour
         if (gameModeManager == null) gameModeManager = FindObjectOfType<GameModeManager>();
         if (gameViewManager == null) gameViewManager = FindObjectOfType<GameViewManager>();
         if (guageImageAlpha == null) guageImageAlpha = FindObjectOfType<GuageImageAlpha>();
-        if (collectManager == null) collectManager = FindObjectOfType<CollectManager>();
     }
 
     void Start()
@@ -77,15 +75,6 @@ public class InGameItemManager : MonoBehaviour
                 {
                     gameModeManager.SpeedItemPlus += effect.value;
                     Debug.Log($"속도 증가 아이템 효과 적용! 추가 속도: {effect.value}");
-                }
-                break;
-
-            case ItemEffectType.CollectRangeModifier:
-                if (collectManager != null)
-                {
-                    // effect.value는 fillAmount 기준의 수치여야 합니다. (예: 0.1은 10% 범위 증가)
-                    collectManager.CollectRangeModify += effect.value;
-                    Debug.Log($"수집품 획득 범위 {effect.value * 100}% 증가!");
                 }
                 break;
 
