@@ -4,11 +4,7 @@ using UnityEngine.SceneManagement;
 public class InGameUIManager : MonoBehaviour
 {
     [SerializeField] 
-    private GameObject titlePanel; // 타이틀 UI
-    [SerializeField] 
     private GameObject inGameUI; // 남은 시간, 게이지 이미지
-    [SerializeField] 
-    private GameObject UIPercent; // 이동거리 이미지 바
 
     private void OnEnable()
     {
@@ -27,17 +23,11 @@ public class InGameUIManager : MonoBehaviour
             return;
 
         // 너무 하드코딩인데
-        if (titlePanel == null)
-            titlePanel = GameObject.Find("SafeArea");
         if (inGameUI == null)
             inGameUI = GameObject.Find("InGameUI");
-        if (UIPercent == null)
-            UIPercent = GameObject.Find("UIPercentFill");
 
         bool fromShop = GlobalVariable.Instance.ShopCount > 0;
 
-        //titlePanel.SetActive(!fromShop);
-        UIPercent.SetActive(true);
         inGameUI.SetActive(true);
     }
 }

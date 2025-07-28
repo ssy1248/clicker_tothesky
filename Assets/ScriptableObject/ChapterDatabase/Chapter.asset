@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allChapterData:
   - chapterName: "1\uD559\uB144 1\uD559\uAE30"
+    chapterImage: {fileID: 21300000, guid: d9b663b58125e104a8d772c8e089b26b, type: 3}
     stagesInChapter:
     - stageName: "1\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
@@ -46,6 +47,201 @@ MonoBehaviour:
       clearScore: 400
       collectScore: 800
     - stageName: "6\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
+      gameTime: 180
+      clearDistance: 900
+      clearScore: 500
+      collectScore: 1000
+  - chapterName: "1\uD559\uB144 2\uD559\uAE30"
+    chapterImage: {fileID: 21300000, guid: a8ab0fab8bd5e32468823fb1dfa05d61, type: 3}
+    stagesInChapter:
+    - stageName: "7\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
+      gameTime: 80
+      clearDistance: 400
+      clearScore: 100
+      collectScore: 200
+    - stageName: "8\uC6D4"
+      stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
+      gameTime: 100
+      clearDistance: 500
+      clearScore: 150
+      collectScore: 300
+    - stageName: "9\uC6D4"
+      stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
+      gameTime: 120
+      clearDistance: 600
+      clearScore: 200
+      collectScore: 400
+    - stageName: "10\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
+      gameTime: 140
+      clearDistance: 700
+      clearScore: 300
+      collectScore: 600
+    - stageName: "11\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
+      gameTime: 160
+      clearDistance: 800
+      clearScore: 400
+      collectScore: 800
+    - stageName: "12\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
+      gameTime: 180
+      clearDistance: 900
+      clearScore: 500
+      collectScore: 1000
+  - chapterName: "2\uD559\uB144 1\uD559\uAE30"
+    chapterImage: {fileID: 21300000, guid: d1d16cde2fe8f494880e07d914e3da64, type: 3}
+    stagesInChapter:
+    - stageName: "1\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
+      gameTime: 80
+      clearDistance: 400
+      clearScore: 100
+      collectScore: 200
+    - stageName: "2\uC6D4"
+      stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
+      gameTime: 100
+      clearDistance: 500
+      clearScore: 150
+      collectScore: 300
+    - stageName: "3\uC6D4"
+      stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
+      gameTime: 120
+      clearDistance: 600
+      clearScore: 200
+      collectScore: 400
+    - stageName: "4\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
+      gameTime: 140
+      clearDistance: 700
+      clearScore: 300
+      collectScore: 600
+    - stageName: "5\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
+      gameTime: 160
+      clearDistance: 800
+      clearScore: 400
+      collectScore: 800
+    - stageName: "6\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
+      gameTime: 180
+      clearDistance: 900
+      clearScore: 500
+      collectScore: 1000
+  - chapterName: "2\uD559\uB144 2\uD559\uAE30"
+    chapterImage: {fileID: 21300000, guid: ff13e5a6c4744934e90a93e11f87e20c, type: 3}
+    stagesInChapter:
+    - stageName: "7\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
+      gameTime: 80
+      clearDistance: 400
+      clearScore: 100
+      collectScore: 200
+    - stageName: "8\uC6D4"
+      stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
+      gameTime: 100
+      clearDistance: 500
+      clearScore: 150
+      collectScore: 300
+    - stageName: "9\uC6D4"
+      stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
+      gameTime: 120
+      clearDistance: 600
+      clearScore: 200
+      collectScore: 400
+    - stageName: "10\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
+      gameTime: 140
+      clearDistance: 700
+      clearScore: 300
+      collectScore: 600
+    - stageName: "11\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
+      gameTime: 160
+      clearDistance: 800
+      clearScore: 400
+      collectScore: 800
+    - stageName: "12\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
+      gameTime: 180
+      clearDistance: 900
+      clearScore: 500
+      collectScore: 1000
+  - chapterName: "3\uD559\uB144 1\uD559\uAE30"
+    chapterImage: {fileID: 21300000, guid: a576afc79c2196442a0c701678a4b0ca, type: 3}
+    stagesInChapter:
+    - stageName: "1\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
+      gameTime: 80
+      clearDistance: 400
+      clearScore: 100
+      collectScore: 200
+    - stageName: "2\uC6D4"
+      stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
+      gameTime: 100
+      clearDistance: 500
+      clearScore: 150
+      collectScore: 300
+    - stageName: "3\uC6D4"
+      stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
+      gameTime: 120
+      clearDistance: 600
+      clearScore: 200
+      collectScore: 400
+    - stageName: "4\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
+      gameTime: 140
+      clearDistance: 700
+      clearScore: 300
+      collectScore: 600
+    - stageName: "5\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
+      gameTime: 160
+      clearDistance: 800
+      clearScore: 400
+      collectScore: 800
+    - stageName: "6\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
+      gameTime: 180
+      clearDistance: 900
+      clearScore: 500
+      collectScore: 1000
+  - chapterName: "3\uD559\uB144 2\uD559\uAE30"
+    chapterImage: {fileID: 21300000, guid: a6724f43a311c374fa64bc1d26cee96d, type: 3}
+    stagesInChapter:
+    - stageName: "7\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
+      gameTime: 80
+      clearDistance: 400
+      clearScore: 100
+      collectScore: 200
+    - stageName: "8\uC6D4"
+      stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
+      gameTime: 100
+      clearDistance: 500
+      clearScore: 150
+      collectScore: 300
+    - stageName: "9\uC6D4"
+      stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
+      gameTime: 120
+      clearDistance: 600
+      clearScore: 200
+      collectScore: 400
+    - stageName: "10\uC6D4"
+      stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
+      gameTime: 140
+      clearDistance: 700
+      clearScore: 300
+      collectScore: 600
+    - stageName: "11\uC6D4"
+      stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
+      gameTime: 160
+      clearDistance: 800
+      clearScore: 400
+      collectScore: 800
+    - stageName: "12\uC6D4"
       stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
       gameTime: 180
       clearDistance: 900

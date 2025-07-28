@@ -8,7 +8,6 @@ public class ChapterPanel : BasePanel
     public override UIPanelType TypeOfPanel => UIPanelType.CHAPTER_PANEL;
 
     [Header("UI 요소 연결")]
-    public TextMeshProUGUI chapterText;
     public Image chapterImage;
     public Image conditionFilledImage;
     public Button startButton;
@@ -17,20 +16,10 @@ public class ChapterPanel : BasePanel
     public Button backButton;
 
     [Header("챕터 데이터")]
-    public List<Sprite> chapterImages; // 인스펙터에서 챕터 이미지들을 순서대로 할당
     public ChapterDatabase chapterDatabase; // 챕터 정보가 담긴 데이터베이스
 
     [SerializeField]
     private int currentChapterIndex = 0;
-
-    private void Awake() // Start 대신 Awake 사용 권장
-    {
-        // 버튼 리스너는 한 번만 등록하면 됩니다.
-        startButton.onClick.AddListener(OnClickStart);
-        nextButton.onClick.AddListener(OnClickNext);
-        prevButton.onClick.AddListener(OnClickPrev);
-        backButton.onClick.AddListener(OnClickBack);
-    }
 
     private void InitializeChapterConditions()
     {
@@ -48,33 +37,42 @@ public class ChapterPanel : BasePanel
 
     private void UpdateUI()
     {
-        // 챕터 이미지 및 텍스트 업데이트
-        chapterImage.sprite = chapterImages[currentChapterIndex];
-        chapterText.text = $"{currentChapterIndex + 1} Chapter";
+        // 1. 현재 챕터 데이터를 데이터베이스에서 직접 가져옴
+        ChapterData currentChapter = chapterDatabase.allChapterData[currentChapterIndex];
 
-        // 컨디션 게이지 업데이트
+        // 2. 챕터 이미지를 업데이트
+        chapterImage.sprite = currentChapter.chapterImage;
+
+        // 3. 컨디션 게이지 업데이트
         conditionFilledImage.fillAmount = GlobalVariable.Instance.chapterConditions[currentChapterIndex];
     }
 
     public void OnClickNext()
     {
         currentChapterIndex++;
-        // 마지막 챕터를 넘어가면 처음 챕터로 순환
-        if (currentChapterIndex >= chapterImages.Count)
+        // chapterDatabase의 챕터 개수를 기준
+        if (currentChapterIndex >= chapterDatabase.allChapterData.Length)
         {
-            currentChapterIndex = 0;
+            currentChapterIndex = 0; // 마지막 챕터에서 처음으로 순환
         }
+
+        Debug.Log($"Next 버튼 클릭. 현재 챕터 인덱스: {currentChapterIndex}");
+
         UpdateUI();
     }
 
     public void OnClickPrev()
     {
-        // 첫 챕터(인덱스 0)에서는 아무 효과 없음
-        if (currentChapterIndex > 0)
+        currentChapterIndex--;
+        // 첫 챕터에서 누르면 마지막 챕터로 순환하도록 변경
+        if (currentChapterIndex < 0)
         {
-            currentChapterIndex--;
-            UpdateUI();
+            currentChapterIndex = chapterDatabase.allChapterData.Length - 1;
         }
+
+        Debug.Log($"Prev 버튼 클릭. 현재 챕터 인덱스: {currentChapterIndex}");
+
+        UpdateUI();
     }
 
     public void OnClickStart()
