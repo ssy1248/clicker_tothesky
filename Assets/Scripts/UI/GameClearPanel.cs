@@ -23,18 +23,7 @@ public class GameClearPanel : MonoBehaviour
         int secs = (int)time % 60;
         clearTimeText.text = $"{minutes:00}:{secs:00}";
 
-        // 2. 수집품 개수 표시 -> 아래 코드는 추후 사용 예정
-        //int currentStage = GlobalVariable.Instance.PlayerCurrentPlayerStage;
-        //int collected = GlobalVariable.Instance.GetCollectedCountByStage(currentStage + 1); // 스테이지 번호는 1부터 시작
-        //int max = GlobalVariable.Instance.StageMaxCollectCount;
-        //collectCountText.text = $"{collected} / {max}";
-
-        // 2. 수집품 개수 표시
-        int collected = GlobalVariable.Instance.TotalGetCollectCount;
-        int max = GlobalVariable.Instance.StageMaxCollectCount;
-        collectCountText.text = $"{collected} / {max}";
-
-        // 3. 마지막 라운드일 경우 '다음' 버튼 비활성화
+        // 2. 마지막 라운드일 경우 '다음' 버튼 비활성화
         int currentPlayStage = GlobalVariable.Instance.PlayerCurrentPlayerStage;
         int totalStageCount = 0;
         if (chapterDatabase != null)

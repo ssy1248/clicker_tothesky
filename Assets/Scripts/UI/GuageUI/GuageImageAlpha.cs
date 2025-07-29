@@ -9,6 +9,9 @@ public class GuageImageAlpha : MonoBehaviour
     public static event System.Action OnStaminaEmpty;
     public static event System.Action OnStaminaRecovered;
 
+    public static event System.Action OnFeverStart;
+    public static event System.Action OnFeverEnd;
+
     [Header("이미지 참조")]
     public Image FilledGuageImage;
     public Image BackgroundGuageImage;
@@ -112,5 +115,23 @@ public class GuageImageAlpha : MonoBehaviour
         SetAlpha(1f);
 
         OnStaminaRecovered?.Invoke();
+    }
+
+    /// <summary>
+    /// 외부에서 피버 타임 시작을 요청할 때 호출하는 함수입니다.
+    /// </summary>
+    public void TriggerFeverStart()
+    {
+        // OnFeverStart 이벤트를 '알림'합니다.
+        OnFeverStart?.Invoke();
+    }
+
+    /// <summary>
+    /// 외부에서 피버 타임 종료를 요청할 때 호출하는 함수입니다.
+    /// </summary>
+    public void TriggerFeverEnd()
+    {
+        // OnFeverEnd 이벤트를 '알림'합니다.
+        OnFeverEnd?.Invoke();
     }
 }
