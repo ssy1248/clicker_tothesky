@@ -1,121 +1,107 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GuageManager : MonoBehaviour
 {
     [Header("게이지 UI")]
     [SerializeField]
-    private Image touchGaugeImage; // 지금은 차오르는 스프라이트만 가져오지만 나중에 배경까지 가져와서 알파값 건들어야 할듯
+    private Image touchGaugeImage;
 
     [Header("게이지 설정")]
     [SerializeField]
-    private float increaseRate = 0.1f;   // 초당 자동 증가
+    private float decreaseRate = 0.05f;  // 초당 자동 감소량
     [SerializeField]
-    private float touchDecrease = 0.05f; // 터치 시 감소량
+    private float touchIncrease = 0.1f;  // 터치 시 증가량
+    [SerializeField, Range(0f, 1f)]
+    private float startingGaugeValue = 0.5f; // 시작 게이지 값
 
-    [SerializeField, Range(0.11f, 0.89f)] // 안전한 범위 내에서만 조절 가능하게 설정
-    private float startingGaugeValue = 0.15f;
+    [Header("피버 타임 설정")]
+    [SerializeField]
+    private float feverDuration = 5f; // 피버 타임 지속 시간
+    private bool isFeverTime = false;
 
     private float gaugeValue;
-
-    private float zoneTimer = 0f;
-    private bool isInDangerZone = false;
-    private bool hasTriggeredBlink = false;
-    private bool hasStoppedAnimation = false;
-
-    public float DANGER_THRESHOLD_LOW = 0.1f;
-    public float DANGER_THRESHOLD_HIGH = 0.9f;
-    public float DANGER_DURATION = 5f;
+    private bool hasStoppedAnimation = false; // 스태미나 0 중복 실행 방지
 
     public float GaugeValue => gaugeValue;
 
     private void Start()
     {
         gaugeValue = startingGaugeValue;
-
-        // 색상 설정
-        Color c = Color.green;
-
-        GuageColorController.Instance.SetGaugeColor(c);
+        UpdateGaugeUI();
+        GuageColorController.Instance.SetGaugeColor(Color.green); // 색상 초기화
     }
 
     private void Update()
     {
-        // 1. 현재 게이지 위치에 따른 속도 배율을 결정합니다.
-        float rateMultiplier = 1.0f; // 기본 배율은 1배
-
-        // 게이지의 1/3 지점 (약 0.333)
-        const float LOWER_THIRD = 1f / 3f;
-        // 게이지의 2/3 지점 (약 0.666)
-        const float UPPER_THIRD = 2f / 3f;
-
-        if (gaugeValue <= LOWER_THIRD)
+        // 피버 타임 중에는 게이지가 변하지 않음
+        if (isFeverTime)
         {
-            // 아래쪽 구간(0 ~ 1/3): 1배속
-            rateMultiplier = 1.0f;
-        }
-        else if (gaugeValue <= UPPER_THIRD)
-        {
-            // 중간 구간(1/3 ~ 2/3): 1.5배속
-            rateMultiplier = 1.5f;
-        }
-        else
-        {
-            // 위쪽 구간(2/3 ~ 1): 2배속
-            rateMultiplier = 2.0f;
+            return;
         }
 
-        // 2. 결정된 배율을 적용하여 게이지 값을 증가시킵니다.
-        gaugeValue += increaseRate * rateMultiplier * Time.deltaTime;
+        // 게이지 자동 감소
+        gaugeValue -= decreaseRate * Time.deltaTime;
         gaugeValue = Mathf.Clamp01(gaugeValue);
         UpdateGaugeUI();
 
-        // 3. 위험 구간 로직은 그대로 유지됩니다.
-        bool isDangerNow = gaugeValue <= DANGER_THRESHOLD_LOW || gaugeValue >= DANGER_THRESHOLD_HIGH;
-
-        if (isDangerNow)
-        {
-            if (!isInDangerZone)
-            {
-                Debug.Log("위험구간 진입");
-                isInDangerZone = true;
-                zoneTimer = 0f;
-                hasTriggeredBlink = false;
-                hasStoppedAnimation = false;
-
-                GuageImageAlpha.Instance.StartLifeRoutine();
-            }
-
-            zoneTimer += Time.deltaTime;
-
-            if (zoneTimer >= DANGER_DURATION && !hasStoppedAnimation)
-            {
-                hasStoppedAnimation = true;
-
-                GuageImageAlpha.Instance.StartZeroRoutine(() => {
-                    gaugeValue = 0.2f; // 게이지 회복
-                    UpdateGaugeUI();
-                });
-            }
-        }
-        else
-        {
-            if (isInDangerZone)
-            {
-                isInDangerZone = false;
-                zoneTimer = 0f;
-
-                GuageImageAlpha.Instance.CancelLifeRoutine();
-                AnimationManager.Instance.AnimationAllPlay();
-            }
-        }
+        // 게이지가 0이 되면 스태미나 고갈 처리
+        //if (gaugeValue <= 0f && !hasStoppedAnimation)
+        //{
+        //    hasStoppedAnimation = true;
+        //    // 기존의 스태미나 0 처리 루틴을 재사용
+        //    GuageImageAlpha.Instance.StartZeroRoutine(() => {
+        //        gaugeValue = startingGaugeValue; // 게이지 회복
+        //        UpdateGaugeUI();
+        //        hasStoppedAnimation = false; // 다시 체크 가능하도록 플래그 리셋
+        //    });
+        //}
     }
 
     public void OnTouch()
     {
-        gaugeValue -= touchDecrease;
+        // 피버 타임 중에는 터치로 게이지를 올릴 수 없음
+        if (isFeverTime)
+        {
+            return;
+        }
+
+        gaugeValue += touchIncrease;
         gaugeValue = Mathf.Clamp01(gaugeValue);
         UpdateGaugeUI();
+
+        // 게이지가 100%에 도달하면 피버 타임 시작
+        if (gaugeValue >= 1f)
+        {
+            StartCoroutine(FeverCoroutine());
+        }
+    }
+
+    /// <summary>
+    /// 피버 타임을 관리하는 코루틴
+    /// </summary>
+    private IEnumerator FeverCoroutine()
+    {
+        isFeverTime = true;
+        Debug.Log("피버 타임 시작!");
+        GuageImageAlpha.Instance.TriggerFeverStart();
+
+        // 피버 타임 시각 효과
+        GuageColorController.Instance.SetGaugeColor(Color.red);
+
+        // 피버 타임 지속 시간만큼 대기
+        yield return new WaitForSeconds(feverDuration);
+
+        // 피버 타임 종료
+        isFeverTime = false;
+        Debug.Log("피버 타임 종료!");
+        GuageImageAlpha.Instance.TriggerFeverEnd();
+
+        // 게이지를 시작 값으로 리셋하고 원래 색으로 복귀
+        gaugeValue = startingGaugeValue;
+        UpdateGaugeUI();
+        GuageColorController.Instance.SetGaugeColor(Color.green);
     }
 
     private void UpdateGaugeUI()

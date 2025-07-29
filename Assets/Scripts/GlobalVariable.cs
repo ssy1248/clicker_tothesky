@@ -35,6 +35,8 @@ public class GlobalVariable : MonoBehaviour
     [Header("게임 관련 변수")]
     public float GameTime = 0;
     public float LastClearTime = 0f; // 마지막으로 클리어한 시간 저장
+    public int GameClearScore = 0; // 게임 클리어 점수
+    public int GetCollectScore = 0; // 수집품 획득 점수
 
     [Header("클리어 챕터 관련 변수")]
     public int PlayerClearRound = 0;
@@ -50,12 +52,6 @@ public class GlobalVariable : MonoBehaviour
 
     [Header("수집품 관련 변수")]
     public List<CollectedItemInfo> collectedItems = new();
-    // 진행하는 스테이지의 수집품 갯수
-    public int StageMaxCollectCount = 0;
-    // 획득한 수집품의 갯수
-    public int TotalGetCollectCount = 0;
-    // 획득 못한 수집품의 갯수
-    public int LossCollectCount = 0;
 
     [Header("게임 흐름 플래그")]
     public bool GameStarted = false;
@@ -193,7 +189,6 @@ public class GlobalVariable : MonoBehaviour
         if (!HasCollected(stage, itemId))
         {
             collectedItems.Add(new CollectedItemInfo { stageNumber = stage, itemId = itemId });
-            TotalGetCollectCount++;
         }
     }
 
@@ -217,14 +212,13 @@ public class GlobalVariable : MonoBehaviour
             // 4. 플레이할 스테이지 정보 설정
             PlayerCurrentPlayerStage = stageIndex; // 전체 인덱스는 그대로 저장
             CheckPointDistance = data.clearDistance;
-            //StageMaxCollectCount = data.maxCollectibles; // 수집품 개수 설정
             GameTime = data.gameTime;
+            GameClearScore = data.clearScore;
+            GetCollectScore = data.collectScore;
 
             // 5. 게임 플레이와 직접 관련된 변수 초기화
             PlayerCurrentDistance = 0;
-            LastClearTime = 0f;
-            TotalGetCollectCount = 0;
-            LossCollectCount = 0;
+            LastClearTime = 0f; 
 
             // 스테이지가 세팅된다는 것은 해당 챕터를 '시작'했다는 의미입니다.
             // 현재 플레이할 스테이지의 챕터 인덱스를 저장합니다.
@@ -258,14 +252,3 @@ public class GlobalVariable : MonoBehaviour
         return (-1, -1); // 모든 챕터를 찾아도 인덱스를 찾지 못하면 에러 반환
     }
 }
-
-
-/*
-스테이지   클리어 거리
-1   110
-2   162
-3   214
-4   266
-5   318
-6   370
- */

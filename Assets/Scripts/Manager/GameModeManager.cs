@@ -55,23 +55,35 @@ public class GameModeManager : MonoBehaviour
 
     [Header("터치 설정")]
     [SerializeField] 
-    private int touchesPerMeter = 5; // 1미터 전진에 필요한 터치 횟수
+    private int touchesPerMeter = 4; // 1미터 전진에 필요한 터치 횟수
     private int touchCount = 0; // 현재 터치 횟수를 기록
+
+    private bool isFeverTime = false; // 피버 타임 상태 플래그
 
     private void OnEnable()
     {
         GuageImageAlpha.OnStaminaEmpty += HandleStaminaEmpty;
         GuageImageAlpha.OnStaminaRecovered += HandleStaminaRecovered;
+
+        GuageImageAlpha.OnFeverStart += HandleFeverStart;
+        GuageImageAlpha.OnFeverEnd += HandleFeverEnd;
     }
 
     private void OnDisable()
     {
         GuageImageAlpha.OnStaminaEmpty -= HandleStaminaEmpty;
         GuageImageAlpha.OnStaminaRecovered -= HandleStaminaRecovered;
+
+        GuageImageAlpha.OnFeverStart -= HandleFeverStart;
+        GuageImageAlpha.OnFeverEnd -= HandleFeverEnd;
     }
 
     private void HandleStaminaEmpty() => isStaminaEmpty = true;
     private void HandleStaminaRecovered() => isStaminaEmpty = false;
+
+    // 피버 타임 이벤트 핸들러 함수 추가 
+    private void HandleFeverStart() => isFeverTime = true;
+    private void HandleFeverEnd() => isFeverTime = false;
 
     private void Awake()
     {

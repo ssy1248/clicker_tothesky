@@ -51,12 +51,12 @@ public class CollectManager : MonoBehaviour
         float collectibleFillHeight = prefabRect.rect.height / totalHeight;
         float centerFillValue = 1f - fillImage.fillAmount;
 
-        if (guageManager != null)
-        {
-            centerFillValue = Mathf.Clamp(centerFillValue,
-                                          guageManager.DANGER_THRESHOLD_LOW,
-                                          guageManager.DANGER_THRESHOLD_HIGH);
-        }
+        //if (guageManager != null)
+        //{
+        //    centerFillValue = Mathf.Clamp(centerFillValue,
+        //                                  guageManager.DANGER_THRESHOLD_LOW,
+        //                                  guageManager.DANGER_THRESHOLD_HIGH);
+        //}
 
         float originalRadius = collectibleFillHeight / 2f;
         float modifiedRadius = originalRadius + (CollectRangeModify / 2f);
@@ -138,11 +138,6 @@ public class CollectManager : MonoBehaviour
                     int stageNum = GlobalVariable.Instance.PlayerCurrentPlayerStage;
                     int itemId = collectedComponent.data.CollectId;
                     GlobalVariable.Instance.CollectItem(stageNum, itemId);
-                }
-                else
-                {
-                    // 데이터가 없는 경우, 이전처럼 전체 카운트만 올립니다.
-                    GlobalVariable.Instance.TotalGetCollectCount++;
                 }
 
                 Destroy(spawnedCollectible.gameObject);
