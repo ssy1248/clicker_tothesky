@@ -3,29 +3,55 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    // 싱글톤 패턴으로 어디서든 쉽게 접근 가능하게 함
+    public static ScoreManager Instance { get; private set; }
+
+    [Header("UI 연결")]
     public TextMeshProUGUI scoreText;
 
-    private void Start()
+    // 현재 게임의 점수를 저장하는 변수
+    private int currentScore = 0;
+
+    private void Awake()
     {
-        if(scoreText == null)
+        // 싱글톤 구현
+        if (Instance == null)
         {
-            Debug.LogError("Score Text is not assigned in the ScoreManager.");
-            return;
+            Instance = this;
         }
         else
         {
-            scoreText.text = $"0 / {GlobalVariable.Instance.GameClearScore}";
+            Destroy(gameObject);
         }
     }
-
-    public void UpdateScore(int score)
+    
+    private void Start()
     {
-        if(scoreText == null)
+        // 게임 시작 시 점수를 0으로 초기화하고 UI를 업데이트
+        currentScore = 0;
+        UpdateScoreUI();
+    }
+
+    /// <summary>
+    /// 외부에서 점수를 추가할 때 호출하는 공용 함수입니다.
+    /// </summary>
+    /// <param name="amount">추가할 점수량</param>
+    public void AddScore(int amount)
+    {
+        currentScore += amount;
+        UpdateScoreUI();
+        Debug.Log($"점수 획득! {amount}점 추가, 현재 점수: {currentScore}");
+    }
+
+    /// <summary>
+    /// 현재 점수를 기반으로 UI 텍스트를 업데이트합니다.
+    /// </summary>
+    private void UpdateScoreUI()
+    {
+        if (scoreText != null)
         {
-            Debug.LogError("Score Text is not assigned in the ScoreManager.");
-            return;
+            // "현재 점수 / 목표 점수" 형식으로 텍스트를 표시
+            scoreText.text = $"{currentScore} / {GlobalVariable.Instance.GameClearScore}";
         }
-        
-        scoreText.text = $"{score} / {GlobalVariable.Instance.GameClearScore}";
     }
 }
