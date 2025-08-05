@@ -788,8 +788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchGaugeImage: {fileID: 1236049199}
-  decreaseRate: 0.05
-  touchIncrease: 0.1
+  decreaseRate: 0.1
+  touchIncrease: 0.05
   startingGaugeValue: 0.15
   feverDuration: 5
 --- !u!1 &313538344
@@ -1493,7 +1493,7 @@ MonoBehaviour:
   DoorObject: {fileID: 176000532}
   doorOpenThreshold: 0.8
   doorTargetScale: {x: 0.2, y: 0.18, z: 1}
-  stageDatabase: {fileID: 11400000, guid: ffc5e898ac3a5fa409af523fa70d195f, type: 2}
+  chapterDatabase: {fileID: 11400000, guid: 42d1bb1a27f9d2247830eac22dde611f, type: 2}
   SpeedItemPlus: 0
   touchesPerMeter: 4
 --- !u!1 &708763649
