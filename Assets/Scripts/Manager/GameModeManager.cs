@@ -15,12 +15,8 @@ public class GameModeManager : MonoBehaviour
     // 거리를 초기화할 초기 변수
     [SerializeField]
     int Distance;
-    // 1초를 누적할 타이머 변수
-    private float distanceTimer = 0f;
     // 체크포인트 거리
     public int CheckPointDistance;
-    // 체크포인트 상태 플래그
-    private bool isAtCheckpoint = false;
 
     [Header("스프라이트 모음 & 오브젝트 모음")]
     // 체크포인트 문 오브젝트 -> 문의 최종 크기는 x 0.2 y 0.18(스케일)
@@ -32,7 +28,6 @@ public class GameModeManager : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float doorOpenThreshold = 0.8f;  // 체크포인트 거리의 몇 퍼센트에서 문 나타나기 시작
     private bool hasDoorOpenStarted = false;
-
     // 원래 값 보관용
     private Vector3 doorOriginalScale;
     private Vector3 doorOriginalPosition;
@@ -41,11 +36,10 @@ public class GameModeManager : MonoBehaviour
     private Vector3 doorTargetScale = new Vector3(0.2f, 0.18f, 1f);
 
     private bool isStaminaEmpty = false;
-
     private GuageManager guageManager;
 
     [Header("스테이지 데이터베이스")]
-    public StageDatabase stageDatabase;
+    public ChapterDatabase chapterDatabase;
 
     [Header("아이템 효과 변수")]
     public float SpeedItemPlus = 0;
@@ -58,7 +52,8 @@ public class GameModeManager : MonoBehaviour
     private int touchesPerMeter = 4; // 1미터 전진에 필요한 터치 횟수
     private int touchCount = 0; // 현재 터치 횟수를 기록
 
-    private bool isFeverTime = false; // 피버 타임 상태 플래그
+    private bool _isFeverTime = false;
+    public bool IsFeverTime => _isFeverTime;
 
     private void OnEnable()
     {
@@ -81,9 +76,8 @@ public class GameModeManager : MonoBehaviour
     private void HandleStaminaEmpty() => isStaminaEmpty = true;
     private void HandleStaminaRecovered() => isStaminaEmpty = false;
 
-    // 피버 타임 이벤트 핸들러 함수 추가 
-    private void HandleFeverStart() => isFeverTime = true;
-    private void HandleFeverEnd() => isFeverTime = false;
+    private void HandleFeverStart() => _isFeverTime = true;
+    private void HandleFeverEnd() => _isFeverTime = false;
 
     private void Awake()
     {
@@ -141,14 +135,10 @@ public class GameModeManager : MonoBehaviour
     void Update()
     {
         // 1. 가장 먼저 GameViewManager를 통해 게임이 끝났는지 확인하고, 끝났으면 즉시 함수 종료
-        if (gameViewManager.IsGameFinished)
+        if (gameViewManager.IsGameFinished || isStaminaEmpty)
         {
             return;
         }
-
-        // 스태미나 비어있으면 거리 로직 통째로 스킵
-        if (isStaminaEmpty) 
-            return;
 
         // 거리 증가 로직
         UpdateDistanceBasedState();
@@ -158,10 +148,6 @@ public class GameModeManager : MonoBehaviour
 
     private void UpdateDistanceBasedState()
     {
-        // 스태미나가 비었으면 진행 중단
-        if (isStaminaEmpty)
-            return;
-
         Distance = (int)currentFloatDistance;
         GlobalVariable.Instance.PlayerCurrentDistance = this.Distance;
 
@@ -196,14 +182,19 @@ public class GameModeManager : MonoBehaviour
         if (isStaminaEmpty || gameViewManager.IsGameFinished)
             return;
 
-        touchCount++;
+        // 1. 피버 타임 여부에 따라 점수 추가
+        int scoreToAdd = _isFeverTime ? 2 : 1;
+        ScoreManager.Instance.AddScore(scoreToAdd);
 
-        if (touchCount >= touchesPerMeter)
+        // 2. 피버 타임 여부에 따라 거리 증가
+        touchCount++;
+        int requiredTouches = _isFeverTime ? touchesPerMeter / 2 : touchesPerMeter;
+
+        if (touchCount >= requiredTouches)
         {
             currentFloatDistance++; // 1미터 전진
-            touchCount = 0; // 터치 카운트 초기화
+            touchCount = 0;
 
-            // 거리가 변경되었으므로, UI 업데이트를 요청합니다
             if (gameViewManager != null)
             {
                 int remaining = CheckPointDistance - (int)currentFloatDistance;

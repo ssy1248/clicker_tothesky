@@ -192,12 +192,8 @@ public class GameViewManager : MonoBehaviour
             // 게이지 감소는 GaugeManager에서 관리
             gaugeManager.OnTouch();
 
-            ScoreManager.Instance.AddScore(1); // 점수 추가
-
             // GameModeManager에게 터치 신호를 전달하여 거리를 계산하도록 합니다.
             GameModeManager.Instance.OnPlayerTouch();
-
-            lastclickupdate = 0f;
         }
     }
 
