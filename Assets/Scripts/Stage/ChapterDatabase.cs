@@ -1,6 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+// 어떤 미니게임이 있는지 종류를 정의합니다.
+public enum SubTouchType
+{
+    None,       // 미니게임 없음
+    QuickTap,   // 빠르게 탭하기
+    // ... 나중에 새로운 미니게임 추가 ...
+}
+
 [System.Serializable]
 public struct StageData
 {
@@ -10,6 +18,11 @@ public struct StageData
     public int clearDistance; // 클리어 거리
     public int clearScore; // 클리어 점수
     public int collectScore; // 수집품 획득 점수
+
+    [Header("서브터치 설정")]
+    public SubTouchType miniGameType;       // 이 스테이지에서 사용할 미니게임 종류
+    public int miniGameSpawnCount;      // 스테이지 당 등장 횟수
+    public int miniGameSuccessScore;    // 성공 시 획득 점수
 }
 
 [System.Serializable]
