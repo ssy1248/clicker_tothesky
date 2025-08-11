@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public enum SubTouchType
 {
     None,       // 미니게임 없음
-    QuickTap,   // 빠르게 탭하기
+    QuickTap,   // 빠르게 탭하기 -> 체육
+    Touch,      // 화면 터치하기 -> 국어
+    Memory,     // 기억력 게임 -> 수학
     // ... 나중에 새로운 미니게임 추가 ...
 }
 
