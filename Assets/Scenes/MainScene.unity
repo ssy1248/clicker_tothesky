@@ -2658,8 +2658,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quickTapPrefab: {fileID: 2164568300133231202, guid: 358d042b2483c76429207793990c11e9, type: 3}
-  touchPrefab: {fileID: 0}
-  memoryPrefab: {fileID: 0}
+  touchPrefab: {fileID: 2281799963578164898, guid: cb203cd383d6a834aade51e327d5f0f4, type: 3}
+  memoryPrefab: {fileID: 341147303333952177, guid: e999bff44e254dc45997661831538fd2, type: 3}
   miniGameActivatorPrefab: {fileID: 3709652950486764968, guid: 600604c5394b8cc4293afbe811d52e58, type: 3}
   spawnParent: {fileID: 0}
 --- !u!1 &1500155412
