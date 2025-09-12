@@ -114,6 +114,13 @@ public class GameModeManager : MonoBehaviour
         gameViewManager = GameObject.Find("GameViewManager").GetComponent<GameViewManager>();
 
         guageManager = GameObject.FindFirstObjectByType<GuageManager>();
+
+        //// 현재 스테이지 데이터에서 미니게임 정보를 가져옴
+        //SubTouchType type = currentStageData.miniGameType;
+        //int score = currentStageData.miniGameSuccessScore;
+
+        //// SubTouchManager에게 미니게임 생성을 요청
+        //SubTouchManager.Instance.SpawnMiniGame(type, score);
     }
 
     private void Start()
