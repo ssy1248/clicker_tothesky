@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 74c6b86e98553b6469b2890e42621eeb
+guid: 325bd20157843be438811cb42b7eda96
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5461352971905105855
-    second: WhiteCircleSquare_0
+      213: 6767895404246398448
+    second: BG_Chapter_004_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WhiteCircleSquare_0
+      name: BG_Chapter_004_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 512
+        width: 1022
+        height: 2048
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 140829458606534b0800000000000000
-      internalID: -5461352971905105855
+      spriteID: 0f5fa1723056ced50800000000000000
+      internalID: 6767895404246398448
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      WhiteCircleSquare_0: -5461352971905105855
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
