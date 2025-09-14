@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WhiteCircleOutlineThickSquare_0: -117290926028270353
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

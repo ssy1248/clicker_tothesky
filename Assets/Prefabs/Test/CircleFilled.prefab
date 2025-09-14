@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 5140517627913026519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2386664657209654483}
@@ -65,14 +65,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1144108017847406243, guid: 6a5d6f73ebfe6a24db0a5048ec5ad83a, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -117290926028270353, guid: 7a26984fb8d7b674db16eb2c177f1ac4, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6247052437396225600
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 2386664657209654483}
   - component: {fileID: 825824352617450127}
   - component: {fileID: 5255862965472525612}
-  - component: {fileID: 2151554728322258621}
+  - component: {fileID: 9131220930977223003}
   m_Layer: 5
   m_Name: CircleFilled
   m_TagString: Untagged
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2151554728322258621
+--- !u!114 &9131220930977223003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,12 +161,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6247052437396225600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378db3a0a63c483489979be3c0684669, type: 3}
+  m_Script: {fileID: 11500000, guid: a4dd79bc3cb94b54ab8fd7e9394d2be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineCircle: {fileID: 6554754940894762638}
-  shrinkSpeed: 1
-  initialScale: 3
-  perfectThreshold: 0.1
-  greatThreshold: 0.3
-  goodThreshold: 0.5
+  baseScore: 10
+  circleOutline: {fileID: 7766834149469363667}
+  fillDuration: 1.5
