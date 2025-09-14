@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NodeManager : MonoBehaviour
 {
-    public GameObject Note;
+    public GameObject[] Note;
     public GameObject SpawnPoint;
 
     private RectTransform spawnAreaRect; // SpawnPoint의 RectTransform 컴포넌트
@@ -34,7 +34,8 @@ public class NodeManager : MonoBehaviour
         // 2. 노트 프리팹 생성
         // Instantiate의 두 번째 인자로 부모(spawnAreaRect.transform)를 지정하면
         // 해당 UI 요소의 자식으로 생성되어 스케일과 위치가 올바르게 적용됩니다.
-        GameObject newNote = Instantiate(Note, spawnAreaRect.transform);
+        int randomIndex = Random.Range(0, Note.Length);
+        GameObject newNote = Instantiate(Note[randomIndex], spawnAreaRect.transform);
 
         // 3. 생성된 노트의 위치 설정
         // UI 요소의 위치는 localPosition으로 설정해야 부모를 기준으로 배치됩니다.

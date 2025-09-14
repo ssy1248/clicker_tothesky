@@ -1122,7 +1122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 993898a6bb0c3484eb544038d3f337fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Note: {fileID: 6247052437396225600, guid: c8f59406b8f0cef40811db25d0426188, type: 3}
+  Note:
+  - {fileID: 6247052437396225600, guid: c8f59406b8f0cef40811db25d0426188, type: 3}
+  - {fileID: 6247052437396225600, guid: 03b9aaaa2f364f84494ca5ff9544563a, type: 3}
+  - {fileID: 1967504251459210415, guid: 39397d2561316dc489da03a82084de9c, type: 3}
   SpawnPoint: {fileID: 2005016955}
 --- !u!4 &1958521598
 Transform:
