@@ -31,6 +31,7 @@ public struct StageData
 public class ChapterData
 {
     public string chapterName;
+    public Sprite ChapterBackgroundImage; // 챕터 배경 이미지
     public Sprite chapterImage; // 챕터 이미지
     // 각 챕터가 여러 개의 스테이지 데이터를 가집니다.
     public StageData[] stagesInChapter;

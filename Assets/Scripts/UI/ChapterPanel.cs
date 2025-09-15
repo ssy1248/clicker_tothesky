@@ -8,12 +8,14 @@ public class ChapterPanel : BasePanel
     public override UIPanelType TypeOfPanel => UIPanelType.CHAPTER_PANEL;
 
     [Header("UI 요소 연결")]
+    public Image background; // 배경 이미지
     public Image chapterImage;
-    public Image conditionFilledImage;
+    //public Image conditionFilledImage;
     public Button startButton;
     public Button nextButton;
     public Button prevButton;
     public Button backButton;
+    // 텍스트필드 추가 해서 나중에 챕터 이름들 나오면 챕터 데이터베이스에 이름 추가해서 연결
 
     [Header("챕터 데이터")]
     public ChapterDatabase chapterDatabase; // 챕터 정보가 담긴 데이터베이스
@@ -21,30 +23,17 @@ public class ChapterPanel : BasePanel
     [SerializeField]
     private int currentChapterIndex = 0;
 
-    private void InitializeChapterConditions()
-    {
-        int totalChapters = chapterDatabase.allChapterData.Length;
-        // GlobalVariable의 리스트 크기가 실제 챕터 수와 다르면, 새로 만들고 1로 채움
-        if (GlobalVariable.Instance.chapterConditions.Count != totalChapters)
-        {
-            GlobalVariable.Instance.chapterConditions.Clear();
-            for (int i = 0; i < totalChapters; i++)
-            {
-                GlobalVariable.Instance.chapterConditions.Add(1f); // 기본값은 1 (Full)
-            }
-        }
-    }
-
     private void UpdateUI()
     {
         // 1. 현재 챕터 데이터를 데이터베이스에서 직접 가져옴
         ChapterData currentChapter = chapterDatabase.allChapterData[currentChapterIndex];
 
         // 2. 챕터 이미지를 업데이트
+        background.sprite = currentChapter.ChapterBackgroundImage;
         chapterImage.sprite = currentChapter.chapterImage;
 
         // 3. 컨디션 게이지 업데이트
-        conditionFilledImage.fillAmount = GlobalVariable.Instance.chapterConditions[currentChapterIndex];
+        //conditionFilledImage.fillAmount = GlobalVariable.Instance.chapterConditions[currentChapterIndex];
     }
 
     public void OnClickNext()
@@ -96,20 +85,8 @@ public class ChapterPanel : BasePanel
         // 이번 세션에서 아직 이 챕터를 시작한 적이 없을 때만 컨디션을 감소시킵니다.
         if (GlobalVariable.Instance.lastStartedChapter != currentChapterIndex)
         {
-            // 1. 현재 챕터를 "이번에 시작한 챕터"로 기록합니다.
+            // 현재 챕터를 "이번에 시작한 챕터"로 기록합니다.
             GlobalVariable.Instance.lastStartedChapter = currentChapterIndex;
-
-            // 2. 현재 챕터의 컨디션 값을 0.2 깎습니다.
-            GlobalVariable.Instance.chapterConditions[currentChapterIndex] -= 0.2f;
-
-            // 3. 다른 모든 챕터의 컨디션 값은 1로 초기화합니다.
-            for (int i = 0; i < GlobalVariable.Instance.chapterConditions.Count; i++)
-            {
-                if (i != currentChapterIndex)
-                {
-                    GlobalVariable.Instance.chapterConditions[i] = 1f;
-                }
-            }
         }
 
         // 현재 패널 닫고 StagePanel 열기
@@ -128,8 +105,6 @@ public class ChapterPanel : BasePanel
         base.OnEnter(datas);
         this.gameObject.SetActive(true);
 
-        InitializeChapterConditions();
-
         // GlobalVariable에서 "도전 가능한 최고 스테이지"의 통합 인덱스를 가져옵니다.
         int latestUnlockedFlatIndex = GlobalVariable.Instance.PlayerClearRound;
 
@@ -146,6 +121,12 @@ public class ChapterPanel : BasePanel
     {
         base.OnClose();
         this.gameObject.SetActive(false);
+    }
+
+    public void OnClickSettingBtn()
+    {
+        OnClose();
+        // 설정 패널 열기
     }
 
     public void OnClickMemoryPanel()
