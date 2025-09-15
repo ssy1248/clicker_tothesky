@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allChapterData:
   - chapterName: "1\uD559\uB144 1\uD559\uAE30"
-    chapterImage: {fileID: 21300000, guid: d9b663b58125e104a8d772c8e089b26b, type: 3}
+    ChapterBackgroundImage: {fileID: -4864288188723823206, guid: 94e9645a1ffe56949876d5a24ed84c81, type: 3}
+    chapterImage: {fileID: 21300000, guid: 5b3875972ec859842b079397f80bcad9, type: 3}
     stagesInChapter:
     - stageName: "1\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
@@ -71,7 +72,8 @@ MonoBehaviour:
       miniGameSpawnCount: 0
       miniGameSuccessScore: 0
   - chapterName: "1\uD559\uB144 2\uD559\uAE30"
-    chapterImage: {fileID: 21300000, guid: a8ab0fab8bd5e32468823fb1dfa05d61, type: 3}
+    ChapterBackgroundImage: {fileID: -5341241873409092145, guid: 6728fb52cdd034e4a8c82c6c5a89ccd9, type: 3}
+    chapterImage: {fileID: 21300000, guid: 051305c38e975804587bb5f6ef6a4b9e, type: 3}
     stagesInChapter:
     - stageName: "7\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
@@ -128,7 +130,8 @@ MonoBehaviour:
       miniGameSpawnCount: 0
       miniGameSuccessScore: 0
   - chapterName: "2\uD559\uB144 1\uD559\uAE30"
-    chapterImage: {fileID: 21300000, guid: d1d16cde2fe8f494880e07d914e3da64, type: 3}
+    ChapterBackgroundImage: {fileID: 3902310088776846061, guid: af97e673be15c5848bd4faee537ded12, type: 3}
+    chapterImage: {fileID: 21300000, guid: 220d20fc8e8baf0418c16d3e0e9428ec, type: 3}
     stagesInChapter:
     - stageName: "1\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
@@ -185,7 +188,8 @@ MonoBehaviour:
       miniGameSpawnCount: 0
       miniGameSuccessScore: 0
   - chapterName: "2\uD559\uB144 2\uD559\uAE30"
-    chapterImage: {fileID: 21300000, guid: ff13e5a6c4744934e90a93e11f87e20c, type: 3}
+    ChapterBackgroundImage: {fileID: 6767895404246398448, guid: 325bd20157843be438811cb42b7eda96, type: 3}
+    chapterImage: {fileID: 21300000, guid: 148e18611f256ef4da89ddd680f66390, type: 3}
     stagesInChapter:
     - stageName: "7\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
@@ -242,7 +246,8 @@ MonoBehaviour:
       miniGameSpawnCount: 0
       miniGameSuccessScore: 0
   - chapterName: "3\uD559\uB144 1\uD559\uAE30"
-    chapterImage: {fileID: 21300000, guid: a576afc79c2196442a0c701678a4b0ca, type: 3}
+    ChapterBackgroundImage: {fileID: 930580150135862759, guid: 2239291bedcadd84b99d4b4adccd53bd, type: 3}
+    chapterImage: {fileID: 21300000, guid: 773b4949cad43c544b845f14cd51da35, type: 3}
     stagesInChapter:
     - stageName: "1\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
@@ -299,7 +304,8 @@ MonoBehaviour:
       miniGameSpawnCount: 0
       miniGameSuccessScore: 0
   - chapterName: "3\uD559\uB144 2\uD559\uAE30"
-    chapterImage: {fileID: 21300000, guid: a6724f43a311c374fa64bc1d26cee96d, type: 3}
+    ChapterBackgroundImage: {fileID: -7290939300569512886, guid: a9e8ac5da122cfb469ca5795ac6812fd, type: 3}
+    chapterImage: {fileID: 21300000, guid: 9c2f95fd5e485324580cfa2e68a402d9, type: 3}
     stagesInChapter:
     - stageName: "7\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
