@@ -9,10 +9,20 @@ public class StageSelectPanel : BasePanel
     {
         base.OnEnter(datas);
         this.gameObject.SetActive(true);
+
+        if (DragPanel.Instance != null)
+        {
+            DragPanel.Instance.ActivateDragStagePanel(this);
+        }
     }
 
     public override void OnClose()
     {
+        if (DragPanel.Instance != null)
+        {
+            DragPanel.Instance.DeactivateDragStagePanel();
+        }
+
         base.OnClose();
         this.gameObject.SetActive(false);
     }
@@ -21,6 +31,21 @@ public class StageSelectPanel : BasePanel
     {
         OnClose();
         UIManager.Instance.PushPanel(UIPanelType.MEMORY_PANEL);
+    }
+
+    public void OnClickMarketButton()
+    {
+        OnClose();
+    }
+
+    public void OnClickSettingButton()
+    {
+        GameObject.Find("PopUpUIManager").GetComponent<PopUpUIManager>().SettingPopUpUIShow();
+    }
+
+    public void OnClickInventoryButton()
+    {
+
     }
 }
 

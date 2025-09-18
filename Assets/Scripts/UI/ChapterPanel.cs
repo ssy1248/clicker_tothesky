@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ChapterPanel : BasePanel
@@ -78,7 +79,7 @@ public class ChapterPanel : BasePanel
         if (requiredStages > GlobalVariable.Instance.PlayerClearRound)
         {
             Debug.Log("이전 챕터를 클리어해주세요");
-            // 여기에 "잠김" 팝업 UI를 띄우는 로직을 추가할 수 있습니다.
+            GameObject.Find("PopUpUIManager").GetComponent<PopUpUIManager>().AlertPopUpUIShow();
             return;
         }
 
@@ -105,6 +106,11 @@ public class ChapterPanel : BasePanel
         base.OnEnter(datas);
         this.gameObject.SetActive(true);
 
+        if (DragPanel.Instance != null)
+        {
+            DragPanel.Instance.ActivateDragChapterPanel(this);
+        }
+
         // GlobalVariable에서 "도전 가능한 최고 스테이지"의 통합 인덱스를 가져옵니다.
         int latestUnlockedFlatIndex = GlobalVariable.Instance.PlayerClearRound;
 
@@ -119,14 +125,19 @@ public class ChapterPanel : BasePanel
 
     public override void OnClose()
     {
+        if (DragPanel.Instance != null)
+        {
+            DragPanel.Instance.DeactivateDragChapterPanel();
+        }
+
         base.OnClose();
         this.gameObject.SetActive(false);
     }
 
     public void OnClickSettingBtn()
     {
-        OnClose();
         // 설정 패널 열기
+        GameObject.Find("PopUpUIManager").GetComponent<PopUpUIManager>().SettingPopUpUIShow();
     }
 
     public void OnClickMemoryPanel()
