@@ -31,9 +31,19 @@ public class SEManager : MonoBehaviour
     Dictionary<string, SoundEffect> se_map;
 
     [Range(0f, 1f)]
-    public float seVolume = 1f; // 효과음 전체 볼륨
+    [SerializeField] 
+    private float masterVolume = 1f; // 전체 음량
     [Range(0f, 1f)]
-    public float bgmVolume = 1f; // 배경음 전체 볼륨
+    [SerializeField]
+    private float seVolume = 1f; // 효과음 전체 볼륨
+    [Range(0f, 1f)]
+    [SerializeField]
+    private float bgmVolume = 1f; // 배경음 전체 볼륨
+
+    // PlayerPrefs 키
+    const string KEY_MASTER = "vol_master";
+    const string KEY_SE = "vol_se";
+    const string KEY_BGM = "vol_bgm";
 
     void Awake ()
     {
@@ -54,6 +64,12 @@ public class SEManager : MonoBehaviour
             {
                 se_map[e.key] = e;
             }
+
+            // 저장된 볼륨 불러오기
+            LoadVolumes();
+            // 혹시 에디터에서 변경한 경우 대비 일괄 적용
+            UpdateAllPlayingSoundsVolume();
+
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -69,80 +85,64 @@ public class SEManager : MonoBehaviour
 
     public void PlaySE(string key)
     {
-        if (se_map.ContainsKey(key) == false)
-        {
-            Debug.LogError(key + " SE가 SEManager에 없습니다.");
+        if (!se_map.TryGetValue(key, out var sfx)) { 
+            Debug.LogError($"{key} SE가 없습니다."); 
+            return; 
         }
-        else
-        {
-            // 재생 메소드에 SoundEffect 객체 전체를 전달합니다.
-            PlaySound(se_map[key]);
-        }
+
+        PlaySound(sfx);
     }
 
     public void LoopPlaySE(string key)
     {
-        if (se_map.ContainsKey(key) == false)
-        {
-            Debug.LogError(key + " SE가 SEManager에 없습니다.");
+        if (!se_map.TryGetValue(key, out var sfx)) { 
+            Debug.LogError($"{key} SE가 없습니다.");
+            return; 
         }
-        else
-        {
-            // 재생 메소드에 SoundEffect 객체 전체를 전달합니다.
-            LoopPlaySound(se_map[key]);
-        }
+
+        LoopPlaySound(sfx);
     }
 
     public void StopSE(string key)
     {
-        if (!se_map.ContainsKey(key))
-            Debug.LogError($"{key} SE가 없습니다");
-        else
-            // 사운드를 멈출 때는 클립 정보만 있어도 충분합니다.
-            StopSound(se_map[key].clip);
+        if (!se_map.TryGetValue(key, out var sfx)) { 
+            Debug.LogError($"{key} SE가 없습니다."); 
+            return; 
+        }
+
+        StopSound(sfx.clip);
     }
 
     // 3: PlaySound가 SoundEffect 객체를 인자로 받도록 수정
     void PlaySound(SoundEffect sfx)
     {
-        if (sfx == null || sfx.clip == null)
-        {
-            // Key가 유효해도 Clip이 없으면 경고를 남기고 넘어갑니다.
-            if (sfx != null) Debug.LogWarning(sfx.key + " 키의 오디오 클립이 비어있습니다.");
-            return; // 여기서 함수 실행을 중단
+        if (sfx == null || sfx.clip == null) { 
+            if (sfx != null) 
+                Debug.LogWarning($"{sfx.key} 클립 없음."); 
+            return; 
         }
 
-        var AS = GetOrCreateSource(false);
-        AS.clip = sfx.clip;
-        AS.loop = false;
-
-        // 사운드 타입에 맞는 카테고리 볼륨을 가져옵니다.
-        float categoryVolume = (sfx.soundType == SoundType.BGM) ? bgmVolume : seVolume;
-        // 최종 볼륨 = 카테고리 볼륨 * 개별 사운드 볼륨
-        AS.volume = categoryVolume * sfx.volume;
-
-        AS.Play();
+        var src = GetOrCreateSource(false);
+        src.clip = sfx.clip;
+        src.loop = false;
+        src.volume = CalculateEffectiveVolume(sfx);
+        src.Play();
     }
 
     // 4: LoopPlaySound도 SoundEffect 객체를 인자로 받도록 수정
     void LoopPlaySound(SoundEffect sfx)
     {
-        if (sfx == null || sfx.clip == null)
-        {
-            if (sfx != null) Debug.LogWarning(sfx.key + " 키의 오디오 클립이 비어있습니다. (루프)");
-            return; // 여기서 함수 실행을 중단
+        if (sfx == null || sfx.clip == null) { 
+            if (sfx != null) 
+                Debug.LogWarning($"{sfx.key} 클립 없음(루프).");
+            return; 
         }
 
-
-        var AS = GetOrCreateSource(true);
-        AS.clip = sfx.clip;
-        AS.loop = true;
-
-        // ▼▼▼ 볼륨 계산 로직 수정 ▼▼▼
-        float categoryVolume = (sfx.soundType == SoundType.BGM) ? bgmVolume : seVolume;
-        AS.volume = categoryVolume * sfx.volume;
-
-        AS.Play();
+        var src = GetOrCreateSource(true);
+        src.clip = sfx.clip;
+        src.loop = true;
+        src.volume = CalculateEffectiveVolume(sfx);
+        src.Play();
     }
 
     void StopSound(AudioClip clip)
@@ -158,61 +158,78 @@ public class SEManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 효과음(SE)의 전체 볼륨을 조절합니다. 옵션 슬라이더 등에서 호출합니다.
-    /// </summary>
-    public void SetSEVolume(float volume)
+    // 실효 볼륨 계산: Master × Category × 개별클립
+    float CalculateEffectiveVolume(SoundEffect sfx)
     {
-        seVolume = Mathf.Clamp01(volume);
-        UpdateAllPlayingSoundsVolume();
+        float category = (sfx.soundType == SoundType.BGM) ? bgmVolume : seVolume;
+        return masterVolume * category * sfx.volume;
     }
 
-    /// <summary>
-    /// 배경음(BGM)의 전체 볼륨을 조절합니다. 옵션 슬라이더 등에서 호출합니다.
-    /// </summary>
-    public void SetBGMVolume(float volume)
-    {
-        bgmVolume = Mathf.Clamp01(volume);
-        UpdateAllPlayingSoundsVolume();
-    }
-
-    // 현재 재생중인 모든 사운드의 볼륨을 새 설정에 맞게 업데이트하는 헬퍼 함수
-    private void UpdateAllPlayingSoundsVolume()
-    {
-        foreach (var AS in audioPool)
-        {
-            if (AS.isPlaying)
-            {
-                SoundEffect playingSfx = FindSfxByClip(AS.clip);
-                if (playingSfx != null)
-                {
-                    // 타입에 맞는 카테고리 볼륨을 다시 적용
-                    float categoryVolume = (playingSfx.soundType == SoundType.BGM) ? bgmVolume : seVolume;
-                    AS.volume = categoryVolume * playingSfx.volume;
-                }
-            }
-        }
-    }
-
-    // 재생 중인 클립으로 원본 SoundEffect를 찾기 위한 헬퍼 함수
-    private SoundEffect FindSfxByClip(AudioClip clip)
-    {
-        // Linq를 사용해 간결하게 검색합니다.
-        return effectList.FirstOrDefault(sfx => sfx.clip == clip);
-    }
-
-    // 이 헬퍼 함수는 변경되지 않았습니다.
-    AudioSource GetOrCreateSource(bool shouldLoop)
+    void UpdateAllPlayingSoundsVolume()
     {
         foreach (var src in audioPool)
         {
-            if (!src.isPlaying)
-                return src;
-        }
+            if (!src.isPlaying || src.clip == null) 
+                continue;
 
+            var sfx = FindSfxByClip(src.clip);
+
+            if (sfx != null) 
+                src.volume = CalculateEffectiveVolume(sfx);
+        }
+    }
+
+    SoundEffect FindSfxByClip(AudioClip clip)
+        => effectList.FirstOrDefault(sfx => sfx.clip == clip);
+
+    AudioSource GetOrCreateSource(bool shouldLoop)
+    {
+        foreach (var src in audioPool) 
+            if (!src.isPlaying) 
+                return src;
         var extra = gameObject.AddComponent<AudioSource>();
         extra.playOnAwake = false;
         audioPool.Add(extra);
         return extra;
     }
+
+    /* ---------- 저장/불러오기 ---------- */
+    void SaveVolumes()
+    {
+        PlayerPrefs.SetFloat(KEY_MASTER, masterVolume);
+        PlayerPrefs.SetFloat(KEY_SE, seVolume);
+        PlayerPrefs.SetFloat(KEY_BGM, bgmVolume);
+        PlayerPrefs.Save();
+    }
+
+    void LoadVolumes()
+    {
+        if (PlayerPrefs.HasKey(KEY_MASTER)) masterVolume = PlayerPrefs.GetFloat(KEY_MASTER, 1f);
+        if (PlayerPrefs.HasKey(KEY_SE)) seVolume = PlayerPrefs.GetFloat(KEY_SE, 1f);
+        if (PlayerPrefs.HasKey(KEY_BGM)) bgmVolume = PlayerPrefs.GetFloat(KEY_BGM, 1f);
+    }
+
+    public void SetMasterVolume(float v)
+    {
+        masterVolume = Mathf.Clamp01(v);
+        SaveVolumes();
+        UpdateAllPlayingSoundsVolume();
+    }
+    public void SetSEVolume(float v)
+    {
+        seVolume = Mathf.Clamp01(v);
+        SaveVolumes();
+        UpdateAllPlayingSoundsVolume();
+    }
+    public void SetBGMVolume(float v)
+    {
+        bgmVolume = Mathf.Clamp01(v);
+        SaveVolumes();
+        UpdateAllPlayingSoundsVolume();
+    }
+
+    // UI 초기화용 Getter
+    public float GetMasterVolume() => masterVolume;
+    public float GetSEVolume() => seVolume;
+    public float GetBGMVolume() => bgmVolume;
 }
