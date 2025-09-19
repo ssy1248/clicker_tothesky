@@ -105,11 +105,7 @@ public class ChapterPanel : BasePanel
     {
         base.OnEnter(datas);
         this.gameObject.SetActive(true);
-
-        if (DragPanel.Instance != null)
-        {
-            DragPanel.Instance.ActivateDragChapterPanel(this);
-        }
+        DragPanel.Instance?.ActivateDragChapterPanel(this);
 
         // GlobalVariable에서 "도전 가능한 최고 스테이지"의 통합 인덱스를 가져옵니다.
         int latestUnlockedFlatIndex = GlobalVariable.Instance.PlayerClearRound;
@@ -123,13 +119,21 @@ public class ChapterPanel : BasePanel
         UpdateUI();
     }
 
+    public override void OnResume()
+    {
+        base.OnResume();
+        DragPanel.Instance?.ActivateDragChapterPanel(this);
+    }
+
+    public override void OnPause()
+    {
+        DragPanel.Instance?.DeactivateDragChapterPanel();
+        base.OnPause();
+    }
+
     public override void OnClose()
     {
-        if (DragPanel.Instance != null)
-        {
-            DragPanel.Instance.DeactivateDragChapterPanel();
-        }
-
+        DragPanel.Instance?.DeactivateDragChapterPanel();
         base.OnClose();
         this.gameObject.SetActive(false);
     }

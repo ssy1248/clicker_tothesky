@@ -9,6 +9,7 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     [Header("스와이프 설정")]
     public float minSwipeDistance = 100f;
 
+    [SerializeField]
     private ChapterPanel currentTargetPanel;
     [SerializeField]
     private StageSelectPanel currentStagePanel;
@@ -46,12 +47,14 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
         currentStagePanel = null;   // 서로 배타적으로
         EnsureStageManager(null);
         SetRaycast(true);
+        Debug.Log("[DragPanel] Activate Chapter");
     }
 
     public void DeactivateDragChapterPanel()
     {
         currentTargetPanel = null;
         MaybeDisableRaycast();
+        Debug.Log("[DragPanel] Deactivate Chapter");
     }
 
     public void ActivateDragStagePanel(StageSelectPanel targetPanel)
@@ -61,12 +64,14 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
         // 매니저 참조 확보(인스펙터에서 넣어도 되고, 부모/씬에서 찾아도 됨)
         EnsureStageManager(targetPanel);
         SetRaycast(true);
+        Debug.Log("[DragPanel] Activate Stage");
     }
 
     public void DeactivateDragStagePanel()
     {
         currentStagePanel = null;
         MaybeDisableRaycast();
+        Debug.Log("[DragPanel] Deactivate Stage");
     }
 
     private void EnsureStageManager(StageSelectPanel fromPanel)
@@ -124,9 +129,9 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
         if (currentTargetPanel != null)
         {
             if (verticalDistance > 0f) 
-                currentTargetPanel.OnClickPrev();
-            else 
                 currentTargetPanel.OnClickNext();
+            else 
+                currentTargetPanel.OnClickPrev();
             return;
         }
 
@@ -137,12 +142,12 @@ public class DragPanel : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
             if (verticalDistance > 0f)
             {
                 Debug.Log("이전 스테이지 실행");
-                stageManager.ShowPreviousStage();
+                stageManager.ShowNextStage();
             }
             else
             {
                 Debug.Log("다음 스테이지 실행");
-                stageManager.ShowNextStage();
+                stageManager.ShowPreviousStage();
             }
         }
         else

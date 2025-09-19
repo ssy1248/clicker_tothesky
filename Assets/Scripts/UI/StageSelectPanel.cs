@@ -9,20 +9,24 @@ public class StageSelectPanel : BasePanel
     {
         base.OnEnter(datas);
         this.gameObject.SetActive(true);
+        DragPanel.Instance?.ActivateDragStagePanel(this);
+    }
 
-        if (DragPanel.Instance != null)
-        {
-            DragPanel.Instance.ActivateDragStagePanel(this);
-        }
+    public override void OnResume()
+    {
+        base.OnResume();
+        DragPanel.Instance?.ActivateDragStagePanel(this); // (선택) 스테이지로 되돌아올 때도 안전하게
+    }
+
+    public override void OnPause()
+    {
+        DragPanel.Instance?.DeactivateDragStagePanel();
+        base.OnPause();
     }
 
     public override void OnClose()
     {
-        if (DragPanel.Instance != null)
-        {
-            DragPanel.Instance.DeactivateDragStagePanel();
-        }
-
+        DragPanel.Instance?.DeactivateDragStagePanel();
         base.OnClose();
         this.gameObject.SetActive(false);
     }
