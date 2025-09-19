@@ -170,6 +170,12 @@ public class LogoPanel : BasePanel
         }
     }
 
+    public void OnClickSetting()
+    {
+        // 설정 패널 열기
+        GameObject.Find("PopUpUIManager").GetComponent<PopUpUIManager>().SettingPopUpUIShow();
+    }
+
     public void OnClickCredit()
     {
         OnClose();
