@@ -27,6 +27,10 @@
 		{
 			"panelTypeString": "CHAPTER_PANEL",
 			"path": "UI/ChapterPanel"
+		},
+		{
+			"panelTypeString": "MARKET_PANEL",
+			"path": "UI/MarketPanel"
 		}
 
 	]

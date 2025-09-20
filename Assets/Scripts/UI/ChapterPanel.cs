@@ -79,11 +79,10 @@ public class ChapterPanel : BasePanel
         if (requiredStages > GlobalVariable.Instance.PlayerClearRound)
         {
             Debug.Log("이전 챕터를 클리어해주세요");
-            GameObject.Find("PopUpUIManager").GetComponent<PopUpUIManager>().AlertPopUpUIShow();
+            PopUpUIManager.Instance.AlertPopUpUIShow("이전 챕터를 클리어해주세요", 36);
             return;
         }
 
-        // 이번 세션에서 아직 이 챕터를 시작한 적이 없을 때만 컨디션을 감소시킵니다.
         if (GlobalVariable.Instance.lastStartedChapter != currentChapterIndex)
         {
             // 현재 챕터를 "이번에 시작한 챕터"로 기록합니다.

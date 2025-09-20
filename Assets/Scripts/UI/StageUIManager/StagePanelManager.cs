@@ -17,17 +17,42 @@ public class StagePanelManager : MonoBehaviour
     private int currentChapterIndex = 0;
     private int currentStageIndex = 0;
 
+    // 챕터 패널에서 넘겨온 챕터를 임시로 저장
+    private int? _chapterOverride;
+
     void Start()
     {
-        // 1. GlobalVariable에서 "도전 가능한 최고 스테이지"의 통합 인덱스를 가져옵니다.
-        int latestUnlockedFlatIndex = GlobalVariable.Instance.PlayerClearRound;
+        ResetToProgress();
+    }
 
-        // 2. 통합 인덱스를 (챕터, 스테이지) 인덱스로 변환합니다.
-        var unlockedIndices = GetChapterStageFromFlatIndex(latestUnlockedFlatIndex);
-        currentChapterIndex = unlockedIndices.chapter;
-        currentStageIndex = unlockedIndices.stage;
+    void OnEnable()
+    {
+        // 패널이 다시 활성화될 때마다 반드시 리셋
+        ResetToProgress(_chapterOverride);
+        _chapterOverride = null; // 한 번 쓰고 비움
+    }
 
-        // 4. UI를 업데이트합니다.
+    public void SetOverrideChapterFromCaller(int chapterIndex)
+    {
+        _chapterOverride = Mathf.Clamp(chapterIndex, 0, chapterDatabase.allChapterData.Length - 1);
+    }
+
+    public void ResetToProgress(int? chapterOverride = null)
+    {
+        // 1) 기본은 유저 진행도 기준
+        int latestFlat = GlobalVariable.Instance.PlayerClearRound;
+        var (chapter, stage) = GetChapterStageFromFlatIndex(latestFlat);
+
+        // 2) 챕터 패널이 넘긴 챕터가 있으면 그 챕터의 0번 스테이지로 강제 설정
+        if (chapterOverride.HasValue)
+        {
+            chapter = chapterOverride.Value;
+            stage = 0;
+        }
+
+        currentChapterIndex = chapter;
+        currentStageIndex = stage;
+
         UpdateStageUI();
     }
 
@@ -113,7 +138,7 @@ public class StagePanelManager : MonoBehaviour
         if (selectedFlatIndex > GlobalVariable.Instance.PlayerClearRound)
         {
             Debug.Log("이 스테이지는 아직 잠겨있습니다!");
-            PopUPUI.Instance.popUpUI.SetActive(true);
+            PopUpUIManager.Instance.AlertPopUpUIShow("이전 스테이지를 클리어해주세요", 34);
             return;
         }
 
@@ -133,21 +158,6 @@ public class StagePanelManager : MonoBehaviour
         }
         flatIndex += stage;
         return flatIndex;
-    }
-
-    public void ReturnMenu()
-    {
-        GameObject chapterPanel = GameObject.Find("ChapterPanel(Clone)");
-
-        if (chapterPanel != null) // stagePanel을 찾았다면 (null이 아니라면)
-        {
-            // 해당 오브젝트를 활성화합니다.
-            chapterPanel.SetActive(true);
-        }
-        else
-        {
-            UIManager.Instance.PushPanel(UIPanelType.CHAPTER_PANEL);
-        }
     }
 }
 
