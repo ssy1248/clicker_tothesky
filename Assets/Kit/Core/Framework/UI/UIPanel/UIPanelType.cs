@@ -9,6 +9,7 @@ public enum UIPanelType
     CHAPTER_PANEL,
     STAGE_PANEL,
     MEMORY_PANEL,
+    MARKET_PANEL,
 }
 
 public enum UIPanelStyleType

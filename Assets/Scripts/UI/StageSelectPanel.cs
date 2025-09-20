@@ -15,7 +15,9 @@ public class StageSelectPanel : BasePanel
     public override void OnResume()
     {
         base.OnResume();
-        DragPanel.Instance?.ActivateDragStagePanel(this); // (선택) 스테이지로 되돌아올 때도 안전하게
+        DragPanel.Instance?.ActivateDragStagePanel(this);
+
+        FindObjectOfType<StagePanelManager>(true)?.ResetToProgress();
     }
 
     public override void OnPause()
@@ -40,6 +42,7 @@ public class StageSelectPanel : BasePanel
     public void OnClickMarketButton()
     {
         OnClose();
+        UIManager.Instance.PushPanel(UIPanelType.MARKET_PANEL);
     }
 
     public void OnClickSettingButton()
@@ -49,7 +52,29 @@ public class StageSelectPanel : BasePanel
 
     public void OnClickInventoryButton()
     {
+        // if -> 현재 스테이지 카운트, 아이템 카운트 이걸 비교해서 만약 아이템이랑 스테이지가 같으면 바로 게임시작 / 아니면 리셋
+        var inv = FindObjectOfType<InventoryPanel>(true); 
+        if (inv != null)
+        {
+            inv.gameObject.SetActive(true);
+            return;
+        }
+    }
 
+    public void ReturnMenu()
+    {
+        OnClose();
+        GameObject chapterPanel = GameObject.Find("ChapterPanel(Clone)");
+
+        if (chapterPanel != null) // stagePanel을 찾았다면 (null이 아니라면)
+        {
+            // 해당 오브젝트를 활성화합니다.
+            chapterPanel.SetActive(true);
+        }
+        else
+        {
+            UIManager.Instance.PushPanel(UIPanelType.CHAPTER_PANEL);
+        }
     }
 }
 

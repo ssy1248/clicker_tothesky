@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PopUpUIManager : MonoBehaviour
@@ -5,6 +6,7 @@ public class PopUpUIManager : MonoBehaviour
     public static PopUpUIManager Instance { get; private set; }
 
     public GameObject AlertPopUpUI;
+    public TMP_Text AlertPopUpText;
     public GameObject SettingPopUpUI;
 
     private void Awake()
@@ -27,8 +29,10 @@ public class PopUpUIManager : MonoBehaviour
         SettingPopUpUI.SetActive(false);
     }
 
-    public void AlertPopUpUIShow()
+    public void AlertPopUpUIShow(string message, int size)
     {
+        AlertPopUpText.text = message;
+        AlertPopUpText.fontSize = size;
         AlertPopUpUI.SetActive(true);
     }
 
