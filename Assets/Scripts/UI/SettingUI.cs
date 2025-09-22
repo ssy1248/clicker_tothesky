@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class SettingUI : MonoBehaviour
 {
+    [SerializeField] private GameObject AlertPanel;
+
+    [Header("사운드 관련 UI")]
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider seSlider;
@@ -10,7 +13,8 @@ public class SettingUI : MonoBehaviour
     private void OnEnable()
     {
         // 초기값 세팅 (이때 이벤트 중복 호출 방지)
-        if (SEManager.instance == null) return;
+        if (SEManager.instance == null) 
+            return;
 
         masterSlider.SetValueWithoutNotify(SEManager.instance.GetMasterVolume());
         bgmSlider.SetValueWithoutNotify(SEManager.instance.GetBGMVolume());
@@ -23,10 +27,16 @@ public class SettingUI : MonoBehaviour
 
     private void OnDisable()
     {
-        if (SEManager.instance == null) return;
+        if (SEManager.instance == null) 
+            return;
 
         masterSlider.onValueChanged.RemoveListener(SEManager.instance.SetMasterVolume);
         bgmSlider.onValueChanged.RemoveListener(SEManager.instance.SetBGMVolume);
         seSlider.onValueChanged.RemoveListener(SEManager.instance.SetSEVolume);
+    }
+
+    public void OnClickUserReset()
+    {
+        AlertPanel.SetActive(true);
     }
 }

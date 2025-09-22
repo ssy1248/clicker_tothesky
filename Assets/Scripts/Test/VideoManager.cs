@@ -17,6 +17,16 @@ public class VideoManager : MonoBehaviour
     public void Initialize(LogoPanel logoPanel)
     {
         this.logoPanelController = logoPanel;
+
+        // 인트로 시작: 게임 오디오는 뮤트
+        SEManager.instance?.BeginIntroMute();
+
+        // 영상이 자연 종료되면 복원 후 다음 단계로
+        videoPlayer.loopPointReached += _ =>
+        {
+            SEManager.instance?.EndIntroMute();
+            logoPanelController?.FinishIntroSequence();
+        };
     }
 
     /// <summary>
@@ -36,10 +46,8 @@ public class VideoManager : MonoBehaviour
     {
         // 팝업을 닫고, LogoPanel에게 영상 종료 시퀀스를 실행하라고 요청
         popUpUI.SetActive(false);
-        if (logoPanelController != null)
-        {
-            logoPanelController.FinishIntroSequence();
-        }
+        SEManager.instance?.EndIntroMute(); // 복원
+        logoPanelController?.FinishIntroSequence();
     }
 
     /// <summary>

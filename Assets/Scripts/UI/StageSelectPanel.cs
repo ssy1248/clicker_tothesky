@@ -61,6 +61,16 @@ public class StageSelectPanel : BasePanel
         }
     }
 
+    public void OnClickBuffButton()
+    {
+        var buff = FindObjectOfType<BuffPanel>(true);
+        if (buff != null)
+        {
+            buff.gameObject.SetActive(true);
+            return;
+        }
+    }
+
     public void ReturnMenu()
     {
         OnClose();

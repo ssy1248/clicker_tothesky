@@ -7,8 +7,12 @@ public class SelectedItemList : MonoBehaviour
     // Singleton 패턴으로 어디서든 쉽게 접근 가능하게 함
     public static SelectedItemList Instance { get; private set; }
 
+    [SerializeField] private ItemDatabase itemDb;
+
     // 선택된 아이템들의 데이터를 담을 리스트
     public List<ItemScriptableObject> selectedItems = new List<ItemScriptableObject>();
+
+    public IEnumerable<int> GetSelectedItemIds() => selectedItems.ConvertAll(x => x.ItemId);
 
     private void Awake()
     {
@@ -23,6 +27,24 @@ public class SelectedItemList : MonoBehaviour
         {
             // 이미 인스턴스가 존재하면 새로 생긴 것은 파괴
             Destroy(gameObject);
+        }
+    }
+
+    public void LoadFromIds(IEnumerable<int> ids)
+    {
+        selectedItems.Clear();
+        if (itemDb == null) { 
+            Debug.LogError("ItemDatabase 미할당"); 
+            return; 
+        }
+
+        foreach (var id in ids)
+        {
+            var so = itemDb.GetById(id);
+            if (so != null) 
+                selectedItems.Add(so);
+            else 
+                Debug.LogWarning($"ItemId {id} 를 DB에서 찾지 못함");
         }
     }
 
