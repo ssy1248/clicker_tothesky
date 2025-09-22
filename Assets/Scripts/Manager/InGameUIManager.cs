@@ -26,8 +26,6 @@ public class InGameUIManager : MonoBehaviour
         if (inGameUI == null)
             inGameUI = GameObject.Find("InGameUI");
 
-        bool fromShop = GlobalVariable.Instance.ShopCount > 0;
-
         inGameUI.SetActive(true);
     }
 }

@@ -1,15 +1,19 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class BackGroundDismiss : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private GameObject alertRoot;
+    [SerializeField] private GameObject Root;
+    [SerializeField] private UnityEvent onBackgroundClick; // 선택(콜백)
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (alertRoot != null)
+        if (Root != null)
         {
-            alertRoot.SetActive(false);
+            Root.SetActive(false);
         }
+
+        onBackgroundClick?.Invoke();
     }
 }

@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// ¼öÁıÇ° °³º° Á¤º¸ Å¬·¡½º
+// ìˆ˜ì§‘í’ˆ ê°œë³„ ì •ë³´ í´ë˜ìŠ¤
 [System.Serializable]
 public class CollectedItemInfo
 {
@@ -15,48 +15,60 @@ public class CollectedItemInfo
 public class GameData
 {
     public int playerClearRound;
+
+    // ì§„í–‰ ì¤‘ì¸ ì„ íƒ
+    public int savedStageFlatIndex;          // ì§„í–‰ ì¤‘ì´ë˜ (chapter, stage)ì˜ í†µí•© ì¸ë±ìŠ¤
+    public bool hasPendingRun;               // ì§„í–‰ ì¤‘ í”Œë˜ê·¸
+
+    // ì¸ë²¤í† ë¦¬ ì„ íƒ(ì•„ì´í…œ) â€“ ScriptableObjectë¥¼ ì§ì ‘ ì €ì¥í•˜ì§€ ë§ê³  IDë§Œ ì €ì¥
+    public List<int> selectedItemIds = new();
+
     public List<CollectedItemInfo> collectedItems;
     public bool hasStartedGameBefore;
-    // ¿©±â¿¡ °ÔÀÓ Á¾·á ÈÄ¿¡µµ ÀúÀåÇÏ°í ½ÍÀº ´Ù¸¥ º¯¼öµéÀ» Ãß°¡ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+    // ì—¬ê¸°ì— ê²Œì„ ì¢…ë£Œ í›„ì—ë„ ì €ì¥í•˜ê³  ì‹¶ì€ ë‹¤ë¥¸ ë³€ìˆ˜ë“¤ì„ ì¶”ê°€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 }
 
 public class GlobalVariable : MonoBehaviour
 {
-    // ¾ÀÀÌµ¿ÀÌ ÀÖ±â¿¡ °ÔÀÓ¾À¿¡¼­ °¡Á®°¡¾ßÇÒ º¯ÇØ¾ßÇÏ´Â ¼ö ¸ğÀ½
+    // ì”¬ì´ë™ì´ ìˆê¸°ì— ê²Œì„ì”¬ì—ì„œ ê°€ì ¸ê°€ì•¼í•  ë³€í•´ì•¼í•˜ëŠ” ìˆ˜ ëª¨ìŒ
 
-    // ½Ì±ÛÅæ »ç¿ë ÀÌÀ¯ - À¯ÀÏ¼º º¸Àå, Àü¿ª Á¢±Ù¼º, ¼ö¸í°ü¸®
+    // ì‹±ê¸€í†¤ ì‚¬ìš© ì´ìœ  - ìœ ì¼ì„± ë³´ì¥, ì „ì—­ ì ‘ê·¼ì„±, ìˆ˜ëª…ê´€ë¦¬
     public static GlobalVariable Instance { get; private set; }
 
-    [Header("Ã¼Å©Æ÷ÀÎÆ® °ü·Ã º¯¼ö")]
-    // Ã¼Å©Æ÷ÀÎÆ® °Å¸®
+    [Header("ì²´í¬í¬ì¸íŠ¸ ê´€ë ¨ ë³€ìˆ˜")]
+    // ì²´í¬í¬ì¸íŠ¸ ê±°ë¦¬
     public int CheckPointDistance = 50;
 
-    [Header("°ÔÀÓ °ü·Ã º¯¼ö")]
+    [Header("ê²Œì„ ê´€ë ¨ ë³€ìˆ˜")]
     public float GameTime = 0;
-    public float LastClearTime = 0f; // ¸¶Áö¸·À¸·Î Å¬¸®¾îÇÑ ½Ã°£ ÀúÀå
-    public int GameClearScore = 0; // °ÔÀÓ Å¬¸®¾î Á¡¼ö
-    public int GetCollectScore = 0; // ¼öÁıÇ° È¹µæ Á¡¼ö
+    public float LastClearTime = 0f; // ë§ˆì§€ë§‰ìœ¼ë¡œ í´ë¦¬ì–´í•œ ì‹œê°„ ì €ì¥
+    public int GameClearScore = 0; // ê²Œì„ í´ë¦¬ì–´ ì ìˆ˜
+    public int GetCollectScore = 0; // ìˆ˜ì§‘í’ˆ íšë“ ì ìˆ˜
 
-    [Header("Å¬¸®¾î Ã©ÅÍ °ü·Ã º¯¼ö")]
+    [Header("í´ë¦¬ì–´ ì±•í„° ê´€ë ¨ ë³€ìˆ˜")]
     public int PlayerClearRound = 0;
-    [System.NonSerialized] // ÀúÀåµÇÁö ¾Êµµ·Ï ¼³Á¤
-    public int lastStartedChapter = -1; // -1Àº ¾ÆÁ÷ ¾Æ¹« Ã©ÅÍµµ ½ÃÀÛ ¾ÈÇß´Ù´Â ÀÇ¹Ì
+    [System.NonSerialized] // ì €ì¥ë˜ì§€ ì•Šë„ë¡ ì„¤ì •
+    public int lastStartedChapter = -1; // -1ì€ ì•„ì§ ì•„ë¬´ ì±•í„°ë„ ì‹œì‘ ì•ˆí–ˆë‹¤ëŠ” ì˜ë¯¸
 
-    [Header("ÇÃ·¹ÀÌ¾î °ü·Ã º¯¼ö")]
+    // ì§„í–‰ ì¤‘ì¸ ìŠ¤í…Œì´ì§€
+    public int SavedStageFlatIndex = -1;   // ì—†ìœ¼ë©´ -1
+    public bool HasPendingRun = false;
+
+    [Header("í”Œë ˆì´ì–´ ê´€ë ¨ ë³€ìˆ˜")]
     public int PlayerCurrentDistance = 0;
     public int PlayerCurrentPlayerStage = 0;
 
-    [Header("¼öÁıÇ° °ü·Ã º¯¼ö")]
+    [Header("ìˆ˜ì§‘í’ˆ ê´€ë ¨ ë³€ìˆ˜")]
     public List<CollectedItemInfo> collectedItems = new();
 
-    [Header("°ÔÀÓ Èå¸§ ÇÃ·¡±×")]
+    [Header("ê²Œì„ íë¦„ í”Œë˜ê·¸")]
     public bool GameStarted = false;
-    public int ShopCount = 0;
+    public int ShopCoin = 0; // ì†Œëª¨í’ˆ ìƒì ì—ì„œ ì‚¬ìš©í•  ì½”ì¸
 
-    [Header("¿£µù °ü·Ã º¯¼ö")]
+    [Header("ì—”ë”© ê´€ë ¨ ë³€ìˆ˜")]
     public int EndingParameter = 0;
 
-    [Header("°ÔÀÓ ÀúÀå °ü·Ã")]
+    [Header("ê²Œì„ ì €ì¥ ê´€ë ¨")]
     public bool hasStartedGameBefore = false;
     private string saveFilePath;
 
@@ -72,23 +84,23 @@ public class GlobalVariable : MonoBehaviour
 
     void Awake()
     {
-        // °°Àº ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÑ´Ù¸é ÆÄ±«
+        // ê°™ì€ ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•œë‹¤ë©´ íŒŒê´´
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        // Ã³À½ »ı¼ºµÈ ÀÎ½ºÅÏ½º¶ó¸é µî·ÏÇÏ°í ¾À ÀüÈ¯ ½Ã ÆÄ±«µÇÁö ¾Êµµ·Ï ¼³Á¤
+        // ì²˜ìŒ ìƒì„±ëœ ì¸ìŠ¤í„´ìŠ¤ë¼ë©´ ë“±ë¡í•˜ê³  ì”¬ ì „í™˜ ì‹œ íŒŒê´´ë˜ì§€ ì•Šë„ë¡ ì„¤ì •
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // ¸¶Áö¸·¿¡ ÀúÀå/·Îµå °ü·Ã ÃÊ±âÈ­ ÄÚµå Ãß°¡
+        // ë§ˆì§€ë§‰ì— ì €ì¥/ë¡œë“œ ê´€ë ¨ ì´ˆê¸°í™” ì½”ë“œ ì¶”ê°€
         saveFilePath = Path.Combine(Application.persistentDataPath, "gamedata.json");
         LoadGame();
     }
 
-    // °ÔÀÓÀ» Á¾·áÇÒ ¶§ ÀÚµ¿À¸·Î ÀúÀåµÇµµ·Ï ÇÔ
+    // ê²Œì„ì„ ì¢…ë£Œí•  ë•Œ ìë™ìœ¼ë¡œ ì €ì¥ë˜ë„ë¡ í•¨
     private void OnApplicationQuit()
     {
         SaveGame();
@@ -96,65 +108,68 @@ public class GlobalVariable : MonoBehaviour
 
     public void SaveGame()
     {
-        // 1. ÀúÀåÇÒ µ¥ÀÌÅÍ¸¸ ¸ğ¾Æ¼­ GameData °´Ã¼¸¦ ¸¸µì´Ï´Ù.
+        // 1. ì €ì¥í•  ë°ì´í„°ë§Œ ëª¨ì•„ì„œ GameData ê°ì²´ë¥¼ ë§Œë“­ë‹ˆë‹¤.
         GameData dataToSave = new GameData();
         dataToSave.playerClearRound = this.PlayerClearRound;
         dataToSave.collectedItems = this.collectedItems;
         dataToSave.hasStartedGameBefore = this.hasStartedGameBefore;
 
-        // 2. GameData °´Ã¼¸¦ JSON ¹®ÀÚ¿­·Î º¯È¯ÇÕ´Ï´Ù.
+        // 2. GameData ê°ì²´ë¥¼ JSON ë¬¸ìì—´ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
         string json = JsonUtility.ToJson(dataToSave, true);
 
-        // 3. ÆÄÀÏ·Î ÀúÀåÇÕ´Ï´Ù.
+        // 3. íŒŒì¼ë¡œ ì €ì¥í•©ë‹ˆë‹¤.
         File.WriteAllText(saveFilePath, json);
-        Debug.Log("°ÔÀÓ µ¥ÀÌÅÍ°¡ ÀúÀåµÇ¾ú½À´Ï´Ù: " + saveFilePath);
+        Debug.Log("ê²Œì„ ë°ì´í„°ê°€ ì €ì¥ë˜ì—ˆìŠµë‹ˆë‹¤: " + saveFilePath);
     }
 
     public void LoadGame()
     {
-        // 1. ÀúÀå ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎÇÕ´Ï´Ù.
+        // 1. ì €ì¥ íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
         if (File.Exists(saveFilePath))
         {
-            // 2. ÆÄÀÏ¿¡¼­ JSON ¹®ÀÚ¿­À» ÀĞ¾î¿É´Ï´Ù.
+            // 2. íŒŒì¼ì—ì„œ JSON ë¬¸ìì—´ì„ ì½ì–´ì˜µë‹ˆë‹¤.
             string json = File.ReadAllText(saveFilePath);
 
-            // 3. JSON ¹®ÀÚ¿­À» GameData °´Ã¼·Î º¯È¯ÇÕ´Ï´Ù.
+            // 3. JSON ë¬¸ìì—´ì„ GameData ê°ì²´ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
             GameData loadedData = JsonUtility.FromJson<GameData>(json);
 
-            // 4. ºÒ·¯¿Â µ¥ÀÌÅÍ¸¦ ÇöÀç GlobalVariable¿¡ Àû¿ëÇÕ´Ï´Ù.
+            // 4. ë¶ˆëŸ¬ì˜¨ ë°ì´í„°ë¥¼ í˜„ì¬ GlobalVariableì— ì ìš©í•©ë‹ˆë‹¤.
             this.PlayerClearRound = loadedData.playerClearRound;
             this.collectedItems = loadedData.collectedItems;
             this.hasStartedGameBefore = loadedData.hasStartedGameBefore;
 
-            Debug.Log("°ÔÀÓ µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Ô½À´Ï´Ù.");
+            Debug.Log("ê²Œì„ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì™”ìŠµë‹ˆë‹¤.");
         }
         else
         {
-            // ÀúÀå ÆÄÀÏÀÌ ¾øÀ¸¸é 'Ã³À½ ½ÇÇà'ÀÔ´Ï´Ù.
+            // ì €ì¥ íŒŒì¼ì´ ì—†ìœ¼ë©´ 'ì²˜ìŒ ì‹¤í–‰'ì…ë‹ˆë‹¤.
             hasStartedGameBefore = false;
-            Debug.Log("ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù. »õ °ÔÀÓÀ» ½ÃÀÛÇÕ´Ï´Ù.");
+            Debug.Log("ì €ì¥ëœ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤. ìƒˆ ê²Œì„ì„ ì‹œì‘í•©ë‹ˆë‹¤.");
         }
     }
 
     public void DeleteSaveData()
     {
-        // ÀúÀå ÆÄÀÏÀÌ ½ÇÁ¦·Î Á¸ÀçÇÒ ¶§¸¸ »èÁ¦¸¦ ½ÃµµÇÕ´Ï´Ù.
+        // ì €ì¥ íŒŒì¼ì´ ì‹¤ì œë¡œ ì¡´ì¬í•  ë•Œë§Œ ì‚­ì œë¥¼ ì‹œë„í•©ë‹ˆë‹¤.
         if (File.Exists(saveFilePath))
         {
             File.Delete(saveFilePath);
 
-            // ÇöÀç ½ÇÇà ÁßÀÎ °ÔÀÓÀÇ º¯¼öµéµµ ÃÊ±âÈ­ÇØÁİ´Ï´Ù.
+            // í˜„ì¬ ì‹¤í–‰ ì¤‘ì¸ ê²Œì„ì˜ ë³€ìˆ˜ë“¤ë„ ì´ˆê¸°í™”í•´ì¤ë‹ˆë‹¤.
             hasStartedGameBefore = false;
             PlayerClearRound = 0;
             collectedItems.Clear();
 
-            Debug.LogWarning("¼¼ÀÌºê ÆÄÀÏÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù. °ÔÀÓÀ» Àç½ÃÀÛÇÏ¸é Ã³À½ºÎÅÍ ½ÃÀÛÇÕ´Ï´Ù.");
-            // ´õ È®½ÇÇÏ°Ô ÇÏ·Á¸é ¾ÀÀ» ´Ù½Ã ·ÎµåÇÏ´Â °Íµµ ÁÁ½À´Ï´Ù.
+            Debug.LogWarning("ì„¸ì´ë¸Œ íŒŒì¼ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤. ê²Œì„ì„ ì¬ì‹œì‘í•˜ë©´ ì²˜ìŒë¶€í„° ì‹œì‘í•©ë‹ˆë‹¤.");
+
+            // ë” í™•ì‹¤í•˜ê²Œ í•˜ë ¤ë©´ ì”¬ì„ ë‹¤ì‹œ ë¡œë“œí•˜ëŠ” ê²ƒë„ ì¢‹ìŠµë‹ˆë‹¤.
             // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            // ì‚¬ìš´ë“œ ë³€ê²½ì‚¬í•­ë„ ì´ˆê¸°í™”
         }
         else
         {
-            Debug.Log("»èÁ¦ÇÒ ¼¼ÀÌºê ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+            Debug.Log("ì‚­ì œí•  ì„¸ì´ë¸Œ íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         }
     }
 
@@ -166,13 +181,13 @@ public class GlobalVariable : MonoBehaviour
 
     public void StartedGame() => GameStarted = true;
 
-    // Áßº¹ ¼öÁı °ü·Ã ·ÎÁ÷
+    // ì¤‘ë³µ ìˆ˜ì§‘ ê´€ë ¨ ë¡œì§
     public bool HasCollected(int stage, int itemId)
     {
         return collectedItems.Exists(item => item.stageNumber == stage && item.itemId == itemId);
     }
 
-    // ¼öÁı ÇßÀ» ‹š ¹İ¿µÇÒ ÇÔ¼ö
+    // ìˆ˜ì§‘ í–ˆì„ ë–„ ë°˜ì˜í•  í•¨ìˆ˜
     public void CollectItem(int stage, int itemId)
     {
         if (!HasCollected(stage, itemId))
@@ -181,7 +196,7 @@ public class GlobalVariable : MonoBehaviour
         }
     }
 
-    // ½ºÅ×ÀÌÁöº° ¼öÁı °¹¼ö È®ÀÎ ÇÔ¼ö
+    // ìŠ¤í…Œì´ì§€ë³„ ìˆ˜ì§‘ ê°¯ìˆ˜ í™•ì¸ í•¨ìˆ˜
     public int GetCollectedCountByStage(int stage)
     {
         return collectedItems.FindAll(item => item.stageNumber == stage).Count;
@@ -189,42 +204,42 @@ public class GlobalVariable : MonoBehaviour
 
     public void SetupStage(int stageIndex, ChapterDatabase db)
     {
-        // 1. ÅëÇÕ ÀÎµ¦½º¸¦ (Ã©ÅÍ, ½ºÅ×ÀÌÁö) ÀÎµ¦½º·Î º¯È¯ÇÕ´Ï´Ù.
+        // 1. í†µí•© ì¸ë±ìŠ¤ë¥¼ (ì±•í„°, ìŠ¤í…Œì´ì§€) ì¸ë±ìŠ¤ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
         var indices = GetChapterStageFromFlatIndex(stageIndex, db);
 
-        // 2. À¯È¿ÇÑ ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ¸¦ Ã£¾Ò´ÂÁö È®ÀÎÇÕ´Ï´Ù.
+        // 2. ìœ íš¨í•œ ìŠ¤í…Œì´ì§€ ë°ì´í„°ë¥¼ ì°¾ì•˜ëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
         if (indices.chapter != -1 && indices.stage != -1)
         {
-            // 3. º¯È¯µÈ ÀÎµ¦½º¸¦ »ç¿ëÇØ Á¤È®ÇÑ ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ¸¦ °¡Á®¿É´Ï´Ù.
+            // 3. ë³€í™˜ëœ ì¸ë±ìŠ¤ë¥¼ ì‚¬ìš©í•´ ì •í™•í•œ ìŠ¤í…Œì´ì§€ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.
             StageData data = db.allChapterData[indices.chapter].stagesInChapter[indices.stage];
 
-            // 4. ÇÃ·¹ÀÌÇÒ ½ºÅ×ÀÌÁö Á¤º¸ ¼³Á¤
-            PlayerCurrentPlayerStage = stageIndex; // ÀüÃ¼ ÀÎµ¦½º´Â ±×´ë·Î ÀúÀå
+            // 4. í”Œë ˆì´í•  ìŠ¤í…Œì´ì§€ ì •ë³´ ì„¤ì •
+            PlayerCurrentPlayerStage = stageIndex; // ì „ì²´ ì¸ë±ìŠ¤ëŠ” ê·¸ëŒ€ë¡œ ì €ì¥
             CheckPointDistance = data.clearDistance;
             GameTime = data.gameTime;
             GameClearScore = data.clearScore;
             GetCollectScore = data.collectScore;
 
-            // 5. °ÔÀÓ ÇÃ·¹ÀÌ¿Í Á÷Á¢ °ü·ÃµÈ º¯¼ö ÃÊ±âÈ­
+            // 5. ê²Œì„ í”Œë ˆì´ì™€ ì§ì ‘ ê´€ë ¨ëœ ë³€ìˆ˜ ì´ˆê¸°í™”
             PlayerCurrentDistance = 0;
             LastClearTime = 0f; 
 
-            // ½ºÅ×ÀÌÁö°¡ ¼¼ÆÃµÈ´Ù´Â °ÍÀº ÇØ´ç Ã©ÅÍ¸¦ '½ÃÀÛ'Çß´Ù´Â ÀÇ¹ÌÀÔ´Ï´Ù.
-            // ÇöÀç ÇÃ·¹ÀÌÇÒ ½ºÅ×ÀÌÁöÀÇ Ã©ÅÍ ÀÎµ¦½º¸¦ ÀúÀåÇÕ´Ï´Ù.
+            // ìŠ¤í…Œì´ì§€ê°€ ì„¸íŒ…ëœë‹¤ëŠ” ê²ƒì€ í•´ë‹¹ ì±•í„°ë¥¼ 'ì‹œì‘'í–ˆë‹¤ëŠ” ì˜ë¯¸ì…ë‹ˆë‹¤.
+            // í˜„ì¬ í”Œë ˆì´í•  ìŠ¤í…Œì´ì§€ì˜ ì±•í„° ì¸ë±ìŠ¤ë¥¼ ì €ì¥í•©ë‹ˆë‹¤.
             this.lastStartedChapter = indices.chapter;
         }
         else
         {
-            Debug.LogError($"ChapterDatabase¿¡¼­ ÅëÇÕ ÀÎµ¦½º {stageIndex}¿¡ ÇØ´çÇÏ´Â ½ºÅ×ÀÌÁö¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù!");
+            Debug.LogError($"ChapterDatabaseì—ì„œ í†µí•© ì¸ë±ìŠ¤ {stageIndex}ì— í•´ë‹¹í•˜ëŠ” ìŠ¤í…Œì´ì§€ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤!");
         }
     }
 
     /// <summary>
-    /// ÀüÃ¼ ½ºÅ×ÀÌÁö ±âÁØÀÇ ÅëÇÕ ÀÎµ¦½º¸¦ (Ã©ÅÍ ÀÎµ¦½º, ÇØ´ç Ã©ÅÍ ³»ÀÇ ½ºÅ×ÀÌÁö ÀÎµ¦½º)·Î º¯È¯ÇÕ´Ï´Ù.
+    /// ì „ì²´ ìŠ¤í…Œì´ì§€ ê¸°ì¤€ì˜ í†µí•© ì¸ë±ìŠ¤ë¥¼ (ì±•í„° ì¸ë±ìŠ¤, í•´ë‹¹ ì±•í„° ë‚´ì˜ ìŠ¤í…Œì´ì§€ ì¸ë±ìŠ¤)ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
     /// </summary>
     private (int chapter, int stage) GetChapterStageFromFlatIndex(int flatIndex, ChapterDatabase db)
     {
-        if (db == null) return (-1, -1); // µ¥ÀÌÅÍº£ÀÌ½º°¡ ¾øÀ¸¸é ¿¡·¯ ¹İÈ¯
+        if (db == null) return (-1, -1); // ë°ì´í„°ë² ì´ìŠ¤ê°€ ì—†ìœ¼ë©´ ì—ëŸ¬ ë°˜í™˜
 
         int accumulatedStages = 0;
         for (int i = 0; i < db.allChapterData.Length; i++)
@@ -232,12 +247,12 @@ public class GlobalVariable : MonoBehaviour
             int stagesInThisChapter = db.allChapterData[i].stagesInChapter.Length;
             if (flatIndex < accumulatedStages + stagesInThisChapter)
             {
-                // flatIndex°¡ ÇöÀç Ã©ÅÍ ¹üÀ§ ³»¿¡ ÀÖÀ¸¸é, ¿Ã¹Ù¸¥ (Ã©ÅÍ, ½ºÅ×ÀÌÁö) ÀÎµ¦½º¸¦ ¹İÈ¯
+                // flatIndexê°€ í˜„ì¬ ì±•í„° ë²”ìœ„ ë‚´ì— ìˆìœ¼ë©´, ì˜¬ë°”ë¥¸ (ì±•í„°, ìŠ¤í…Œì´ì§€) ì¸ë±ìŠ¤ë¥¼ ë°˜í™˜
                 return (i, flatIndex - accumulatedStages);
             }
             accumulatedStages += stagesInThisChapter;
         }
 
-        return (-1, -1); // ¸ğµç Ã©ÅÍ¸¦ Ã£¾Æµµ ÀÎµ¦½º¸¦ Ã£Áö ¸øÇÏ¸é ¿¡·¯ ¹İÈ¯
+        return (-1, -1); // ëª¨ë“  ì±•í„°ë¥¼ ì°¾ì•„ë„ ì¸ë±ìŠ¤ë¥¼ ì°¾ì§€ ëª»í•˜ë©´ ì—ëŸ¬ ë°˜í™˜
     }
 }

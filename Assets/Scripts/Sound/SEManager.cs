@@ -45,6 +45,10 @@ public class SEManager : MonoBehaviour
     const string KEY_SE = "vol_se";
     const string KEY_BGM = "vol_bgm";
 
+    // 인트로 영상에 사용할 변수
+    float _prevMaster, _prevSe, _prevBgm;
+    bool _mutedForIntro = false;
+
     void Awake ()
     {
         if (instance == null)
@@ -232,4 +236,32 @@ public class SEManager : MonoBehaviour
     public float GetMasterVolume() => masterVolume;
     public float GetSEVolume() => seVolume;
     public float GetBGMVolume() => bgmVolume;
+
+    public void BeginIntroMute()
+    {
+        if (_mutedForIntro) 
+            return;
+        _mutedForIntro = true;
+
+        // 기존 값 백업
+        _prevMaster = GetMasterVolume();
+        _prevSe = GetSEVolume();
+        _prevBgm = GetBGMVolume();
+
+        // 전부 0으로
+        SetMasterVolume(0f);   
+        SetSEVolume(0f);
+        SetBGMVolume(0f);
+    }
+
+    public void EndIntroMute()
+    {
+        if (!_mutedForIntro) 
+            return;
+        _mutedForIntro = false;
+
+        SetMasterVolume(_prevMaster);
+        SetSEVolume(_prevSe);
+        SetBGMVolume(_prevBgm);
+    }
 }
