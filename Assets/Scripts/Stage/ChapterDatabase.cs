@@ -12,19 +12,26 @@ public enum SubTouchType
 }
 
 [System.Serializable]
+public struct MiniGameConfig
+{
+    public SubTouchType type;       // 미니게임 종류
+    public int successScore;        // 성공 점수
+    public float holdingTime;      // 미니게임 유지 시간(초). 0이 되면 실패
+}
+
+[System.Serializable]
 public struct StageData
 {
     public string stageName; // 스테이지 이름
     public Sprite stageSprite; // 스테이지 이미지
     public float gameTime; // 게임 시간 (초 단위)
-    public int clearDistance; // 클리어 거리
     public int clearScore; // 클리어 점수
     public int collectScore; // 수집품 획득 점수
 
     [Header("서브터치 설정")]
-    public SubTouchType miniGameType;       // 이 스테이지에서 사용할 미니게임 종류
+    public List<MiniGameConfig> miniGames;
     public int miniGameSpawnCount;      // 스테이지 당 등장 횟수
-    public int miniGameSuccessScore;    // 성공 시 획득 점수
+    public float miniGameSpawnPercentage; // 스테이지 당 등장 확률 (0~100)
 }
 
 [System.Serializable]

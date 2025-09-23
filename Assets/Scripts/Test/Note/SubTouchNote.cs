@@ -14,7 +14,5 @@ public class SubTouchNote : MonoBehaviour
     {
         // 외부에 판정 결과를 방송(Invoke)합니다.
         OnNoteProcessEnd?.Invoke(this, judgement);
-        // 결과를 보고한 후 오브젝트를 파괴합니다.
-        Destroy(gameObject);
     }
 }

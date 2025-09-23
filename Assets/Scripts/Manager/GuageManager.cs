@@ -9,12 +9,8 @@ public class GuageManager : MonoBehaviour
     private Image touchGaugeImage;
 
     [Header("게이지 설정")]
-    [SerializeField]
-    private float decreaseRate = 0.05f;  // 초당 자동 감소량
-    [SerializeField]
-    private float touchIncrease = 0.1f;  // 터치 시 증가량
     [SerializeField, Range(0f, 1f)]
-    private float startingGaugeValue = 0.5f; // 시작 게이지 값
+    private float startingGaugeValue = 0; // 시작 게이지 값
 
     [Header("피버 타임 설정")]
     [SerializeField]
@@ -22,7 +18,6 @@ public class GuageManager : MonoBehaviour
     private bool isFeverTime = false;
 
     private float gaugeValue;
-    private bool hasStoppedAnimation = false; // 스태미나 0 중복 실행 방지
 
     public float GaugeValue => gaugeValue;
 
@@ -41,22 +36,8 @@ public class GuageManager : MonoBehaviour
             return;
         }
 
-        // 게이지 자동 감소
-        gaugeValue -= decreaseRate * Time.deltaTime;
         gaugeValue = Mathf.Clamp01(gaugeValue);
         UpdateGaugeUI();
-
-        // 게이지가 0이 되면 스태미나 고갈 처리
-        //if (gaugeValue <= 0f && !hasStoppedAnimation)
-        //{
-        //    hasStoppedAnimation = true;
-        //    // 기존의 스태미나 0 처리 루틴을 재사용
-        //    GuageImageAlpha.Instance.StartZeroRoutine(() => {
-        //        gaugeValue = startingGaugeValue; // 게이지 회복
-        //        UpdateGaugeUI();
-        //        hasStoppedAnimation = false; // 다시 체크 가능하도록 플래그 리셋
-        //    });
-        //}
     }
 
     public void OnTouch()
@@ -67,7 +48,6 @@ public class GuageManager : MonoBehaviour
             return;
         }
 
-        gaugeValue += touchIncrease;
         gaugeValue = Mathf.Clamp01(gaugeValue);
         UpdateGaugeUI();
 
@@ -107,5 +87,23 @@ public class GuageManager : MonoBehaviour
     private void UpdateGaugeUI()
     {
         touchGaugeImage.fillAmount = gaugeValue;
+    }
+
+    public void AddFeverPercent(float delta)
+    {
+        // 피버 중일땐 게이지 변화 없음
+        if (isFeverTime) 
+            return;
+
+        gaugeValue = Mathf.Clamp01(gaugeValue + delta);
+        UpdateGaugeUI();
+
+        Debug.Log($"[Fever] 게이지 변경됨: {gaugeValue * 100f:0}%");
+
+        // 임계치 도달 시 피버 시작
+        if (gaugeValue >= 1f)
+        {
+            StartCoroutine(FeverCoroutine());
+        }
     }
 }

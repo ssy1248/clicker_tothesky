@@ -35,10 +35,6 @@ public class GlobalVariable : MonoBehaviour
     // 싱글톤 사용 이유 - 유일성 보장, 전역 접근성, 수명관리
     public static GlobalVariable Instance { get; private set; }
 
-    [Header("체크포인트 관련 변수")]
-    // 체크포인트 거리
-    public int CheckPointDistance = 50;
-
     [Header("게임 관련 변수")]
     public float GameTime = 0;
     public float LastClearTime = 0f; // 마지막으로 클리어한 시간 저장
@@ -55,7 +51,6 @@ public class GlobalVariable : MonoBehaviour
     public bool HasPendingRun = false;
 
     [Header("플레이어 관련 변수")]
-    public int PlayerCurrentDistance = 0;
     public int PlayerCurrentPlayerStage = 0;
 
     [Header("수집품 관련 변수")]
@@ -215,13 +210,11 @@ public class GlobalVariable : MonoBehaviour
 
             // 4. 플레이할 스테이지 정보 설정
             PlayerCurrentPlayerStage = stageIndex; // 전체 인덱스는 그대로 저장
-            CheckPointDistance = data.clearDistance;
             GameTime = data.gameTime;
             GameClearScore = data.clearScore;
             GetCollectScore = data.collectScore;
 
             // 5. 게임 플레이와 직접 관련된 변수 초기화
-            PlayerCurrentDistance = 0;
             LastClearTime = 0f; 
 
             // 스테이지가 세팅된다는 것은 해당 챕터를 '시작'했다는 의미입니다.

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,7 @@ public class QuickTabGame : SubTouch
     private int quickTapCount = 0;
 
     // 부모의 Initialize 함수를 확장하여 사용
-    public override void Initialize(int score)
+    public override void Initialize(int score, Action onEnded = null)
     {
         base.Initialize(score); // 부모의 기본 초기화(점수 할당) 실행
 

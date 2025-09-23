@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ public class MemoryGame : SubTouch
     /// SubTouchManager가 호출하는 초기화 함수입니다.
     /// 부모의 Initialize를 먼저 실행하고, 그 다음 Memory 게임 전용 설정을 합니다.
     /// </summary>
-    public override void Initialize(int score)
+    public override void Initialize(int score, Action onEnded = null)
     {
         base.Initialize(score); // 부모의 Initialize 함수를 호출하여 successScore를 설정합니다.
         SetupMemory();          // Memory 게임에 필요한 설정을 시작합니다.
@@ -32,7 +33,7 @@ public class MemoryGame : SubTouch
         memoryNumbers.Clear();
         for (int i = 0; i < 4; i++)
         {
-            int randIndex = Random.Range(0, numbers.Count);
+            int randIndex = UnityEngine.Random.Range(0, numbers.Count);
             memoryNumbers.Add(numbers[randIndex]);
             numbers.RemoveAt(randIndex);
         }
