@@ -23,10 +23,10 @@ public class SubTouchActivator : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         // 1. SubTouchManager에게 실제 미니게임 생성을 요청합니다.
-        if (manager != null)
-        {
-            manager.SpawnActualMiniGame(type, score);
-        }
+        //if (manager != null)
+        //{
+        //    manager.SpawnActualMiniGame(type, score);
+        //}
 
         // 2. 자신(활성화 오브젝트)은 역할을 다했으므로 파괴합니다.
         Destroy(gameObject);

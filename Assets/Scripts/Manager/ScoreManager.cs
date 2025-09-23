@@ -39,6 +39,10 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int amount)
     {
         currentScore += amount;
+
+        if (currentScore < 0)
+            currentScore = 0;
+
         UpdateScoreUI();
         Debug.Log($"점수 획득! {amount}점 추가, 현재 점수: {currentScore}");
     }

@@ -19,58 +19,106 @@ MonoBehaviour:
     stagesInChapter:
     - stageName: "1\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
-      gameTime: 80
-      clearDistance: 400
-      clearScore: 100
-      collectScore: 200
-      miniGameType: 2
-      miniGameSpawnCount: 3
-      miniGameSuccessScore: 10
+      gameTime: 30
+      clearScore: 10000
+      collectScore: 15000
+      miniGames:
+      - type: 1
+        successScore: 400
+        holdingTime: 10
+      - type: 2
+        successScore: 200
+        holdingTime: 5
+      - type: 3
+        successScore: 300
+        holdingTime: 5
+      miniGameSpawnCount: 4
+      miniGameSpawnPercentage: 25
     - stageName: "2\uC6D4"
       stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
-      gameTime: 100
-      clearDistance: 500
-      clearScore: 150
-      collectScore: 300
-      miniGameType: 1
-      miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      gameTime: 40
+      clearScore: 12000
+      collectScore: 16000
+      miniGames:
+      - type: 1
+        successScore: 400
+        holdingTime: 10
+      - type: 2
+        successScore: 200
+        holdingTime: 5
+      - type: 3
+        successScore: 300
+        holdingTime: 5
+      miniGameSpawnCount: 6
+      miniGameSpawnPercentage: 25
     - stageName: "3\uC6D4"
       stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
-      gameTime: 120
-      clearDistance: 600
-      clearScore: 200
-      collectScore: 400
-      miniGameType: 0
-      miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      gameTime: 45
+      clearScore: 14000
+      collectScore: 20000
+      miniGames:
+      - type: 1
+        successScore: 400
+        holdingTime: 10
+      - type: 2
+        successScore: 200
+        holdingTime: 5
+      - type: 3
+        successScore: 300
+        holdingTime: 5
+      miniGameSpawnCount: 8
+      miniGameSpawnPercentage: 25
     - stageName: "4\uC6D4"
       stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
-      gameTime: 140
-      clearDistance: 700
-      clearScore: 300
-      collectScore: 600
-      miniGameType: 0
-      miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      gameTime: 50
+      clearScore: 16000
+      collectScore: 24000
+      miniGames:
+      - type: 1
+        successScore: 400
+        holdingTime: 10
+      - type: 2
+        successScore: 200
+        holdingTime: 5
+      - type: 3
+        successScore: 300
+        holdingTime: 5
+      miniGameSpawnCount: 10
+      miniGameSpawnPercentage: 25
     - stageName: "5\uC6D4"
       stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
-      gameTime: 160
-      clearDistance: 800
-      clearScore: 400
-      collectScore: 800
-      miniGameType: 0
-      miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      gameTime: 55
+      clearScore: 18000
+      collectScore: 26000
+      miniGames:
+      - type: 1
+        successScore: 400
+        holdingTime: 10
+      - type: 2
+        successScore: 200
+        holdingTime: 5
+      - type: 3
+        successScore: 300
+        holdingTime: 5
+      miniGameSpawnCount: 12
+      miniGameSpawnPercentage: 25
     - stageName: "6\uC6D4"
       stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
-      gameTime: 180
-      clearDistance: 900
-      clearScore: 500
-      collectScore: 1000
-      miniGameType: 0
-      miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      gameTime: 60
+      clearScore: 20000
+      collectScore: 30000
+      miniGames:
+      - type: 1
+        successScore: 400
+        holdingTime: 10
+      - type: 2
+        successScore: 200
+        holdingTime: 5
+      - type: 3
+        successScore: 300
+        holdingTime: 5
+      miniGameSpawnCount: 14
+      miniGameSpawnPercentage: 25
   - chapterName: "1\uD559\uB144 2\uD559\uAE30"
     ChapterBackgroundImage: {fileID: -5341241873409092145, guid: 6728fb52cdd034e4a8c82c6c5a89ccd9, type: 3}
     chapterImage: {fileID: 21300000, guid: 051305c38e975804587bb5f6ef6a4b9e, type: 3}
@@ -78,57 +126,51 @@ MonoBehaviour:
     - stageName: "7\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
       gameTime: 80
-      clearDistance: 400
       clearScore: 100
       collectScore: 200
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "8\uC6D4"
       stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
       gameTime: 100
-      clearDistance: 500
       clearScore: 150
       collectScore: 300
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "9\uC6D4"
       stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
       gameTime: 120
-      clearDistance: 600
       clearScore: 200
       collectScore: 400
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "10\uC6D4"
       stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
       gameTime: 140
-      clearDistance: 700
       clearScore: 300
       collectScore: 600
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "11\uC6D4"
       stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
       gameTime: 160
-      clearDistance: 800
       clearScore: 400
       collectScore: 800
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "12\uC6D4"
       stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
       gameTime: 180
-      clearDistance: 900
       clearScore: 500
       collectScore: 1000
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
   - chapterName: "2\uD559\uB144 1\uD559\uAE30"
     ChapterBackgroundImage: {fileID: 3902310088776846061, guid: af97e673be15c5848bd4faee537ded12, type: 3}
     chapterImage: {fileID: 21300000, guid: 220d20fc8e8baf0418c16d3e0e9428ec, type: 3}
@@ -136,57 +178,51 @@ MonoBehaviour:
     - stageName: "1\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
       gameTime: 80
-      clearDistance: 400
       clearScore: 100
       collectScore: 200
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "2\uC6D4"
       stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
       gameTime: 100
-      clearDistance: 500
       clearScore: 150
       collectScore: 300
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "3\uC6D4"
       stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
       gameTime: 120
-      clearDistance: 600
       clearScore: 200
       collectScore: 400
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "4\uC6D4"
       stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
       gameTime: 140
-      clearDistance: 700
       clearScore: 300
       collectScore: 600
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "5\uC6D4"
       stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
       gameTime: 160
-      clearDistance: 800
       clearScore: 400
       collectScore: 800
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "6\uC6D4"
       stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
       gameTime: 180
-      clearDistance: 900
       clearScore: 500
       collectScore: 1000
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
   - chapterName: "2\uD559\uB144 2\uD559\uAE30"
     ChapterBackgroundImage: {fileID: 6767895404246398448, guid: 325bd20157843be438811cb42b7eda96, type: 3}
     chapterImage: {fileID: 21300000, guid: 148e18611f256ef4da89ddd680f66390, type: 3}
@@ -194,57 +230,51 @@ MonoBehaviour:
     - stageName: "7\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
       gameTime: 80
-      clearDistance: 400
       clearScore: 100
       collectScore: 200
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "8\uC6D4"
       stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
       gameTime: 100
-      clearDistance: 500
       clearScore: 150
       collectScore: 300
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "9\uC6D4"
       stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
       gameTime: 120
-      clearDistance: 600
       clearScore: 200
       collectScore: 400
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "10\uC6D4"
       stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
       gameTime: 140
-      clearDistance: 700
       clearScore: 300
       collectScore: 600
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "11\uC6D4"
       stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
       gameTime: 160
-      clearDistance: 800
       clearScore: 400
       collectScore: 800
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "12\uC6D4"
       stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
       gameTime: 180
-      clearDistance: 900
       clearScore: 500
       collectScore: 1000
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
   - chapterName: "3\uD559\uB144 1\uD559\uAE30"
     ChapterBackgroundImage: {fileID: 930580150135862759, guid: 2239291bedcadd84b99d4b4adccd53bd, type: 3}
     chapterImage: {fileID: 21300000, guid: 773b4949cad43c544b845f14cd51da35, type: 3}
@@ -252,57 +282,51 @@ MonoBehaviour:
     - stageName: "1\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
       gameTime: 80
-      clearDistance: 400
       clearScore: 100
       collectScore: 200
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "2\uC6D4"
       stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
       gameTime: 100
-      clearDistance: 500
       clearScore: 150
       collectScore: 300
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "3\uC6D4"
       stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
       gameTime: 120
-      clearDistance: 600
       clearScore: 200
       collectScore: 400
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "4\uC6D4"
       stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
       gameTime: 140
-      clearDistance: 700
       clearScore: 300
       collectScore: 600
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "5\uC6D4"
       stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
       gameTime: 160
-      clearDistance: 800
       clearScore: 400
       collectScore: 800
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "6\uC6D4"
       stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
       gameTime: 180
-      clearDistance: 900
       clearScore: 500
       collectScore: 1000
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
   - chapterName: "3\uD559\uB144 2\uD559\uAE30"
     ChapterBackgroundImage: {fileID: -7290939300569512886, guid: a9e8ac5da122cfb469ca5795ac6812fd, type: 3}
     chapterImage: {fileID: 21300000, guid: 9c2f95fd5e485324580cfa2e68a402d9, type: 3}
@@ -310,54 +334,48 @@ MonoBehaviour:
     - stageName: "7\uC6D4"
       stageSprite: {fileID: 21300000, guid: 9e2dd98da635a734ea40453a1aec70eb, type: 3}
       gameTime: 80
-      clearDistance: 400
       clearScore: 100
       collectScore: 200
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "8\uC6D4"
       stageSprite: {fileID: 21300000, guid: f0121c687e23c044587390749b573973, type: 3}
       gameTime: 100
-      clearDistance: 500
       clearScore: 150
       collectScore: 300
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "9\uC6D4"
       stageSprite: {fileID: 21300000, guid: dcc71f30410abb54497c7ebbab7f1a37, type: 3}
       gameTime: 120
-      clearDistance: 600
       clearScore: 200
       collectScore: 400
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "10\uC6D4"
       stageSprite: {fileID: 21300000, guid: 16bcc4471ee529d46b666063434cfd40, type: 3}
       gameTime: 140
-      clearDistance: 700
       clearScore: 300
       collectScore: 600
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "11\uC6D4"
       stageSprite: {fileID: 21300000, guid: ffbc8c933c6bab4439c4eb36fbbf68d6, type: 3}
       gameTime: 160
-      clearDistance: 800
       clearScore: 400
       collectScore: 800
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0
     - stageName: "12\uC6D4"
       stageSprite: {fileID: 21300000, guid: ad84f859eeb11724c9d4789fd648f1fc, type: 3}
       gameTime: 180
-      clearDistance: 900
       clearScore: 500
       collectScore: 1000
-      miniGameType: 0
+      miniGames: []
       miniGameSpawnCount: 0
-      miniGameSuccessScore: 0
+      miniGameSpawnPercentage: 0

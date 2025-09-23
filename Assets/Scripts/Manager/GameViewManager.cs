@@ -13,21 +13,16 @@ public class GameViewManager : MonoBehaviour
     [Header("트리거 모음")]
     private bool gameOver = false;
     private bool gameClear = false;
-    private bool isStaminaEmpty = false;
-    private bool inputEnabled = true;
 
     [Header("UI")]
     [SerializeField]
     private TextMeshProUGUI gameTimeText;
-    [SerializeField]
-    private TextMeshProUGUI distanceText; // 목표 거리를 표시할 텍스트
     public GameObject GameOverPanel;
     public GameObject GameClearPanel;
 
     [Header("타임 패널")]
     [SerializeField]
     private TimePanel timePanel;
-    private bool blinkStarted = false;
 
     private float totalTime;
     private float initialTotalTime;
@@ -42,35 +37,6 @@ public class GameViewManager : MonoBehaviour
     // 다른 스크립트에서 게임이 끝났는지(클리어 또는 오버) 확인할 수 있도록 해주는 프로퍼티
     public bool IsGameFinished => gameOver || gameClear;
 
-    private void OnEnable()
-    {
-        GuageImageAlpha.OnStaminaEmpty += HandleStaminaEmpty;
-        GuageImageAlpha.OnStaminaRecovered += HandleStaminaRecovered;
-    }
-
-    private void OnDisable()
-    {
-        GuageImageAlpha.OnStaminaEmpty -= HandleStaminaEmpty;
-        GuageImageAlpha.OnStaminaRecovered -= HandleStaminaRecovered;
-    }
-
-    private void HandleStaminaEmpty()
-    {
-        isStaminaEmpty = true;
-        inputEnabled = false;
-
-        // 애니메이션 정지
-        AnimationManager.Instance.AnimationAllStop();
-    }
-
-    private void HandleStaminaRecovered()
-    {
-        isStaminaEmpty = false;
-        inputEnabled = true;
-
-        // 애니메이션 재생
-        AnimationManager.Instance.AnimationAllPlay();
-    }
 
     private void Awake()
     {
@@ -83,27 +49,12 @@ public class GameViewManager : MonoBehaviour
         totalTime = GlobalManager.Instance.inGameCountTime + GameTimePlus;
         initialTotalTime = totalTime;
         UpdateTimerUI();
-
-        // 1. GlobalVariable에서 현재 스테이지의 목표 거리를 가져옵니다.
-        int clearDistance = GlobalVariable.Instance.CheckPointDistance;
-
-        // 2. "목표거리 M" 형식의 문자열을 만듭니다.
-        string distanceString = $"{clearDistance} M";
-
-        // 3. 텍스트 UI에 문자열을 할당합니다.
-        if (distanceText != null)
-        {
-            distanceText.text = distanceString;
-        }
     }
 
     public void ResetTimer(int seconds)
     {
         totalTime = seconds;
         UpdateTimerUI();
-
-        timePanel.StopBlinking();
-        blinkStarted = false;
     }
 
     private void UpdateTimerUI()
@@ -119,11 +70,10 @@ public class GameViewManager : MonoBehaviour
         gameOver = true;
         Debug.Log("Time's up! 게임 끝");
 
-        // 게임 오버 UI 띄움
-        GameOverPanel.SetActive(true);
+        // 바로 게임 오버가 아닌 점수 계산 후 클리어 또는 게임 오버 처리
 
-        GlobalVariable.Instance.CheckPointDistance = 0;
-        GlobalVariable.Instance.PlayerCurrentDistance = 0;
+        // 게임 오버 UI 띄움
+        //GameOverPanel.SetActive(true);
     }
 
     void Update()
@@ -157,50 +107,23 @@ public class GameViewManager : MonoBehaviour
                 totalTime = 0f;
 
             UpdateTimerUI();
-
-            if (totalTime <= 30f && !blinkStarted)
-            {
-                timePanel.StartBlinking();
-                blinkStarted = true;
-            }
         }
 
-        // 1. 시간 초과를 먼저 확인
+        // 스테이지 종료
         if (totalTime <= 0f)
         {
+            // 시간이 다 되면 스테이지 완료 처리하고 점수 나오면서 클리어, 게임 오버 처리
             OnGameOver();
             return; // 게임 오버 처리 후 즉시 Update 종료
         }
 
-        // 2. 시간 초과가 아닐 경우에만 클리어 조건을 확인
-        if (GlobalVariable.Instance.PlayerCurrentDistance >= GlobalVariable.Instance.CheckPointDistance)
-        {
-            OnGameClear(); // 목표 거리에 도달하면 클리어 처리
-            return;
-        }
-
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!inputEnabled)
-                return;
-
-            //SEManager.instance.PlaySE("click");
-
-            // 게이지 감소는 GaugeManager에서 관리
-            gaugeManager.OnTouch();
-
-            // GameModeManager에게 터치 신호를 전달하여 거리를 계산하도록 합니다.
-            GameModeManager.Instance.OnPlayerTouch();
-        }
     }
 
     private void OnGameClear()
     {
         gameClear = true; // 클리어 플래그 설정
-        inputEnabled = false; // 추가 입력 방지
         Debug.Log("목표 달성! 게임 클리어");
 
         // 1. 클리어 시간 계산 (시작 시간) - (남은 시간) = (플레이한 시간)
@@ -230,18 +153,5 @@ public class GameViewManager : MonoBehaviour
 
         // 5. 진행상황 저장
         GlobalVariable.Instance.SaveGame();
-    }
-
-    /// <summary>
-    /// 남은 거리를 계산하여 UI 텍스트를 업데이트합니다.
-    /// GameModeManager가 호출해 줄 함수입니다.
-    /// </summary>
-    /// <param name="remainingDistance">표시할 남은 거리 값</param>
-    public void UpdateRemainingDistanceUI(int remainingDistance)
-    {
-        if (distanceText != null)
-        {
-            distanceText.text = $"{remainingDistance} M";
-        }
     }
 }

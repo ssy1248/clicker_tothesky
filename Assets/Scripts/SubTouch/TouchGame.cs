@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ public class TouchGame : SubTouch
     /// <summary>
     /// SubTouchManager가 호출하는 초기화 함수입니다.
     /// </summary>
-    public override void Initialize(int score)
+    public override void Initialize(int score, Action onEnded = null)
     {
         base.Initialize(score); // 부모의 Initialize 함수를 호출하여 successScore를 설정합니다.
         SetupTouch();           // Touch 게임에 필요한 설정을 시작합니다.
