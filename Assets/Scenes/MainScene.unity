@@ -718,7 +718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchGaugeImage: {fileID: 1236049199}
-  startingGaugeValue: 0.15
+  startingGaugeValue: 0
   feverDuration: 5
 --- !u!1 &390689997
 GameObject:
@@ -1321,6 +1321,7 @@ MonoBehaviour:
   doorTargetScale: {x: 0.2, y: 0.18, z: 1}
   chapterDatabase: {fileID: 11400000, guid: 42d1bb1a27f9d2247830eac22dde611f, type: 2}
   SpeedItemPlus: 0
+  enableDebugFeverKeys: 1
 --- !u!1 &708763649
 GameObject:
   m_ObjectHideFlags: 0

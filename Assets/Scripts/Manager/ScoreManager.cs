@@ -38,7 +38,15 @@ public class ScoreManager : MonoBehaviour
     /// <param name="amount">추가할 점수량</param>
     public void AddScore(int amount)
     {
-        currentScore += amount;
+        // 피버 중이면 양수 점수만 2배 (미스는 그대로)
+        if (GameModeManager.Instance.IsFeverTime)
+            amount *= 2;
+
+        float comboMultiplier = ComboManager.Instance != null ? ComboManager.Instance.GetComboMultiplier() : 1f;
+
+        int finalScore = Mathf.RoundToInt(amount * comboMultiplier);
+
+        currentScore += finalScore;
 
         if (currentScore < 0)
             currentScore = 0;

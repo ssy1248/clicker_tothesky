@@ -20,6 +20,8 @@ public class TabNote : SubTouchNote, IPointerDownHandler
     public int cyclesToPlay = 0;              // 0 or 음수면 무한
     [Tooltip("사이클 사이 잠깐 멈춤(연출용)")]
     public float interCycleDelay = 0.05f;
+    [Tooltip("피버 중 사이클 템포(선택). 0 이하면 일반 딜레이 사용")]
+    public float interCycleDelayWhenFever = 0.02f;
 
     // 내부
     float spawnTime;        // 생성 시각
@@ -32,6 +34,8 @@ public class TabNote : SubTouchNote, IPointerDownHandler
     GuageManager gauge;     // 피버 게이지용
     ScoreManager score;     // 점수
     ComboManager combo;   // 콤보
+
+    bool IsFeverNow => GameModeManager.Instance != null && GameModeManager.Instance.IsFeverTime;
 
     void Awake()
     {
@@ -47,6 +51,21 @@ public class TabNote : SubTouchNote, IPointerDownHandler
 
     void Update()
     {
+        // 피버 중에는 자동 MISS 비활성화
+        if (IsFeverNow)
+        {
+            // 피버 중엔 원을 감춤
+            if (outlineCircle.gameObject.activeSelf)
+                outlineCircle.gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            // 피버 끝나면 다시 원을 보이게
+            if (!outlineCircle.gameObject.activeSelf)
+                outlineCircle.gameObject.SetActive(true);
+        }
+
         if (!activeCycle) 
             return;
 
@@ -68,6 +87,13 @@ public class TabNote : SubTouchNote, IPointerDownHandler
     {
         if (!activeCycle) 
             return;
+
+        // 피버 중엔 무조건 Perfect
+        if (IsFeverNow)
+        {
+            ApplyJudgement(Judgement.Perfect);
+            return;
+        }
 
         // 현재 클릭 시간과 이상적 시각 차이(절대값)
         float delta = Mathf.Abs(Time.time - targetMoment); // 초
@@ -111,6 +137,13 @@ public class TabNote : SubTouchNote, IPointerDownHandler
 
         // 다음 사이클로
         activeCycle = false;
+
+        // 피버 중엔 더 빠르게 다음 사이클
+        float delay = (IsFeverNow && interCycleDelayWhenFever > 0f)
+                      ? interCycleDelayWhenFever
+                      : interCycleDelay;
+
+
         Invoke(nameof(StartNextCycle), interCycleDelay);
     }
 

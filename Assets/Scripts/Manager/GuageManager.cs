@@ -106,4 +106,28 @@ public class GuageManager : MonoBehaviour
             StartCoroutine(FeverCoroutine());
         }
     }
+
+    public void DebugForceStartFever()
+    {
+        if (isFeverTime) 
+            return;
+        // 바로 피버 시작
+        StartCoroutine(FeverCoroutine());
+    }
+
+    public void DebugForceEndFever()
+    {
+        if (!isFeverTime) 
+            return;
+
+        // 진행 중인 피버 코루틴 정지 후 강제 종료 상태로 세팅
+        StopAllCoroutines();
+        isFeverTime = false;
+        Debug.Log("피버 타임 강제 종료(디버그)");
+        GuageImageAlpha.Instance.TriggerFeverEnd();
+
+        gaugeValue = startingGaugeValue;
+        UpdateGaugeUI();
+        GuageColorController.Instance.SetGaugeColor(Color.green);
+    }
 }
