@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bag_512x512_full_centered_0: -3671364522689845747
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -52,4 +52,14 @@ public class ComboManager : MonoBehaviour
 
         comboText.text = $"{comboCount} Combo!!";
     }
+
+    public float GetComboMultiplier()
+    {
+        // 10콤보마다 0.2씩 증가
+        int step = comboCount / 10; 
+        float multiplier = 1f + step * 0.2f;
+
+        // 최대 2배 제한
+        return Mathf.Min(multiplier, 2f);
+    }
 }

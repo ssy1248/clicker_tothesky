@@ -47,6 +47,20 @@ public class GameModeManager : MonoBehaviour
     private void HandleFeverStart() => _isFeverTime = true;
     private void HandleFeverEnd() => _isFeverTime = false;
 
+    [SerializeField] private bool enableDebugFeverKeys = true;
+
+    private void OnEnable()
+    {
+        GuageImageAlpha.OnFeverStart += HandleFeverStart;
+        GuageImageAlpha.OnFeverEnd += HandleFeverEnd;
+    }
+
+    private void OnDisable()
+    {
+        GuageImageAlpha.OnFeverStart -= HandleFeverStart;
+        GuageImageAlpha.OnFeverEnd -= HandleFeverEnd;
+    }
+
     private void Awake()
     {
         // 싱글톤 패턴 구현
@@ -95,6 +109,18 @@ public class GameModeManager : MonoBehaviour
 
     void Update()
     {
+#if UNITY_EDITOR
+        if (enableDebugFeverKeys && Input.GetKeyDown(KeyCode.F))
+        {
+            guageManager?.DebugForceStartFever();
+        }
+
+        if (enableDebugFeverKeys && Input.GetKeyDown(KeyCode.G))
+        {
+            guageManager?.DebugForceEndFever();
+        }
+#endif
+
         // 1. 가장 먼저 GameViewManager를 통해 게임이 끝났는지 확인하고, 끝났으면 즉시 함수 종료
         if (gameViewManager.IsGameFinished)
         {
